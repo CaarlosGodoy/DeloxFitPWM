@@ -1,44 +1,85 @@
-.facilities-section {
+body {
     background-color: #000;
-    padding: 60px 0;
-    text-align: center;
+    color: white;
+    margin: 0;
     font-family: "Century Gothic", sans-serif;
+    overflow-x: hidden;
+}
+
+.about-us-section {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: block;
+}
+
+.about-us-section h2 {
+    color: #18A2E7;
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.about-us-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.facilities-section {
+    width: 100%;
+    padding: 40px 0;
+    display: block;
 }
 
 .facilities-section h2 {
-    color: #18A2E7;
+    text-align: left;
+    padding-left: 20px;
+    color: white;
     text-transform: uppercase;
-    font-size: 28px;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .carousel-container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 15px;
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    height: 500px;
 }
 
 .carousel-slide {
     display: flex;
     width: 500%;
+    height: 100%;
     animation: slide-animation 20s infinite ease-in-out;
 }
 
 .carousel-slide img {
     width: 20%;
-    height: 500px;
+    height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
-    transition: filter 0.3s ease;
 }
 
-.carousel-slide img:hover {
-    filter: brightness(1);
+.classes-banner-section,
+.subscriptions-banner-section {
+    width: 100%;
+    padding: 80px 0;
+    text-align: center;
+    display: block;
+    position: relative;
+}
+
+.classes-banner-section h2,
+.subscriptions-banner-section h2 {
+    font-size: 70px;
+    color: #18A2E7;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
 }
 
 @keyframes slide-animation {
