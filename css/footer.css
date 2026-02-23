@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 .main-footer {
     background-color: #000;
     padding: 40px 0;
