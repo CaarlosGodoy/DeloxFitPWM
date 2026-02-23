@@ -8,11 +8,13 @@
     font-family: "Century Gothic", sans-serif;
 }
 
-.footer-socials-row {
+.footer-socials-row ul,
+.footer-btns-row ul {
     display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-bottom: 25px;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-socials-row i {
@@ -33,29 +35,23 @@
     margin-bottom: 25px;
 }
 
-.footer-btns-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
 .btn-footer {
     background-color: #18A2E7;
-    color: #000;
+    color: black;
     text-decoration: none;
     padding: 12px 20px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
-    text-transform: uppercase; /* Todo en mayúsculas */
-    transition: background-color 0.3s, transform 0.2s;
-    display: inline-block;
+    display: block;
     text-align: center;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .btn-footer:hover {
     background-color: #6BC3EF;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(24, 162, 231, 0.4);
     cursor: pointer;
 }
