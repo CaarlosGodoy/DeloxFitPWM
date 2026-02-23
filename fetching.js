@@ -1,3 +1,5 @@
+let isLoggedIn = true;
+
 async function xLuIncludeFile() {
     let z = document.getElementsByTagName("*");
 
@@ -11,6 +13,14 @@ async function xLuIncludeFile() {
                 if (response.ok) {
 
                     let content = await response.text();
+
+                    if (file.includes("header.html")) {
+                        let buttonHTML = isLoggedIn
+                            ? '<li><a href="perfil.html" class="btn-header">MI CUENTA</a></li>'
+                            : '<li><a href="login.html" class="btn-header">INSCRIPCIÓN</a></li>';
+
+                        content = content.replace("{{authButton}}", buttonHTML);
+                    }
 
                     // Si el archivo es una plantilla, reemplazamos los placeholders
                     if (file === "article-template.html") {
