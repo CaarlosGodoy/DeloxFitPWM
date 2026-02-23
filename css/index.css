@@ -1,0 +1,51 @@
+.facilities-section {
+    background-color: #000;
+    padding: 60px 0;
+    text-align: center;
+    font-family: "Century Gothic", sans-serif;
+}
+
+.facilities-section h2 {
+    color: #18A2E7;
+    text-transform: uppercase;
+    font-size: 28px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-slide {
+    display: flex;
+    width: 500%;
+    animation: slide-animation 20s infinite ease-in-out;
+}
+
+.carousel-slide img {
+    width: 20%;
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: filter 0.3s ease;
+}
+
+.carousel-slide img:hover {
+    filter: brightness(1);
+}
+
+@keyframes slide-animation {
+    0%, 15% { transform: translateX(0%); }
+    20%, 35% { transform: translateX(-20%); }
+    40%, 55% { transform: translateX(-40%); }
+    60%, 75% { transform: translateX(-60%); }
+    80%, 95% { transform: translateX(-80%); }
+    100% { transform: translateX(0%); }
+}
