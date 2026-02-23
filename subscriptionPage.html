@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/fetching.js"></script>
     <link rel="stylesheet" href="/css/subscriptionPage.css">
     <title>DeloxFit</title>
 </head>
 
 <body>
-<header>
-    <p>AQUÍ VA EL HEADER</p>
-</header>
+<header data-xlu-include-file="html/header.html"></header>
 
 <main>
     <section class="subscriptions-section">
@@ -50,8 +49,10 @@
     </section>
 </main>
 
-<footer>
-    <p>AQUÍ VA EL FOOTER</p>
-</footer>
+<footer data-xlu-include-file="html/footer.html"></footer>
+
+<script>
+    xLuIncludeFile();
+</script>
 </body>
 </html>
