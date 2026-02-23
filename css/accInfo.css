@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: "Century Gothic", sans-serif;
+    color: white;
+}
+
+.account-section {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.account-form {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    gap: 60px;
+    position: relative;
+}
+
+
+.account-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-divider {
+    width: 1px;
+    background-color: #444;
+    align-self: stretch;
+}
+
+
+.account-label {
+    background-color: #444;
+    color: white;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 15px 15px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+
+.account-input {
+    background-color: #BEE5F8;
+    border: none;
+    color: #333;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    font-family: "Century Gothic", sans-serif;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.btn-cancel {
+    background-color: #444;
+    color: white;
+    border: 5px #18A2E7;
+    padding: 8px 20px;
+    border-radius: 15px;
+    align-self: flex-end;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-save {
+    background-color: #18A2E7;
+    color: black;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.btn-sign_out {
+    background-color: #444;
+    color: white;
+    border: 5px #18A2E7;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
