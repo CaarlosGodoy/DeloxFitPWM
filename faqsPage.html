@@ -3,72 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/faqsPage.css">
+    <link rel="stylesheet" href="/css/faqsPage.css">
+    <link rel="stylesheet" href="/css/faqs.css">
     <title>FAQs - DeloxFit</title>
 </head>
 
 <body>
-<header>
-    <p>AQUÍ VA EL HEADER</p>
-</header>
+<div data-xlu-include-file="/html/header.html"></div>
 
 <main>
     <section id="faq-section" class="faq-section">
         <div class="faq-container">
 
             <div class="faq-column">
-
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA1</div>
-                    <div class="respuesta">RESPUESTA1</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Cómo me inscribo?"
+                     data-respuesta="Puedes hacerlo desde la sección de Inscripción en el menú superior.">
                 </div>
 
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA2</div>
-                    <div class="respuesta">RESPUESTA2</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Cuáles son los métodos de pago?"
+                     data-respuesta="Aceptamos tarjetas de crédito, débito y PayPal.">
                 </div>
 
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA3</div>
-                    <div class="respuesta">RESPUESTA3</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Hay permanencia?"
+                     data-respuesta="No, puedes cancelar tu suscripción en cualquier momento sin penalización.">
                 </div>
 
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA4</div>
-                    <div class="respuesta">RESPUESTA4</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Puedo cambiar mi plan después?"
+                     data-respuesta="Sí, puedes subir o bajar de nivel desde tu perfil personal.">
                 </div>
-
             </div>
 
             <div class="faq-column">
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA5</div>
-                    <div class="respuesta">RESPUESTA5</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Necesito equipo especial?"
+                     data-respuesta="Depende del plan, pero tenemos rutinas adaptadas para casa o gimnasio.">
                 </div>
 
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA6</div>
-                    <div class="respuesta">RESPUESTA6</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Las dietas son personalizadas?"
+                     data-respuesta="Sí, se adaptan a tus objetivos, alergias y preferencias alimentarias.">
                 </div>
 
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA7</div>
-                    <div class="respuesta">REPUESTA7</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Cómo contacto con mi entrenador?"
+                     data-respuesta="A través del chat privado dentro de la plataforma una vez inicies sesión.">
                 </div>
 
-                <div class="faq-item">
-                    <div class="pregunta">PREGUNTA8</div>
-                    <div class="respuesta">RESPUESTA8</div>
+                <div data-xlu-include-file="/html/faqs.html"
+                     data-pregunta="¿Tengo acceso a la comunidad?"
+                     data-respuesta="¡Por supuesto! Todos los planes incluyen acceso al grupo privado de Discord.">
                 </div>
-
             </div>
 
         </div>
     </section>
 </main>
 
-<footer>
-    <p>AQUÍ VA EL FOOTER</p>
-</footer>
+<div data-xlu-include-file="/html/footer.html"></div>
+
+<script src="/fetchingFaqs.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", xLuIncludeFile);
+</script>
 </body>
 </html>
