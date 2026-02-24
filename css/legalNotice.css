@@ -64,14 +64,3 @@ body {
 .legal-container strong {
     color: #fff;
 }
-
-@media (max-width: 768px) {
-    .legal-container {
-        padding: 0 20px;
-        margin: 40px auto;
-    }
-
-    #legal-title {
-        font-size: 32px;
-    }
-}
