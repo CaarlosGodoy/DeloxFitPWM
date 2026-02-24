@@ -3,52 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeloxFit</title>
+    <title>Acceso - DeloxFit</title>
+    <script src="/fetching.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
-<header>
-    <p>AQUÍ VA EL HEADER</p>
-</header>
+<header data-xlu-include-file="html/header.html"></header>
 
-<main>
+<main class="auth-container">
     <section id="form-register" class="form-section">
         <h2>REGISTRARSE</h2>
-        <form action="index.html" method="GET">
-            <label for="reg-correo">CORREO ELECTRÓNICO</label>
-            <input type="text" id="reg-correo" required>
+        <label for="reg-correo">CORREO ELECTRÓNICO</label>
+        <input type="email" id="reg-correo">
 
-            <label for="reg-dni">DNI</label>
-            <input type="text" id="reg-dni" required>
+        <label for="reg-dni">DNI</label>
+        <input type="text" id="reg-dni">
 
-            <label for="reg-usuario">USUARIO</label>
-            <input type="text" id="reg-usuario" required>
+        <label for="reg-usuario">USUARIO</label>
+        <input type="text" id="reg-usuario">
 
-            <label for="reg-pass">CONTRASEÑA</label>
-            <input type="password" id="reg-pass" required>
+        <label for="reg-pass">CONTRASEÑA</label>
+        <input type="password" id="reg-pass">
 
-            <button type="submit" class="btn-iniciar">INICIAR</button>
-        </form>
+        <button class="btn-iniciar">INICIAR</button>
     </section>
 
-    <hr>
+    <div class="auth-divider"></div>
 
     <section id="form-log-in" class="form-section">
         <h2>INICIAR SESIÓN</h2>
-        <form action="index.html" method="GET">
-            <label for="log-usuario">USUARIO</label>
-            <input type="text" id="log-usuario" required>
+        <label for="log-usuario">USUARIO</label>
+        <input type="text" id="log-usuario">
 
-            <label for="log-pass">CONTRASEÑA</label>
-            <input type="password" id="log-pass" required>
+        <label for="log-pass">CONTRASEÑA</label>
+        <input type="password" id="log-pass">
 
-            <button type="submit" class="btn-iniciar">INICIAR</button>
-        </form>
+        <button class="btn-iniciar">INICIAR</button>
     </section>
 </main>
 
-<footer>
-    <p>AQUÍ VA EL FOOTER</p>
-</footer>
+<footer data-xlu-include-file="html/footer.html"></footer>
+
+<script>
+    xLuIncludeFile();
+</script>
 </body>
 </html>
