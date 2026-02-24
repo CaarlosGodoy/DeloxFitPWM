@@ -22,6 +22,16 @@ async function xLuIncludeFile() {
                         content = content.replace("{{authButton}}", buttonHTML);
                     }
 
+                    if (file.toLowerCase().includes("banner")) {
+                        let title = z[i].getAttribute("data-title") || "";
+                        let image = z[i].getAttribute("data-image") || "";
+                        let link = z[i].getAttribute("data-link") || "#";
+
+                        content = content.replace("{{title}}", title)
+                            .replace("{{image}}", image)
+                            .replace("{{link}}", link);
+                    }
+
                     // Si el archivo es una plantilla, reemplazamos los placeholders
                     if (file === "article-template.templates") {
                         let articleData = {
