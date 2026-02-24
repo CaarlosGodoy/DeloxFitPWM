@@ -1,12 +1,19 @@
+.cancel-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
 .cancel-card {
     background-color: #111;
     border: 1px solid #333;
-    padding: 30px;
+    padding: 40px;
     border-radius: 15px;
     text-align: center;
-    max-width: 400px;
+    max-width: 450px;
     font-family: "Century Gothic", sans-serif;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .cancel-card:hover {
@@ -18,25 +25,30 @@
     color: #18A2E7;
     font-size: 24px;
     text-transform: uppercase;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    font-weight: bold;
 }
 
-.cancel-btn {
-    background-color: #18A2E7;
-    color: black;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 12px;
-    font-size: 14px;
+.cancel-btns-row ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-cancel {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
+    display: inline-block;
 }
 
-.cancel-btn:hover {
-    background-color: #6BC3EF;
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(24, 162, 231, 0.4);
+.btn-cancel:hover {
+    color: #18A2E7;
 }
