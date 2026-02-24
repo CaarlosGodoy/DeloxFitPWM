@@ -61,3 +61,15 @@ body {
 .subscription-btn:hover {
     background-color: #6BC3EF;
 }
+
+.subscription-price {
+    margin: 20px 0;
+    color: #18A2E7;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px;
+}

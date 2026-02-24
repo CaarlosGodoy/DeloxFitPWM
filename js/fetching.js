@@ -54,13 +54,15 @@ async function xLuIncludeFile() {
                     }
 
                     // Plantilla de suscripciones
-                    if (file === "html/subscription.html") {
+                    if (file === "templates/subscription.html") {
                         let subscriptionData = {
                             title: z[i].getAttribute("data-title"),
+                            price: z[i].getAttribute("data-price"),
                         };
 
                         content = content
-                            .replace(/{{title}}/g, subscriptionData.title);
+                            .replace(/{{title}}/g, subscriptionData.title)
+                            .replace(/{{price}}/g, subscriptionData.price);
                     }
 
                     a.removeAttribute("data-xlu-include-file");
