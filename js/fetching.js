@@ -40,7 +40,6 @@ async function xLuIncludeFile() {
                             .replace("{{link}}", link);
                     }
 
-                    // Si el archivo es una plantilla, reemplazamos los placeholders
                     if (file === "article-template.templates") {
                         let articleData = {
                             title: z[i].getAttribute("data-title"),
@@ -61,7 +60,6 @@ async function xLuIncludeFile() {
                             .replace(/{{imageCaption}}/g, articleData.imageCaption || '');
                     }
 
-                    // Plantilla de suscripciones
                     if (file === "templates/subscription.html") {
                         let subscriptionData = {
                             title: z[i].getAttribute("data-title"),
@@ -74,16 +72,21 @@ async function xLuIncludeFile() {
                     }
 
                     a.removeAttribute("data-xlu-include-file");
-                    //a.innerHTML = await response.text();
                     a.innerHTML = content;
                     z[i].parentNode.replaceChild(a, z[i]);
+
                     xLuIncludeFile();
                 }
             } catch (error) {
                 console.error("Error fetching file:", error);
             }
-
-            return;
         }
+    }
+}
+
+function togglePopup() {
+    const popup = document.getElementById('popup-overlay');
+    if (popup) {
+        popup.classList.toggle('active');
     }
 }

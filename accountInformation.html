@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeloxFit - Mi Cuenta</title>
     <script src="js/fetching.js"></script>
     <link rel="stylesheet" href="/css/accInfo.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/header.css">
-    <title>DeloxFit - Mi Cuenta</title>
 </head>
 
 <body>
@@ -15,42 +15,41 @@
 
 <main>
     <section id="account-section" class="account-section">
-        <form class="account-form">
+        <div class="account-form">
 
             <div class="account-column">
+                <label class="account-label">NOMBRE</label>
+                <input type="text" class="account-input" value="Juan Pérez">
 
-                <label class="account-label" for="nombre">NOMBRE</label>
-                <input type="text" id="nombre" name="nombre" class="account-input" value="Juan Pérez">
+                <label class="account-label">CORREO</label>
+                <input type="email" class="account-input" value="juan.perez@email.com">
 
-                <label class="account-label" for="correo">CORREO</label>
-                <input type="email" id="correo" name="correo" class="account-input" value="juan.perez@email.com">
+                <label class="account-label">DNI</label>
+                <input type="text" class="account-input" value="12345678X">
 
-                <label class="account-label" for="dni">DNI</label>
-                <input type="text" id="dni" name="dni" class="account-input" value="12345678X">
+                <label class="account-label">SUB. ACTIVA</label>
+                <input type="text" class="account-input" value="Cuota Mensual Estándar" readonly>
 
-                <label class="account-label" for="sub_activa">SUB. ACTIVA</label>
-                <input type="text" id="sub_activa" name="sub_activa" class="account-input" value="Cuota Mensual Estándar">
-
-                <button type="button" class="btn-cancel">CANCELAR SUB</button>
-
+                <button type="button" class="btn-cancel" onclick="togglePopup()">CANCELAR SUB</button>
             </div>
 
             <div class="account-divider"></div>
 
             <div class="account-column">
+                <label class="account-label">MIS RESERVAS</label>
+                <input type="text" class="account-input" value="Spinning - 24/02 18:00h">
 
-                <label class="account-label" for="reservas">MIS RESERVAS</label>
-                <input type="text" id="reservas" name="reservas" class="account-input" value="Spinning - 24/02 18:00h">
+                <label class="account-label">TARJETA</label>
+                <input type="text" class="account-input" value="**** **** **** 1234">
 
-                <label class="account-label" for="tarjeta">TARJETA</label>
-                <input type="text" id="tarjeta" name="tarjeta" class="account-input" value="**** **** **** 1234">
                 <button type="button" class="btn-save">GUARDAR</button>
                 <button type="button" class="btn-sign_out">CERRAR SESIÓN</button>
-
             </div>
 
-        </form>
+        </div>
     </section>
+
+    <div data-xlu-include-file="templates/cancelSub.html"></div>
 </main>
 
 <footer data-xlu-include-file="templates/footer.html"></footer>

@@ -1,8 +1,25 @@
+.popup-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+}
+
+.popup-overlay.active {
+    display: flex !important;
+}
+
 .cancel-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
+    width: 100%;
 }
 
 .cancel-card {
@@ -12,13 +29,9 @@
     border-radius: 15px;
     text-align: center;
     max-width: 450px;
+    width: 90%;
     font-family: "Century Gothic", sans-serif;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.cancel-card:hover {
-    transform: translateY(-10px);
-    border-color: #18A2E7;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .cancel-title {
@@ -37,16 +50,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.btn-cancel {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-    display: inline-block;
 }
 
 .btn-cancel:hover {
