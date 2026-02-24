@@ -1,4 +1,4 @@
-let isLoggedIn = false;
+let isLoggedIn = true;
 
 async function xLuIncludeFile() {
     let z = document.getElementsByTagName("*");
@@ -14,26 +14,23 @@ async function xLuIncludeFile() {
 
                     let content = await response.text();
 
-                    if (file.toLowerCase().includes("header")) {
+                    if (file.includes("faqs.html")) {
+                        let pregunta = z[i].getAttribute("data-pregunta") || "";
+                        let respuesta = z[i].getAttribute("data-respuesta") || "";
+
+                        content = content.replace("__TITULO__", pregunta)
+                            .replace("__CONTENIDO__", respuesta);
+                    }
+
+                    if (file.includes("header.html")) {
                         let buttonHTML = isLoggedIn
-                            ? '<li><a href="../accountInformation.html" class="btn-header">MI CUENTA</a></li>'
-                            : '<li><a href="../login.html" class="btn-header">INSCRIPCION</a></li>';
+                            ? '<li><a href="perfil.html" class="btn-header">MI CUENTA</a></li>'
+                            : '<li><a href="login.html" class="btn-header">INSCRIPCIÓN</a></li>';
 
                         content = content.replace("{{authButton}}", buttonHTML);
                     }
 
-                    if (file.toLowerCase().includes("banner")) {
-                        let title = z[i].getAttribute("data-title") || "";
-                        let image = z[i].getAttribute("data-image") || "";
-                        let link = z[i].getAttribute("data-link") || "#";
-
-                        content = content.replace("{{title}}", title)
-                            .replace("{{image}}", image)
-                            .replace("{{link}}", link);
-                    }
-
-                    // Si el archivo es una plantilla, reemplazamos los placeholders
-                    if (file === "article-template.templates") {
+                    if (file === "article-template.html") {
                         let articleData = {
                             title: z[i].getAttribute("data-title"),
                             subtitle: z[i].getAttribute("data-subtitle"),
@@ -53,18 +50,8 @@ async function xLuIncludeFile() {
                             .replace(/{{imageCaption}}/g, articleData.imageCaption || '');
                     }
 
-                    // Plantilla de suscripciones
-                    if (file === "html/subscription.html") {
-                        let subscriptionData = {
-                            title: z[i].getAttribute("data-title"),
-                        };
-
-                        content = content
-                            .replace(/{{title}}/g, subscriptionData.title);
-                    }
 
                     a.removeAttribute("data-xlu-include-file");
-                    //a.innerHTML = await response.text();
                     a.innerHTML = content;
                     z[i].parentNode.replaceChild(a, z[i]);
                     xLuIncludeFile();

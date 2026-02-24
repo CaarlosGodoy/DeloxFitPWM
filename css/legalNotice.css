@@ -1,0 +1,77 @@
+body {
+    background-color: #000;
+    color: white;
+    margin: 0;
+    font-family: "Century Gothic", sans-serif;
+}
+
+.legal-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 40px;
+    line-height: 1.8;
+}
+
+#legal-title {
+    color: #18A2E7;
+    font-size: 48px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.legal-container section {
+    margin-bottom: 40px;
+    background-color: #0a0a0a;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid #18A2E7;
+}
+
+.legal-container h2 {
+    color: #18A2E7;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.legal-container p {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.legal-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.legal-container li {
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.legal-container li strong {
+    color: #18A2E7;
+    margin-right: 5px;
+}
+
+.legal-container strong {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .legal-container {
+        padding: 0 20px;
+        margin: 40px auto;
+    }
+
+    #legal-title {
+        font-size: 32px;
+    }
+}
