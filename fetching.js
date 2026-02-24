@@ -43,6 +43,15 @@ async function xLuIncludeFile() {
                             .replace(/{{imageCaption}}/g, articleData.imageCaption || '');
                     }
 
+                    // Plantilla de suscripciones
+                    if (file === "html/subscription.html") {
+                        let subscriptionData = {
+                            title: z[i].getAttribute("data-title"),
+                        };
+
+                        content = content
+                            .replace(/{{title}}/g, subscriptionData.title);
+                    }
 
                     a.removeAttribute("data-xlu-include-file");
                     //a.innerHTML = await response.text();
