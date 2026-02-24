@@ -27,6 +27,13 @@ body {
     margin: 10px 0;
 }
 
+.about-us-section img {
+    display: block;
+    margin: 40px auto 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
 .facilities-section {
     width: 100%;
     padding: 40px 0;
@@ -34,12 +41,12 @@ body {
 }
 
 .facilities-section h2 {
-    text-align: left;
-    padding-left: 20px;
-    color: white;
+    text-align: center;
+    padding-left: 0;
+    color: #18A2E7;
     text-transform: uppercase;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
 .carousel-container {
