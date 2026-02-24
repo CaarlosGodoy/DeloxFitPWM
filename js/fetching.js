@@ -22,6 +22,14 @@ async function xLuIncludeFile() {
                         content = content.replace("{{authButton}}", buttonHTML);
                     }
 
+                    if (file.includes("faqs.html")) {
+                        let pregunta = z[i].getAttribute("data-pregunta") || "";
+                        let respuesta = z[i].getAttribute("data-respuesta") || "";
+
+                        content = content.replace("__TITULO__", pregunta)
+                            .replace("__CONTENIDO__", respuesta);
+                    }
+
                     if (file.toLowerCase().includes("banner")) {
                         let title = z[i].getAttribute("data-title") || "";
                         let image = z[i].getAttribute("data-image") || "";

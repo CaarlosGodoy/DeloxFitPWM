@@ -1,27 +1,37 @@
 .faq-item {
-    background-color: #4ebcff;
+    background-color: #000000;
     width: 100%;
+    height: 250px;
     box-sizing: border-box;
-    border-radius: 12px;
-    border-left: 5px solid #18A2E7;
+    border-radius: 7px;
+    border: 5px solid #18A2E7;
     overflow: hidden;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .pregunta {
     padding: 20px;
-    color: #000;
+    color: #18A2E7;
     font-weight: bold;
     font-size: 18px;
+    font-family: "Century Gothic", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #18A2E7;
+    height: 60px;
+    display: flex;
+    align-items: center;
 }
 
 .respuesta {
     padding: 20px;
     color: #fff;
+    font-family: "Century Gothic", sans-serif;
     line-height: 1.6;
     font-size: 15px;
-    background-color: #18A2E7;
+    background-color: #000000;
+    flex-grow: 1;
+    overflow-y: auto;
 }
