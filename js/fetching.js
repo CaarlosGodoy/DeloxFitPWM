@@ -1,4 +1,4 @@
-let isLoggedIn = false;
+let isLoggedIn = true;
 
 async function xLuIncludeFile() {
     let z = document.getElementsByTagName("*");
@@ -16,8 +16,8 @@ async function xLuIncludeFile() {
 
                     if (file.toLowerCase().includes("header")) {
                         let buttonHTML = isLoggedIn
-                            ? '<li><a href="../accountInformation.html" class="btn-header">MI CUENTA</a></li>'
-                            : '<li><a href="../login.html" class="btn-header">INSCRIPCION</a></li>';
+                            ? '<li><a href="accountInformation.html" class="btn-header">MI CUENTA</a></li>'
+                            : '<li><a href="login.html" class="btn-header">INSCRIPCION</a></li>';
 
                         content = content.replace("{{authButton}}", buttonHTML);
                     }
