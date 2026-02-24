@@ -14,16 +14,16 @@ async function xLuIncludeFile() {
 
                     let content = await response.text();
 
-                    if (file.includes("header.html")) {
+                    if (file.includes("header.templates")) {
                         let buttonHTML = isLoggedIn
-                            ? '<li><a href="perfil.html" class="btn-header">MI CUENTA</a></li>'
-                            : '<li><a href="login.html" class="btn-header">INSCRIPCIÓN</a></li>';
+                            ? '<li><a href="perfil.templates" class="btn-header">MI CUENTA</a></li>'
+                            : '<li><a href="login.templates" class="btn-header">INSCRIPCIÓN</a></li>';
 
                         content = content.replace("{{authButton}}", buttonHTML);
                     }
 
                     // Si el archivo es una plantilla, reemplazamos los placeholders
-                    if (file === "article-template.html") {
+                    if (file === "article-template.templates") {
                         let articleData = {
                             title: z[i].getAttribute("data-title"),
                             subtitle: z[i].getAttribute("data-subtitle"),
