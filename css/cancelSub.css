@@ -1,4 +1,4 @@
-.class-card {
+.cancel-card {
     background-color: #111;
     border: 1px solid #333;
     padding: 30px;
@@ -9,12 +9,12 @@
     transition: transform 0.3s ease;
 }
 
-.class-card:hover {
+.cancel-card:hover {
     transform: translateY(-10px);
     border-color: #18A2E7;
 }
 
-.class-title {
+.cancel-title {
     color: #18A2E7;
     font-size: 24px;
     text-transform: uppercase;
@@ -22,15 +22,7 @@
     letter-spacing: 1px;
 }
 
-.class-information {
-    color: white;
-    font-size: 16px;
-    font-weight: normal;
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
-
-.inscription-btn {
+.cancel-btn {
     background-color: #18A2E7;
     color: black;
     border: none;
@@ -43,7 +35,7 @@
     transition: all 0.3s ease;
 }
 
-.inscription-btn:hover {
+.cancel-btn:hover {
     background-color: #6BC3EF;
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(24, 162, 231, 0.4);
