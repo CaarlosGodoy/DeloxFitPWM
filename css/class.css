@@ -1,54 +1,46 @@
-.class-card {
-    background-color: #111;
-    border: 1px solid #333;
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 500px;
-    font-family: "Century Gothic", sans-serif;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+.class-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
 
-.class-card:hover {
-    transform: translateY(-10px);
-    border-color: #18A2E7;
+.class-card {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    max-width: 350px;
+    font-family: sans-serif;
 }
 
 .class-title {
     color: #18A2E7;
-    font-size: 28px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 .class-information {
-    color: #ccc;
-    font-size: 16px;
-    font-weight: normal;
-    margin-bottom: 30px;
-    line-height: 1.5;
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 20px;
 }
 
 .header-btns-row ul {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 15px;
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .btn-class {
+    background-color: #18A2E7;
+    color: #000;
     text-decoration: none;
-    color: #fff;
-    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
     font-weight: bold;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-    display: inline-block;
 }
-
 .btn-class:hover {
-    color: #18A2E7;
+    background-color: #6BC3EF;
 }
