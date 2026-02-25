@@ -39,17 +39,76 @@ no esté previamente registrado.
 REQ8- Se requiere obligatoriamente que el usuario esté autenticado en el sistema para
 proceder con cualquier transacción económica.
 
-UBICACIÓN DE LOS ARCHIVOS MOCKUP Y STORYBOARD:
+UBICACIÓN DEL PDF DE LOS MOCKUP Y EL STORYBOARD:
 -
-Los archivos se encuentran en la ruta "/FIGMA".
+El PDF se encuentra en la ruta "/FIGMA/FIGMA_SPRINT_1.pdf".
 
 Por si fuese necesario se encuentra el link al Figma en la sección "Otros Aspectos" de este documento.
 
 PÁGINAS:
 -
 
+> PAGINA PRINCIPAL: index.html
+
+Es la página de inicio del sitio web.
+
+Representa el mockup "INDICE".
+
+> INSCRIPCIÓN: login.html
+
+Representa el mockup "LOG-IN".
+
+> MI CUENTA: accountInformation.html
+
+Representa el mockup "INFORMACION CUENTA".
+
+> SUSCRIPCIONES: subscriptionPage.html
+
+Representa el mockup "SUSCRIPCIONES".
+
+> CLASES: classesPage.html
+
+Representa el mockup "CLASES".
+
+> FAQS: faqsPage.html
+
+Representa el mockup "FAQS".
+
+> AVISO LEGAL: legalNotice.html
+
+Para esto último no hicimos mockup en su momento.
+
+
 TEMPLATES:
 -
+
+> HEADER: header.html
+
+Las 7 páginas cargan este template.
+
+> FOOTER: footer.html
+
+Las 7 páginas cargan este template.
+
+> BANNER: banner.html
+
+Se carga en 2 ocaciones en la página "index.html".
+
+> SUBSCRIPTION: subscription.html
+
+Se carga en 6 ocaciones en la página "subscriptionPage.html".
+
+> CANCELAR SUB POP-UP: cancelSub.html
+
+Se carga una única vez en la página "accountInformation.html"
+
+> CLASS POP-UP: class.html
+
+No se carga en ninguna página ya que tenemos el calendario de clases vacío, una vez existan clases se cargará este pop-up, en la página "classesPage.html"
+
+> FAQS: faqs.html
+
+Se carga en 8 ocaciones en la página "faqsPage.html".
 
 OTROS ASPECTOS:
 -
