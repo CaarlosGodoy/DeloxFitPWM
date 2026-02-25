@@ -1,4 +1,4 @@
-let isLoggedIn = true;
+let isLoggedIn = false;
 
 async function xLuIncludeFile() {
     let z = document.getElementsByTagName("*");

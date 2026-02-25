@@ -1,93 +1,26 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    width: 100%;
-    overflow-x: hidden;
-    font-family: "Century Gothic", sans-serif;
-    background-color: black;
+    background-color: #000;
+    margin: 0;
+    font-family: sans-serif;
 }
 
 .subscriptions-section {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 60px 40px;
-    gap: 50px;
+    padding: 40px 20px;
+    gap: 30px;
 }
 
 .subscriptions-title {
-    color: white;
-    font-size: 22px;
-    letter-spacing: 3px;
-    font-weight: bold;
+    color: #ffffff;
+    font-size: 24px;
 }
 
 .subscriptions-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-}
-
-.subscription-card {
-    width: 220px;
-    height: 380px;
-
-    background-color: black;
-    border: 2px solid #18A2E7;
-    border-radius: 14px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 30px 20px;
-}
-
-.subscription-title {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-align: center;
-}
-
-.subscription-btn {
+    gap: 30px;
     width: 100%;
-    padding: 14px 0;
-
-    background-color: #18A2E7;
-    color: #111;
-
-    border: none;
-    border-radius: 12px;
-
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.subscription-btn:hover {
-    background-color: #6BC3EF;
-    transform: scale(1.05);
-}
-
-@media (max-width: 900px) {
-    .subscriptions-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .subscriptions-grid {
-        grid-template-columns: 1fr;
-    }
+    justify-items: center;
 }

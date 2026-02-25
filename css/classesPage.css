@@ -1,65 +1,33 @@
 body {
-    width: 100%;
-    overflow-x: hidden;
-    font-family: "Century Gothic", sans-serif;
-    background-color: black;
+    background-color: #000;
     margin: 0;
-    padding: 0;
+    font-family: sans-serif;
+}
+
+.classes-calendar-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
 
 .classesCalendar {
-    width: 100%;
     border-collapse: collapse;
-    font-family: "Century Gothic", sans-serif;
-    background-color: #000;
-    color: white;
-    margin: 20px 0;
+    color: #ffffff;
+    width: 100%;
 }
 
 .classesCalendar th,
 .classesCalendar td {
-    border: 1px solid #333;
-    padding: 15px;
+    border: 1px solid #18A2E7;
+    padding: 10px;
     text-align: center;
 }
 
-.classesCalendar th {
-    background-color: #111;
+.classesCalendar th, .time-col {
     color: #18A2E7;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.time-col {
-    background-color: #111;
-    color: #18A2E7;
-    font-weight: bold;
-    width: 100px;
-}
-
-.classesCalendar td {
-    height: 60px;
-    transition: background-color 0.3s ease;
-}
-
-.classesCalendar tbody td:not(.time-col):hover {
-    background-color: #1a1a1a;
-    cursor: pointer;
 }
 
 .class-block {
-    background-color: #18A2E7;
-    color: black;
-    padding: 10px;
-    border-radius: 8px;
+    color: #18A2E7;
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-
-.class-block:hover {
-    background-color: #6BC3EF;
-    transform: scale(1.05);
 }
