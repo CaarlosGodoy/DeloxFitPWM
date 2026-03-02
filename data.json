@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "id": 2,
+      "title": "Inicio",
+      "slug": "home",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<section id=\"about-us-section\" class=\"about-us-section\">" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<h2>Entrena a tu aire</h2>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<p>En <strong>DeloxFit</strong> no te vamos a vender la moto. Esto es un gimnasio para gente normal que solo quiere entrenar tranquila y sin tonterías.</p>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<p>Da igual si es tu primer día. Aquí nadie te va a mirar raro. Abrimos <strong>las 24 horas</strong> para que vengas cuando te dé la gana.</p>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<strong>Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas</strong>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<img src=\"./assets/about-us.png\" alt=\"DeloxFit\"></section>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<section id=\"facilities-section\" class=\"facilities-section\"><h2>INSTALACIONES</h2>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<div class=\"carousel-container\"><div class=\"carousel-slide\">" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<img src=\"./assets/carousel/c5.png\"><img src=\"./assets/carousel/c4.png\"><img src=\"./assets/carousel/c3.png\">" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "</div></div></section>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<section class=\"classes-banner-section\" data-xlu-include-file=\"./templates/banner.html\" data-title=\"CLASES\" data-image=\"./assets/classes-banner.jpg\" data-link=\"./classesPage.html\"></section>" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "text": "<section class=\"subscriptions-banner-section\" data-xlu-include-file=\"./templates/banner.html\" data-title=\"SUSCRIPCIONES\" data-image=\"./assets/subscription-banner.png\" data-link=\"./subscriptionPage.html\"></section>" }]
+        }
+      ]
+    }
+  ]
+}
