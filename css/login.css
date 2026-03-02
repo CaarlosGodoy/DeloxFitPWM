@@ -1,35 +1,111 @@
-.auth-container {
+body {
+    background-color: #000;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.auth-wrapper {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    padding: 40px;
-    font-family: sans-serif;
+    align-items: center;
+    min-height: 80vh;
+    padding: 60px 20px;
+}
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    max-width: 1100px;
 }
 
 .form-section {
     display: flex;
     flex-direction: column;
-    color: #ffffff;
+    flex: 1;
 }
 
 .form-section h2 {
     color: #18A2E7;
+    font-size: 32px;
+    margin-bottom: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.form-section input {
-    background: #000;
-    border: 1px solid #18A2E7;
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section label {
+    color: #18A2E7;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.auth-input {
+    background: #111;
+    border: 1px solid #333;
+    border-left: 5px solid #18A2E7;
     color: #ffffff;
-    padding: 8px;
-    margin: 5px 0 15px;
+    padding: 18px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #6BC3EF;
+    background: #151515;
 }
 
 .btn-iniciar {
     background: #18A2E7;
     color: #000;
-    padding: 10px;
+    padding: 20px;
     font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    letter-spacing: 1px;
 }
+
 .btn-iniciar:hover {
     background: #6BC3EF;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(24, 162, 231, 0.3);
+}
+
+.auth-divider {
+    height: 1px;
+    background: #333;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .auth-container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 80px;
+    }
+
+    .form-section h2 {
+        text-align: left;
+    }
+
+    .auth-divider {
+        width: 1px;
+        height: auto;
+        align-self: stretch;
+    }
 }

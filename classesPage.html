@@ -1,74 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="./js/fetching.js"></script>
-        <link rel="stylesheet" href="./css/classesPage.css">
-        <link rel="stylesheet" href="./css/footer.css">
-        <link rel="stylesheet" href="./css/header.css">
-        <title>DeloxFit - Clases</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/fetching.js"></script>
+    <link rel="stylesheet" href="./css/classesPage.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <title>DeloxFit - Clases</title>
+</head>
 
-    <body>
-        <header data-xlu-include-file="./templates/header.html"></header>
+<body>
+<header data-xlu-include-file="./templates/header.html"></header>
 
-        <main>
-            <section id="classes-calendar-section" class="classes-calendar-section">
-                <table class="classesCalendar">
-                    <thead>
-                    <tr>
-                        <th>Hora</th>
-                        <th>Lunes</th>
-                        <th>Martes</th>
-                        <th>Miércoles</th>
-                        <th>Jueves</th>
-                        <th>Viernes</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="time-col">09:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">10:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">11:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">12:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
+<main>
+    <section id="classes-calendar-section" class="classes-calendar-section">
+        <h2 class="section-title">HORARIOS DE CLASES</h2>
+        <div class="table-container">
+            <table class="classesCalendar">
+                <thead>
+                <tr>
+                    <th>Hora</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td class="time-col">09:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">10:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">11:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">12:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">16:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">17:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">18:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="time-col">19:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
 
-                    <tr>
-                        <td class="time-col">16:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">17:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">18:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">19:00</td>
-                        <td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
-        </main>
+<footer data-xlu-include-file="./templates/footer.html"></footer>
 
-        <footer data-xlu-include-file="./templates/footer.html"></footer>
-
-        <script>
-            xLuIncludeFile();
-        </script>
-    </body>
+<script>
+    xLuIncludeFile();
+</script>
+</body>
 </html>

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeloxFit - Acceso</title>
     <script src="./js/fetching.js"></script>
-    <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/header.css">
@@ -14,36 +13,40 @@
 <body>
 <header data-xlu-include-file="./templates/header.html"></header>
 
-<main class="auth-container">
-    <section id="form-register" class="form-section">
-        <h2>REGISTRARSE</h2>
-        <label for="reg-correo">CORREO ELECTRÓNICO</label>
-        <input type="email" id="reg-correo">
+<main class="auth-wrapper">
+    <div class="auth-container">
+        <section class="form-section">
+            <h2>REGISTRARSE</h2>
+            <div class="input-group">
+                <label for="reg-correo">CORREO ELECTRÓNICO</label>
+                <input type="email" id="reg-correo" class="auth-input">
 
-        <label for="reg-dni">DNI</label>
-        <input type="text" id="reg-dni">
+                <label for="reg-dni">DNI</label>
+                <input type="text" id="reg-dni" class="auth-input">
 
-        <label for="reg-usuario">USUARIO</label>
-        <input type="text" id="reg-usuario">
+                <label for="reg-usuario">USUARIO</label>
+                <input type="text" id="reg-usuario" class="auth-input">
 
-        <label for="reg-pass">CONTRASEÑA</label>
-        <input type="password" id="reg-pass">
+                <label for="reg-pass">CONTRASEÑA</label>
+                <input type="password" id="reg-pass" class="auth-input">
+            </div>
+            <button class="btn-iniciar">REGISTRARME</button>
+        </section>
 
-        <button class="btn-iniciar">INICIAR</button>
-    </section>
+        <div class="auth-divider"></div>
 
-    <div class="auth-divider"></div>
+        <section class="form-section">
+            <h2>INICIAR SESIÓN</h2>
+            <div class="input-group">
+                <label for="log-usuario">USUARIO</label>
+                <input type="text" id="log-usuario" class="auth-input">
 
-    <section id="form-log-in" class="form-section">
-        <h2>INICIAR SESIÓN</h2>
-        <label for="log-usuario">USUARIO</label>
-        <input type="text" id="log-usuario">
-
-        <label for="log-pass">CONTRASEÑA</label>
-        <input type="password" id="log-pass">
-
-        <button class="btn-iniciar">INICIAR</button>
-    </section>
+                <label for="log-pass">CONTRASEÑA</label>
+                <input type="password" id="log-pass" class="auth-input">
+            </div>
+            <button class="btn-iniciar">INICIAR SESIÓN</button>
+        </section>
+    </div>
 </main>
 
 <footer data-xlu-include-file="./templates/footer.html"></footer>

@@ -23,8 +23,8 @@ async function xLuIncludeFile() {
                     }
 
                     if (file.includes("./templates/faqs.html")) {
-                        let pregunta = z[i].getAttribute("data-pregunta") || "";
-                        let respuesta = z[i].getAttribute("data-respuesta") || "";
+                        let pregunta = z[i].getAttribute("data-titulo") || "";
+                        let respuesta = z[i].getAttribute("data-contenido") || "";
 
                         content = content.replace("__TITULO__", pregunta)
                             .replace("__CONTENIDO__", respuesta);
