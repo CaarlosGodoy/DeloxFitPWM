@@ -1,92 +1,86 @@
 let isLoggedIn = false;
 
+function richTextToHTML(richTextArray) {
+    if (!richTextArray) return "";
+    return richTextArray.map(block => {
+        return block.children.map(child => child.text).join("");
+    }).join("\n");
+}
+
 async function xLuIncludeFile() {
-    let z = document.getElementsByTagName("*");
+    let elements = document.querySelectorAll("[data-xlu-include-file]");
 
-    for (let i = 0; i < z.length; i++) {
-        if (z[i].getAttribute("data-xlu-include-file")) {
-            let a = z[i].cloneNode(false);
-            let file = z[i].getAttribute("data-xlu-include-file");
+    for (let i = 0; i < elements.length; i++) {
+        let el = elements[i];
+        let file = el.getAttribute("data-xlu-include-file");
 
-            try {
-                let response = await fetch(file);
-                if (response.ok) {
+        try {
+            let response = await fetch(file);
+            if (response.ok) {
+                let content = await response.text();
 
-                    let content = await response.text();
-
-                    if (file.toLowerCase().includes("header")) {
-                        let buttonHTML = isLoggedIn
-                            ? '<li><a href="./accountInformation.html" class="btn-header">MI CUENTA</a></li>'
-                            : '<li><a href="./login.html" class="btn-header">INSCRIPCION</a></li>';
-
-                        content = content.replace("{{authButton}}", buttonHTML);
-                    }
-
-                    if (file.includes("./templates/faqs.html")) {
-                        let pregunta = z[i].getAttribute("data-titulo") || "";
-                        let respuesta = z[i].getAttribute("data-contenido") || "";
-
-                        content = content.replace("__TITULO__", pregunta)
-                            .replace("__CONTENIDO__", respuesta);
-                    }
-
-                    if (file.toLowerCase().includes("banner")) {
-                        let title = z[i].getAttribute("data-title") || "";
-                        let image = z[i].getAttribute("data-image") || "";
-                        let link = z[i].getAttribute("data-link") || "#";
-
-                        content = content.replace("{{title}}", title)
-                            .replace("{{image}}", image)
-                            .replace("{{link}}", link);
-                    }
-
-                    if (file === "article-template.templates") {
-                        let articleData = {
-                            title: z[i].getAttribute("data-title"),
-                            subtitle: z[i].getAttribute("data-subtitle"),
-                            date: z[i].getAttribute("data-date"),
-                            displayDate: z[i].getAttribute("data-display-date"),
-                            content: z[i].getAttribute("data-content"),
-                            image: z[i].getAttribute("data-image"),
-                            imageCaption: z[i].getAttribute("data-image-caption")
-                        };
-
-                        content = content.replace(/{{title}}/g, articleData.title)
-                            .replace(/{{subtitle}}/g, articleData.subtitle)
-                            .replace(/{{date}}/g, articleData.date)
-                            .replace(/{{displayDate}}/g, articleData.displayDate)
-                            .replace(/{{content}}/g, articleData.content)
-                            .replace(/{{image}}/g, articleData.image || '')
-                            .replace(/{{imageCaption}}/g, articleData.imageCaption || '');
-                    }
-
-                    if (file === "./templates/subscription.html") {
-                        let subscriptionData = {
-                            title: z[i].getAttribute("data-title"),
-                            price: z[i].getAttribute("data-price"),
-                        };
-
-                        content = content
-                            .replace(/{{title}}/g, subscriptionData.title)
-                            .replace(/{{price}}/g, subscriptionData.price);
-                    }
-
-                    a.removeAttribute("data-xlu-include-file");
-                    a.innerHTML = content;
-                    z[i].parentNode.replaceChild(a, z[i]);
-
-                    xLuIncludeFile();
+                if (file.toLowerCase().includes("header")) {
+                    let buttonHTML = isLoggedIn
+                        ? '<li><a href="./accountInformation.html" class="btn-header">MI CUENTA</a></li>'
+                        : '<li><a href="./login.html" class="btn-header">INSCRIPCION</a></li>';
+                    content = content.replace("{{authButton}}", buttonHTML);
                 }
-            } catch (error) {
-                console.error("Error fetching file:", error);
+
+                if (file.toLowerCase().includes("banner")) {
+                    content = content.replace("{{title}}", el.getAttribute("data-title") || "")
+                        .replace("{{image}}", el.getAttribute("data-image") || "")
+                        .replace("{{link}}", el.getAttribute("data-link") || "#");
+                }
+
+                if (file.includes("./templates/faqs.html")) {
+                    content = content.replace("__TITULO__", el.getAttribute("data-pregunta") || "")
+                        .replace("__CONTENIDO__", el.getAttribute("data-respuesta") || "");
+                }
+
+                if (file === "article-template.templates") {
+                    content = content.replace(/{{title}}/g, el.getAttribute("data-title") || "")
+                        .replace(/{{subtitle}}/g, el.getAttribute("data-subtitle") || "")
+                        .replace(/{{date}}/g, el.getAttribute("data-date") || "")
+                        .replace(/{{displayDate}}/g, el.getAttribute("data-display-date") || "")
+                        .replace(/{{content}}/g, el.getAttribute("data-content") || "")
+                        .replace(/{{image}}/g, el.getAttribute("data-image") || "")
+                        .replace(/{{imageCaption}}/g, el.getAttribute("data-image-caption") || "");
+                }
+
+                if (file === "./templates/subscription.html") {
+                    content = content.replace(/{{title}}/g, el.getAttribute("data-title") || "")
+                        .replace(/{{price}}/g, el.getAttribute("data-price") || "");
+                }
+
+                el.innerHTML = content;
+                el.removeAttribute("data-xlu-include-file");
             }
+        } catch (error) {
+            console.error("Error:", error);
         }
     }
 }
 
-function togglePopup() {
-    const popup = document.getElementById('popup-overlay');
-    if (popup) {
-        popup.classList.toggle('active');
+async function loadHomePage() {
+    try {
+        const res = await fetch('./data.json');
+        const json = await res.json();
+
+        const homePage = json.data.find(page => page.slug === 'home');
+
+        if (homePage) {
+            const pageData = homePage.attributes || homePage;
+            const htmlContent = richTextToHTML(pageData.content);
+            document.getElementById('main-content').innerHTML = htmlContent;
+
+            xLuIncludeFile();
+        }
+    } catch (err) {
+        console.error(err);
     }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    xLuIncludeFile();
+    loadHomePage();
+});
