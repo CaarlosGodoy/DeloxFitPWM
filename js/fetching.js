@@ -32,19 +32,9 @@ async function xLuIncludeFile() {
                         .replace("{{link}}", el.getAttribute("data-link") || "#");
                 }
 
-                if (file.includes("./templates/faqs.html")) {
+                if (file.includes("faqs.html")) {
                     content = content.replace("__TITULO__", el.getAttribute("data-pregunta") || "")
                         .replace("__CONTENIDO__", el.getAttribute("data-respuesta") || "");
-                }
-
-                if (file === "article-template.templates") {
-                    content = content.replace(/{{title}}/g, el.getAttribute("data-title") || "")
-                        .replace(/{{subtitle}}/g, el.getAttribute("data-subtitle") || "")
-                        .replace(/{{date}}/g, el.getAttribute("data-date") || "")
-                        .replace(/{{displayDate}}/g, el.getAttribute("data-display-date") || "")
-                        .replace(/{{content}}/g, el.getAttribute("data-content") || "")
-                        .replace(/{{image}}/g, el.getAttribute("data-image") || "")
-                        .replace(/{{imageCaption}}/g, el.getAttribute("data-image-caption") || "");
                 }
 
                 if (file === "./templates/subscription.html") {
@@ -61,26 +51,43 @@ async function xLuIncludeFile() {
     }
 }
 
-async function loadHomePage() {
+async function loadDynamicContent(slug, containerId) {
     try {
-        const res = await fetch('./data.json');
+        const res = await fetch('/database/static.json');
         const json = await res.json();
 
-        const homePage = json.data.find(page => page.slug === 'home');
+        const page = json.data.find(p => p.slug === slug);
 
-        if (homePage) {
-            const pageData = homePage.attributes || homePage;
-            const htmlContent = richTextToHTML(pageData.content);
-            document.getElementById('main-content').innerHTML = htmlContent;
-
-            xLuIncludeFile();
+        if (page) {
+            const html = richTextToHTML(page.content);
+            const container = document.getElementById(containerId) || document.querySelector(containerId);
+            if (container) {
+                container.innerHTML = html;
+            }
         }
+
+        xLuIncludeFile();
     } catch (err) {
         console.error(err);
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    xLuIncludeFile();
-    loadHomePage();
+    const path = window.location.pathname;
+
+    if (path.includes('legalNotice.html')) {
+        loadDynamicContent('legal', 'legal-content');
+    } else if ((path.includes('subscriptionPage.html'))) {
+        loadDynamicContent('subs', 'subscription-content');
+    } else if ((path.includes('faqsPage.html'))) {
+        loadDynamicContent('faqs', 'faqs-content');
+    } else if ((path.includes('classesPage.html'))) {
+        loadDynamicContent('classes', 'classes-content');
+    } else if ((path.includes('accountInformation.html'))) {
+        loadDynamicContent('account', 'account-content');
+    } else if (path.includes('index.html') || path.endsWith('/')) {
+        loadDynamicContent('home', 'main-content');
+    } else {
+        xLuIncludeFile();
+    }
 });
