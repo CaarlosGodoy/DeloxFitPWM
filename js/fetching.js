@@ -33,8 +33,8 @@ async function xLuIncludeFile() {
                 }
 
                 if (file.includes("faqs.html")) {
-                    content = content.replace("__TITULO__", el.getAttribute("data-pregunta") || "")
-                        .replace("__CONTENIDO__", el.getAttribute("data-respuesta") || "");
+                    content = content.replace("__TITULO__", el.getAttribute("data-titulo") || "")
+                        .replace("__CONTENIDO__", el.getAttribute("data-contenido") || "");
                 }
 
                 if (file === "./templates/subscription.html") {

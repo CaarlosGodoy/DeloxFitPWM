@@ -8,16 +8,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
-    padding: 60px 20px;
+    min-height: 100vh;
+    padding: 20px 10px;
+    box-sizing: border-box;
 }
 
 .auth-container {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
     width: 100%;
-    max-width: 1100px;
 }
 
 .form-section {
@@ -28,11 +28,11 @@ body {
 
 .form-section h2 {
     color: #18A2E7;
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 22px;
+    margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .input-group {
@@ -42,21 +42,21 @@ body {
 
 .form-section label {
     color: #18A2E7;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     text-transform: uppercase;
 }
 
 .auth-input {
     background: #111;
     border: 1px solid #333;
-    border-left: 5px solid #18A2E7;
+    border-left: 3px solid #18A2E7;
     color: #ffffff;
-    padding: 18px;
-    margin-bottom: 25px;
-    border-radius: 6px;
-    font-size: 18px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .auth-input:focus {
@@ -68,44 +68,87 @@ body {
 .btn-iniciar {
     background: #18A2E7;
     color: #000;
-    padding: 20px;
+    padding: 15px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    margin-top: 15px;
+    margin-top: 10px;
     letter-spacing: 1px;
 }
 
 .btn-iniciar:hover {
     background: #6BC3EF;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(24, 162, 231, 0.3);
 }
 
 .auth-divider {
     height: 1px;
     background: #333;
     width: 100%;
+    margin: 10px 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 481px) and (max-width: 1024px) {
+    .auth-wrapper {
+        padding: 40px;
+    }
+    .auth-container {
+        max-width: 600px;
+        gap: 40px;
+    }
+    .form-section h2 {
+        font-size: 28px;
+    }
+    .auth-input {
+        padding: 15px;
+        font-size: 16px;
+    }
+    .btn-iniciar {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .auth-wrapper {
+        min-height: 80vh;
+        padding: 60px 20px;
+    }
     .auth-container {
         flex-direction: row;
         align-items: flex-start;
+        max-width: 1100px;
         gap: 80px;
     }
-
     .form-section h2 {
         text-align: left;
+        font-size: 32px;
+        margin-bottom: 40px;
     }
-
+    .form-section label {
+        font-size: 14px;
+    }
+    .auth-input {
+        padding: 18px;
+        font-size: 18px;
+        border-left-width: 5px;
+        margin-bottom: 25px;
+    }
+    .btn-iniciar {
+        padding: 20px;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+    .btn-iniciar:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(24, 162, 231, 0.3);
+    }
     .auth-divider {
         width: 1px;
         height: auto;
         align-self: stretch;
+        margin: 0;
     }
 }

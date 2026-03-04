@@ -1,143 +1,72 @@
 body {
     background-color: #000;
-    color: #fff;
     margin: 0;
     font-family: sans-serif;
 }
 
-.account-section {
-    padding: 40px 20px;
-    background-color: #000;
-    min-height: 70vh;
+.account-section, .auth-wrapper, .faq-section, .legal-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.section-title {
-    color: #18A2E7;
-    margin-bottom: 30px;
-    font-family: sans-serif;
-    text-align: center;
-}
-
-.form-container {
+    padding: 20px;
     width: 100%;
-    max-width: 900px;
+    box-sizing: border-box;
 }
 
-.account-form {
+.account-form, .auth-container, .faq-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
 }
 
-.account-column {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.account-label {
-    color: #18A2E7;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-family: sans-serif;
-}
-
-.account-input {
+.account-input, .auth-input {
     background: #111;
     border: 1px solid #333;
     border-left: 3px solid #18A2E7;
     color: #fff;
     padding: 12px;
-    margin-bottom: 20px;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.account-input:focus {
-    outline: none;
-    border-color: #6BC3EF;
-}
-
-.account-input[readonly] {
-    background: #222;
-    border-left-color: #444;
-    color: #888;
-}
-
-button {
-    cursor: pointer;
-    font-family: sans-serif;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 1px;
-    border: none;
-    border-radius: 5px;
-}
-
-.btn-cancel {
-    background: transparent;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.btn-cancel:hover {
-    background: #6BC3EF;
-}
-
-.btn-save {
-    background: #18A2E7;
-    color: #000;
-    padding: 12px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.btn-save:hover {
-    background: #6BC3EF;
-}
-
-.btn-sign_out {
-    background: #333;
-    color: #fff;
-    padding: 12px;
-}
-
-.btn-sign_out:hover {
-    background: #444;
-}
-
-.account-divider {
+.auth-divider, .account-divider {
     display: none;
 }
 
 @media (min-width: 768px) {
-    .account-form {
-        flex-direction: row;
-        align-items: flex-start;
+    .account-section, .auth-wrapper, .faq-section {
+        padding: 40px;
     }
 
-    .account-divider {
+    .account-form, .auth-container, .faq-container {
+        max-width: 800px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .account-form, .auth-container, .faq-container {
+        flex-direction: row;
+        align-items: stretch;
+        max-width: 1100px;
+        gap: 50px;
+    }
+
+    .account-column, .form-section, .faq-column {
+        flex: 1;
+    }
+
+    .auth-divider, .account-divider {
         display: block;
         width: 1px;
         background: #333;
         align-self: stretch;
-        margin: 0 10px;
     }
 
-    .account-column {
-        flex: 1;
-    }
-
-    .button-group {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    .account-input, .auth-input {
+        font-size: 18px;
+        padding: 15px;
     }
 }

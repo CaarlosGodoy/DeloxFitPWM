@@ -6,7 +6,7 @@ body {
 }
 
 .classes-calendar-section {
-    padding: 40px 20px;
+    padding: 20px 10px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
@@ -14,9 +14,10 @@ body {
 
 .section-title {
     color: #18A2E7;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-size: 22px;
 }
 
 .table-container {
@@ -25,20 +26,21 @@ body {
     border-radius: 8px;
     border: 1px solid #18A2E7;
     background-color: #050505;
+    -webkit-overflow-scrolling: touch;
 }
 
 .classesCalendar {
     border-collapse: collapse;
     width: 100%;
-    min-width: 600px;
+    min-width: 650px;
 }
 
 .classesCalendar th,
 .classesCalendar td {
     border: 1px solid #18A2E7;
-    padding: 15px 10px;
+    padding: 12px 8px;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .classesCalendar th {
@@ -54,11 +56,6 @@ body {
     background-color: rgba(24, 162, 231, 0.05);
 }
 
-.class-block {
-    color: #18A2E7;
-    font-weight: bold;
-}
-
 .table-container::-webkit-scrollbar {
     height: 6px;
 }
@@ -68,14 +65,43 @@ body {
     border-radius: 10px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .classes-calendar-section {
-        padding: 20px 10px;
+        padding: 40px 20px;
+    }
+
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .classesCalendar {
+        min-width: 850px;
     }
 
     .classesCalendar th,
     .classesCalendar td {
-        padding: 10px 5px;
-        font-size: 12px;
+        padding: 15px 10px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .classes-calendar-section {
+        padding: 60px 40px;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    .classesCalendar {
+        min-width: 100%;
+    }
+
+    .classesCalendar th,
+    .classesCalendar td {
+        padding: 20px 15px;
+        font-size: 18px;
     }
 }
