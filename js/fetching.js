@@ -1,93 +1,86 @@
-let isLoggedIn = false;
+let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-function richTextToHTML(richTextArray) {
-    if (!richTextArray) return "";
-    return richTextArray.map(block => {
-        return block.children.map(child => child.text).join("");
-    }).join("\n");
-}
-
-async function xLuIncludeFile() {
-    let elements = document.querySelectorAll("[data-xlu-include-file]");
-
-    for (let i = 0; i < elements.length; i++) {
-        let el = elements[i];
-        let file = el.getAttribute("data-xlu-include-file");
-
-        try {
-            let response = await fetch(file);
-            if (response.ok) {
-                let content = await response.text();
-
-                if (file.toLowerCase().includes("header")) {
-                    let buttonHTML = isLoggedIn
-                        ? '<li><a href="./accountInformation.html" class="btn-header">MI CUENTA</a></li>'
-                        : '<li><a href="./login.html" class="btn-header">INSCRIPCION</a></li>';
-                    content = content.replace("{{authButton}}", buttonHTML);
-                }
-
-                if (file.toLowerCase().includes("banner")) {
-                    content = content.replace("{{title}}", el.getAttribute("data-title") || "")
-                        .replace("{{image}}", el.getAttribute("data-image") || "")
-                        .replace("{{link}}", el.getAttribute("data-link") || "#");
-                }
-
-                if (file.includes("faqs.html")) {
-                    content = content.replace("__TITULO__", el.getAttribute("data-titulo") || "")
-                        .replace("__CONTENIDO__", el.getAttribute("data-contenido") || "");
-                }
-
-                if (file === "./templates/subscription.html") {
-                    content = content.replace(/{{title}}/g, el.getAttribute("data-title") || "")
-                        .replace(/{{price}}/g, el.getAttribute("data-price") || "");
-                }
-
-                el.innerHTML = content;
-                el.removeAttribute("data-xlu-include-file");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
-}
-
-async function loadDynamicContent(slug, containerId) {
-    try {
-        const res = await fetch('/database/static.json');
-        const json = await res.json();
-
-        const page = json.data.find(p => p.slug === slug);
-
-        if (page) {
-            const html = richTextToHTML(page.content);
-            const container = document.getElementById(containerId) || document.querySelector(containerId);
-            if (container) {
-                container.innerHTML = html;
-            }
-        }
-
-        xLuIncludeFile();
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    const path = window.location.pathname;
-
-    if (path.includes('legalNotice.html')) {
-        loadDynamicContent('legal', 'legal-content');
-    } else if (path.includes('index.html') || path.endsWith('/')) {
-        loadDynamicContent('home', 'main-content');
-    } else if (path.includes('subscriptionPage.html')) {
-        loadDynamicContent('subs', 'subs-content');
-    } else if (path.includes('classesPage.html')) {
-        loadDynamicContent('classes', 'classes-content');
-    } else if (path.includes('accountInformation.html')) {
-        loadDynamicContent('account', 'account-content');
-    } else if (path.includes('faqsPage.html')) {
-        loadDynamicContent('faqs', 'faqs-content');
-    } else {
-        xLuIncludeFile();
-    }
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadStructure();
+    loadDynamicContent();
 });
+
+async function getTemplate(url) {
+    let response = await fetch(url);
+    let text = await response.text();
+
+    let template = document.createElement('template');
+    template.innerHTML = text;
+    return document.importNode(template.content, true);
+}
+
+async function loadStructure() {
+    let header = document.querySelector('header');
+    let footer = document.querySelector('footer');
+
+    header.appendChild(await getTemplate('templates/header.html'));
+    footer.appendChild(await getTemplate('templates/footer.html'));
+
+    loadHeaderVariableBtn();
+}
+
+function loadHeaderVariableBtn() {
+    let nav = document.querySelector('header nav');
+    if (nav) {
+        let authBtn = currentUser
+            ? `<li><a href="./accountInformation.html" class="btn-header">MY ACCOUNT</a></li>`
+            : `<li><a href="./login.html" class="btn-header">REGISTRATION</a></li>`;
+        nav.innerHTML = nav.innerHTML.replace("{{authButton}}", authBtn);
+    }
+}
+
+async function loadDynamicContent() {
+    let path = window.location.pathname;
+    let routes = {
+        'legalNotice.html': 'legal',
+        'subscriptionPage.html': 'subs',
+        'classesPage.html': 'classes',
+        'faqsPage.html': 'faqs',
+        'accountInformation.html': 'account',
+        'index.html': 'home'
+    };
+
+    let routeKey = Object.keys(routes).find(key => path.includes(key));
+    let slug = routeKey ? routes[routeKey] : 'home';
+
+    try {
+        let response = await fetch('/database/static.json');
+        let db = await response.json();
+        let container = document.querySelector('main');
+        let page = db.data.find(p => p.slug === slug);
+
+        if (page && container) {
+            container.innerHTML = page.content.map(block =>
+                block.children.map(child => child.text).join("")
+            ).join("");
+
+            await processSubTemplates(container);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+async function processSubTemplates(dynamicContentSection) {
+    let subElements = dynamicContentSection.querySelectorAll('[data-xlu-include-file]');
+
+    for (let el of subElements) {
+        let url = el.getAttribute('data-xlu-include-file');
+        let response = await fetch(url);
+        let html = await response.text();
+
+        Object.keys(el.dataset).forEach(key => {
+            let value = el.dataset[key];
+            let regex = new RegExp(`{{${key}}}|__${key.toUpperCase()}__`, "g");
+            html = html.replace(regex, value);
+        });
+
+        el.innerHTML = html;
+        el.removeAttribute('data-xlu-include-file');
+    }
+}
