@@ -5,114 +5,18 @@
       "title": "Inicio",
       "slug": "home",
       "content": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"about-us-section\" class=\"about-us-section\">"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<h2>Entrena a tu aire</h2>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<p>En <strong>DeloxFit</strong> no te vamos a vender la moto. Esto es un gimnasio para gente normal que solo quiere entrenar tranquila y sin tonterías.</p>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<p>Da igual si es tu primer día. Aquí nadie te va a mirar raro. Abrimos <strong>las 24 horas</strong> para que vengas cuando te dé la gana.</p>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<strong>Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas</strong>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<img src=\"./assets/about-us.png\" alt=\"DeloxFit\"></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"facilities-section\" class=\"facilities-section\"><h2>INSTALACIONES</h2>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div class=\"carousel-container\"><div class=\"carousel-slide\">"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<img src=\"./assets/carousel/c5.png\"><img src=\"./assets/carousel/c4.png\"><img src=\"./assets/carousel/c3.png\">"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "</div></div></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"classes-banner-section\" class=\"classes-banner-section\" data-xlu-include-file=\"./templates/banner.html\" data-title=\"CLASES\" data-image=\"./assets/classes-banner.jpg\" data-link=\"./classesPage.html\"></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"subscriptions-banner-section\" class=\"subscriptions-banner-section\" data-xlu-include-file=\"./templates/banner.html\" data-title=\"SUSCRIPCIONES\" data-image=\"./assets/subscription-banner.png\" data-link=\"./subscriptionPage.html\"></section>"
-            }
-          ]
-        }
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"about-us-section\" class=\"about-us-section\">" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<h2>Entrena a tu aire</h2>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<p>En <strong>DeloxFit</strong> no te vamos a vender la moto. Esto es un gimnasio para gente normal que solo quiere entrenar tranquila y sin tonterías.</p>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<p>Da igual si es tu primer día. Aquí nadie te va a mirar raro. Abrimos <strong>las 24 horas</strong> para que vengas cuando te dé la gana.</p>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<strong>Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas</strong>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<img src=\"./assets/about-us.png\" alt=\"DeloxFit\"></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"facilities-section\" class=\"facilities-section\"><h2>INSTALACIONES</h2>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div class=\"carousel-container\"><div class=\"carousel-slide\">" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<img src=\"./assets/carousel/c5.png\"><img src=\"./assets/carousel/c4.png\"><img src=\"./assets/carousel/c3.png\">" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "</div></div></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"classes-banner-section\" class=\"classes-banner-section\" data-xlu-include-file=\"./templates/banner.html\" data-title=\"CLASES\" data-image=\"./assets/classes-banner.jpg\" data-link=\"./classesPage.html\"></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"subscriptions-banner-section\" class=\"subscriptions-banner-section\" data-xlu-include-file=\"./templates/banner.html\" data-title=\"SUSCRIPCIONES\" data-image=\"./assets/subscription-banner.png\" data-link=\"./subscriptionPage.html\"></section>" } ] }
       ]
     },
     {
@@ -120,96 +24,16 @@
       "title": "Aviso Legal",
       "slug": "legal",
       "content": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<h1 id=\"legal-title\">AVISO LEGAL</h1>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"identification-section\"><h2>1. DATOS IDENTIFICATIVOS</h2>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<p>En cumplimiento con el deber de información, se facilitan los siguientes datos:</p>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<ul><li><strong>Nombre Comercial:</strong> DeloxFit</li><li><strong>Titular:</strong> Andrés Barroso Soriano</li><li><strong>NIF/CIF:</strong> B-76543210</li><li><strong>Dirección:</strong> Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas</li><li><strong>Email de Contacto:</strong> contacto@deloxfit.com</li></ul></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"acceptance-section\"><h2>2. USUARIOS Y ACEPTACIÓN</h2>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<p>El acceso y/o uso de este portal de <strong>DeloxFit</strong> le atribuye la condición de <strong>USUARIO</strong>.</p></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"portal-usage-section\"><h2>3. USO DEL PORTAL</h2><p>El sitio web de DeloxFit proporciona el acceso a multitud de informaciones.</p></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"privacy-section\"><h2>4. PROTECCIÓN DE DATOS (RGPD)</h2><p>DeloxFit cumple con las directrices del Reglamento General de Protección de Datos (RGPD).</p></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"property-section\"><h2>5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h2><p>DeloxFit es titular de todos los derechos de propiedad intelectual e industrial.</p></section>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"liability-section\"><h2>6. EXCLUSIÓN DE RESPONSABILIDAD</h2><p>DeloxFit no se hace responsable de los daños y perjuicios.</p></section>"
-            }
-          ]
-        }
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<h1 id=\"legal-title\">AVISO LEGAL</h1>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"identification-section\"><h2>1. DATOS IDENTIFICATIVOS</h2>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<p>En cumplimiento con el deber de información, se facilitan los siguientes datos:</p>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<ul><li><strong>Nombre Comercial:</strong> DeloxFit</li><li><strong>Titular:</strong> Andrés Barroso Soriano</li><li><strong>NIF/CIF:</strong> B-76543210</li><li><strong>Dirección:</strong> Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas</li><li><strong>Email de Contacto:</strong> contacto@deloxfit.com</li></ul></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"acceptance-section\"><h2>2. USUARIOS Y ACEPTACIÓN</h2>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<p>El acceso y/o uso de este portal de <strong>DeloxFit</strong> le atribuye la condición de <strong>USUARIO</strong>.</p></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"portal-usage-section\"><h2>3. USO DEL PORTAL</h2><p>El sitio web de DeloxFit proporciona el acceso a multitud de informaciones.</p></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"privacy-section\"><h2>4. PROTECCIÓN DE DATOS (RGPD)</h2><p>DeloxFit cumple con las directrices del Reglamento General de Protección de Datos (RGPD).</p></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"property-section\"><h2>5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h2><p>DeloxFit es titular de todos los derechos de propiedad intelectual e industrial.</p></section>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"liability-section\"><h2>6. EXCLUSIÓN DE RESPONSABILIDAD</h2><p>DeloxFit no se hace responsable de los daños y perjuicios.</p></section>" } ] }
       ]
     },
     {
@@ -217,78 +41,14 @@
       "title": "Suscripciones",
       "slug": "subs",
       "content": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section class=\"subscriptions-section\"><h2 class=\"subscriptions-title\">NUESTROS PLANES</h2><div class=\"subscriptions-grid\">"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"ANUAL\" data-price=\"349,99 €\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"SEMESTRAL\" data-price=\"199,99 €\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"MENSUAL\" data-price=\"34,99 €\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"FAMILIAR\" data-price=\"89,99 €\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"PASE DIARIO\" data-price=\"7,99 €\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"PASE GRATIS\" data-price=\"0 €\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "</div></section>"
-            }
-          ]
-        }
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section class=\"subscriptions-section\"><h2 class=\"subscriptions-title\">NUESTROS PLANES</h2><div class=\"subscriptions-grid\">" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"ANUAL\" data-price=\"349,99 €\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"SEMESTRAL\" data-price=\"199,99 €\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"MENSUAL\" data-price=\"34,99 €\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"FAMILIAR\" data-price=\"89,99 €\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"PASE DIARIO\" data-price=\"7,99 €\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/subscription.html\" data-title=\"PASE GRATIS\" data-price=\"0 €\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "</div></section>" } ] }
       ]
     },
     {
@@ -296,105 +56,17 @@
       "title": "Preguntas Frecuentes",
       "slug": "faqs",
       "content": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section id=\"faq-section\" class=\"faq-section\"><div class=\"faq-container\"><div class=\"faq-column\">"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Cómo puedo empezar?\" data-contenido=\"Solo tienes que seleccionar el plan que mejor se adapte a ti y completar el proceso de alta online.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Qué formas de pago aceptáis?\" data-contenido=\"Puedes realizar tus pagos de forma segura mediante tarjeta bancaria o a través de nuestra pasarela de pago.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Existe algún compromiso de permanencia?\" data-contenido=\"Nuestros servicios son flexibles. Puedes darte de baja cuando lo desees sin costes adicionales.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Puedo modificar mi suscripción?\" data-contenido=\"Sí, puedes cambiar o actualizar los detalles de tu cuenta en cualquier momento desde tu área de usuario.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "</div><div class=\"faq-column\">"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Necesito experiencia previa?\" data-contenido=\"No es necesario. Nuestros contenidos y servicios están diseñados para adaptarse a todos los niveles.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Qué incluye mi suscripción?\" data-contenido=\"Tendrás acceso completo a todas las funcionalidades y recursos detallados en el plan que hayas elegido.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Cómo puedo resolver mis dudas?\" data-contenido=\"Nuestro equipo de atención al cliente está disponible para ayudarte a través de nuestro canal de contacto directo.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Los precios incluyen impuestos?\" data-contenido=\"Sí, todos los precios mostrados en nuestra web incluyen los impuestos correspondientes según la normativa vigente.\"></div>"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "</div></div></section>"
-            }
-          ]
-        }
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section id=\"faq-section\" class=\"faq-section\"><div class=\"faq-container\"><div class=\"faq-column\">" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Cómo puedo empezar?\" data-contenido=\"Solo tienes que seleccionar el plan que mejor se adapte a ti y completar el proceso de alta online.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Qué formas de pago aceptáis?\" data-contenido=\"Puedes realizar tus pagos de forma segura mediante tarjeta bancaria o a través de nuestra pasarela de pago.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Existe algún compromiso de permanencia?\" data-contenido=\"Nuestros servicios son flexibles. Puedes darte de baja cuando lo desees sin costes adicionales.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Puedo modificar mi suscripción?\" data-contenido=\"Sí, puedes cambiar o actualizar los detalles de tu cuenta en cualquier momento desde tu área de usuario.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "</div><div class=\"faq-column\">" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Necesito experiencia previa?\" data-contenido=\"No es necesario. Nuestros contenidos y servicios están diseñados para adaptarse a todos los niveles.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Qué incluye mi suscripción?\" data-contenido=\"Tendrás acceso completo a todas las funcionalidades y recursos detallados en el plan que hayas elegido.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Cómo puedo resolver mis dudas?\" data-contenido=\"Nuestro equipo de atención al cliente está disponible para ayudarte a través de nuestro canal de contacto directo.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div data-xlu-include-file=\"./templates/faqs.html\" data-titulo=\"¿Los precios incluyen impuestos?\" data-contenido=\"Sí, todos los precios mostrados en nuestra web incluyen los impuestos correspondientes según la normativa vigente.\"></div>" } ] },
+        { "type": "paragraph", "children": [ { "type": "text", "text": "</div></div></section>" } ] }
       ]
     },
     {
@@ -416,7 +88,7 @@
           "children": [
             {
               "type": "text",
-              "text": "<tr><td class=\"time-col\">09:00</td><td></td><td></td><td></td><td></td><td></td></tr>"
+              "text": "<tr><td class=\"time-col\">09:00</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td></tr>"
             }
           ]
         },
@@ -425,7 +97,7 @@
           "children": [
             {
               "type": "text",
-              "text": "<tr><td class=\"time-col\">10:00</td><td></td><td></td><td></td><td></td><td></td></tr>"
+              "text": "<tr><td class=\"time-col\">10:00</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td></tr>"
             }
           ]
         },
@@ -434,7 +106,7 @@
           "children": [
             {
               "type": "text",
-              "text": "<tr><td class=\"time-col\">11:00</td><td></td><td></td><td></td><td></td><td></td></tr>"
+              "text": "<tr><td class=\"time-col\">11:00</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td></tr>"
             }
           ]
         },
@@ -461,7 +133,7 @@
           "children": [
             {
               "type": "text",
-              "text": "<tr><td class=\"time-col\">17:00</td><td></td><td></td><td></td><td></td><td></td></tr>"
+              "text": "<tr><td class=\"time-col\">17:00</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td><td></td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td><td></td><td></td></tr>"
             }
           ]
         },
@@ -470,7 +142,7 @@
           "children": [
             {
               "type": "text",
-              "text": "<tr><td class=\"time-col\">18:00</td><td></td><td></td><td></td><td></td><td></td></tr>"
+              "text": "<tr><td class=\"time-col\">18:00</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td></td></tr>"
             }
           ]
         },
@@ -479,7 +151,7 @@
           "children": [
             {
               "type": "text",
-              "text": "<tr><td class=\"time-col\">19:00</td><td></td><td></td><td></td><td></td><td></td></tr>"
+              "text": "<tr><td class=\"time-col\">19:00</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Boxeo')\">Boxeo</td><td class=\"class-cell\" onclick=\"openClassInfo('Zumba')\">Zumba</td><td class=\"class-cell\" onclick=\"openClassInfo('Spinning')\">Spinning</td></tr>"
             }
           ]
         },
@@ -499,15 +171,7 @@
       "title": "Cuenta",
       "slug": "account",
       "content": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<section class=\"account-section\"><h2 class=\"section-title\">MI CUENTA</h2><div class=\"form-container\"><form class=\"account-form\"><div class=\"account-column\"><label class=\"account-label\">NOMBRE</label><input type=\"text\" class=\"account-input\" value=\"Juan Pérez\"><label class=\"account-label\">CORREO</label><input type=\"email\" class=\"account-input\" value=\"juan.perez@email.com\"><label class=\"account-label\">DNI</label><input type=\"text\" class=\"account-input\" value=\"12345678X\"><label class=\"account-label\">SUB. ACTIVA</label><input type=\"text\" class=\"account-input\" value=\"Cuota Mensual Estándar\" readonly><button type=\"button\" class=\"btn-cancel\" onclick=\"togglePopup()\">CANCELAR SUB</button></div><div class=\"account-divider\"></div><div class=\"account-column\"><label class=\"account-label\">MIS RESERVAS</label><input type=\"text\" class=\"account-input\" value=\"Spinning - 24/02 18:00h\"><label class=\"account-label\">TARJETA</label><input type=\"text\" class=\"account-input\" value=\"**** **** **** 1234\"><div class=\"button-group\"><button type=\"button\" class=\"btn-save\">GUARDAR</button><button type=\"button\" class=\"btn-sign_out\">CERRAR SESIÓN</button></div></div></form></div></section><div data-xlu-include-file=\"./templates/cancelSub.html\"></div>"
-            }
-          ]
-        }
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<section class=\"account-section\"><h2 class=\"section-title\">MI CUENTA</h2><div class=\"form-container\"><form class=\"account-form\"><div class=\"account-column\"><label class=\"account-label\">NOMBRE</label><input type=\"text\" class=\"account-input\" value=\"Juan Pérez\"><label class=\"account-label\">CORREO</label><input type=\"email\" class=\"account-input\" value=\"juan.perez@email.com\"><label class=\"account-label\">DNI</label><input type=\"text\" class=\"account-input\" value=\"12345678X\"><label class=\"account-label\">SUB. ACTIVA</label><input type=\"text\" class=\"account-input\" value=\"Cuota Mensual Estándar\" readonly><button type=\"button\" class=\"btn-cancel\" onclick=\"togglePopup()\">CANCELAR SUB</button></div><div class=\"account-divider\"></div><div class=\"account-column\"><label class=\"account-label\">MIS RESERVAS</label><input type=\"text\" class=\"account-input\" value=\"Spinning - 24/02 18:00h\"><label class=\"account-label\">TARJETA</label><input type=\"text\" class=\"account-input\" value=\"**** **** **** 1234\"><div class=\"button-group\"><button type=\"button\" class=\"btn-save\">GUARDAR</button><button type=\"button\" class=\"btn-sign_out\">CERRAR SESIÓN</button></div></div></form></div></section><div data-xlu-include-file=\"./templates/cancelSub.html\"></div>" } ] }
       ]
     },
     {
@@ -515,15 +179,7 @@
       "title": "Acceso",
       "slug": "login",
       "content": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "text": "<div class=\"auth-container\"><section class=\"form-section\"><h2>REGISTRARSE</h2><form id=\"form-registro\"><div class=\"input-group\"><label for=\"reg-correo\">CORREO ELECTRÓNICO</label><input type=\"email\" id=\"reg-correo\" class=\"auth-input\" required placeholder=\"ejemplo@mail.com\"><label for=\"reg-dni\">DNI</label><input type=\"text\" id=\"reg-dni\" class=\"auth-input\" required pattern=\"[0-9]{8}[A-Z,a-z]{1}\" title=\"8 números y una letra\"><label for=\"reg-usuario\">USUARIO</label><input type=\"text\" id=\"reg-usuario\" class=\"auth-input\" required minlength=\"4\"><label for=\"reg-pass\">CONTRASEÑA</label><input type=\"password\" id=\"reg-pass\" class=\"auth-input\" required minlength=\"6\"></div><button type=\"submit\" class=\"btn-iniciar\">REGISTRARME</button></form></section><div class=\"auth-divider\"></div><section class=\"form-section\"><h2>INICIAR SESIÓN</h2><form id=\"form-login\"><div class=\"input-group\"><label for=\"log-usuario\">USUARIO</label><input type=\"text\" id=\"log-usuario\" class=\"auth-input\" required><label for=\"log-pass\">CONTRASEÑA</label><input type=\"password\" id=\"log-pass\" class=\"auth-input\" required></div><button type=\"submit\" class=\"btn-iniciar\">INICIAR SESIÓN</button></form></section></div>"
-            }
-          ]
-        }
+        { "type": "paragraph", "children": [ { "type": "text", "text": "<div class=\"auth-container\"><section class=\"form-section\"><h2>REGISTRARSE</h2><form id=\"form-registro\"><div class=\"input-group\"><label for=\"reg-correo\">CORREO ELECTRÓNICO</label><input type=\"email\" id=\"reg-correo\" class=\"auth-input\" required placeholder=\"ejemplo@mail.com\"><label for=\"reg-dni\">DNI</label><input type=\"text\" id=\"reg-dni\" class=\"auth-input\" required pattern=\"[0-9]{8}[A-Z,a-z]{1}\" title=\"8 números y una letra\"><label for=\"reg-usuario\">USUARIO</label><input type=\"text\" id=\"reg-usuario\" class=\"auth-input\" required minlength=\"4\"><label for=\"reg-pass\">CONTRASEÑA</label><input type=\"password\" id=\"reg-pass\" class=\"auth-input\" required minlength=\"6\"></div><button type=\"submit\" class=\"btn-iniciar\">REGISTRARME</button></form></section><div class=\"auth-divider\"></div><section class=\"form-section\"><h2>INICIAR SESIÓN</h2><form id=\"form-login\"><div class=\"input-group\"><label for=\"log-usuario\">USUARIO</label><input type=\"text\" id=\"log-usuario\" class=\"auth-input\" required><label for=\"log-pass\">CONTRASEÑA</label><input type=\"password\" id=\"log-pass\" class=\"auth-input\" required></div><button type=\"submit\" class=\"btn-iniciar\">INICIAR SESIÓN</button></form></section></div>" } ] }
       ]
     }
   ]
