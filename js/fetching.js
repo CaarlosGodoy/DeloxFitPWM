@@ -2,7 +2,7 @@ let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadStructure();
-    loadDynamicContent();
+    await loadDynamicContent();
 });
 
 async function getTemplate(url) {
@@ -29,7 +29,7 @@ function loadHeaderVariableBtn() {
     if (nav) {
         let authBtn = currentUser
             ? `<li><a href="./accountInformation.html" class="btn-header">MY ACCOUNT</a></li>`
-            : `<li><a href="./login.html" class="btn-header">REGISTRATION</a></li>`;
+            : `<li><a href="./login.html" class="btn-header">INSCRIBIRSE</a></li>`;
         nav.innerHTML = nav.innerHTML.replace("{{authButton}}", authBtn);
     }
 }
@@ -42,7 +42,8 @@ async function loadDynamicContent() {
         'classesPage.html': 'classes',
         'faqsPage.html': 'faqs',
         'accountInformation.html': 'account',
-        'index.html': 'home'
+        'index.html': 'home',
+        'login.html': 'login'
     };
 
     let routeKey = Object.keys(routes).find(key => path.includes(key));
