@@ -1,23 +1,15 @@
 let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 document.addEventListener('DOMContentLoaded', async function() {
-    // 1. Cargamos la estructura común (Header/Footer)
     await loadStructure();
-
-    // 2. Cargamos el contenido dinámico de la página
     await loadDynamicContent();
-
-    // 3. Inicializamos los eventos de Login/Registro
     initAuthListeners();
-
-    // 4. Rellenamos datos si estamos en la sección de cuenta
     fillAccountData();
 });
 
 async function getTemplate(url) {
     let response = await fetch(url);
     let text = await response.text();
-
     let template = document.createElement('template');
     template.innerHTML = text;
     return document.importNode(template.content, true);
@@ -73,7 +65,7 @@ async function loadDynamicContent() {
             await processSubTemplates(container);
         }
     } catch (error) {
-        console.error('Error cargando contenido dinámico:', error);
+        console.error(error);
     }
 }
 
@@ -96,13 +88,10 @@ async function processSubTemplates(dynamicContentSection) {
     }
 }
 
-// --- FUNCIONES DE AUTENTICACIÓN Y CUENTA ---
-
 function initAuthListeners() {
     const regForm = document.getElementById('form-registro');
     const logForm = document.getElementById('form-login');
 
-    // Manejo de Registro
     if (regForm) {
         regForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -128,7 +117,6 @@ function initAuthListeners() {
         });
     }
 
-    // Manejo de Login
     if (logForm) {
         logForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -151,13 +139,11 @@ function initAuthListeners() {
 
 function fillAccountData() {
     if (window.location.pathname.includes('accountInformation.html')) {
-
         if (!currentUser) {
             window.location.href = './login.html';
             return;
         }
 
-        // Delay para asegurar que el DOM del JSON se ha cargado
         setTimeout(() => {
             const inputs = document.querySelectorAll('.account-input');
             if (inputs.length >= 3) {
@@ -171,6 +157,44 @@ function fillAccountData() {
                 logoutBtn.addEventListener('click', () => {
                     localStorage.removeItem('currentUser');
                     window.location.href = './index.html';
+                });
+            }
+
+            const saveBtn = document.querySelector('.btn-save');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', () => {
+                    const newUsuario = inputs[0].value.trim();
+                    const newCorreo = inputs[1].value.trim();
+                    const newDni = inputs[2].value.trim();
+
+                    if (!newUsuario || !newCorreo || !newDni) {
+                        alert("Por favor, rellena todos los campos.");
+                        return;
+                    }
+
+                    let users = JSON.parse(localStorage.getItem('users')) || [];
+                    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+
+                    if (userIndex !== -1) {
+                        if (newUsuario !== currentUser.usuario && users.some(u => u.usuario === newUsuario)) {
+                            alert("Ese nombre de usuario ya está en uso. Elige otro.");
+                            return;
+                        }
+
+                        users[userIndex].usuario = newUsuario;
+                        users[userIndex].correo = newCorreo;
+                        users[userIndex].dni = newDni;
+                        localStorage.setItem('users', JSON.stringify(users));
+
+                        currentUser.usuario = newUsuario;
+                        currentUser.correo = newCorreo;
+                        currentUser.dni = newDni;
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                        alert("¡Tus datos se han actualizado correctamente!");
+                    } else {
+                        alert("Error: No se encontró el usuario en la base de datos.");
+                    }
                 });
             }
         }, 150);
