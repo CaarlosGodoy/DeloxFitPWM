@@ -32,6 +32,28 @@ body {
     box-sizing: border-box;
 }
 
+/* BOTONES: PEQUEÑOS, AZULES Y LETRA NEGRA */
+.btn-cancel, .btn-save, .btn-sign_out {
+    background-color: #18A2E7; /* El azul de tu marca */
+    color: #000;               /* Letra negra */
+    border: none;
+    padding: 8px 15px;         /* Tamaño pequeño */
+    font-size: 14px;           /* Letra más pequeña que el input */
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: fit-content;        /* Para que no ocupe todo el ancho si no quieres */
+    align-self: flex-start;    /* Alineado a la izquierda */
+}
+
+/* Contenedor para los botones de Guardar y Cerrar Sesión */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
 .auth-divider, .account-divider {
     display: none;
 }
