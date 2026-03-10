@@ -1,3 +1,12 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .main-header {
     display: flex;
     flex-direction: column;
@@ -6,10 +15,9 @@
     background-color: #000;
     font-family: sans-serif;
     border-bottom: 1px solid #18A2E7;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     gap: 15px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .logo-box {
@@ -51,6 +59,7 @@
     transition: background-color 0.3s;
     margin: 2px 0;
 }
+
 .btn-header:hover {
     background-color: #6BC3EF;
     transform: scale(1.05);
