@@ -171,7 +171,15 @@
       "title": "Cuenta",
       "slug": "account",
       "content": [
-        { "type": "paragraph", "children": [ { "type": "text", "text": "<section class=\"account-section\"><h2 class=\"section-title\">MI CUENTA</h2><div class=\"form-container\"><form class=\"account-form\"><div class=\"account-column\"><label class=\"account-label\">NOMBRE</label><input type=\"text\" class=\"account-input\" value=\"Juan Pérez\"><label class=\"account-label\">CORREO</label><input type=\"email\" class=\"account-input\" value=\"juan.perez@email.com\"><label class=\"account-label\">DNI</label><input type=\"text\" class=\"account-input\" value=\"12345678X\"><label class=\"account-label\">SUB. ACTIVA</label><input type=\"text\" class=\"account-input\" value=\"Cuota Mensual Estándar\" readonly><button type=\"button\" class=\"btn-cancel\" onclick=\"togglePopup()\">CANCELAR SUB</button></div><div class=\"account-divider\"></div><div class=\"account-column\"><label class=\"account-label\">MIS RESERVAS</label><input type=\"text\" class=\"account-input\" value=\"Spinning - 24/02 18:00h\"><label class=\"account-label\">TARJETA</label><input type=\"text\" class=\"account-input\" value=\"**** **** **** 1234\"><div class=\"button-group\"><button type=\"button\" class=\"btn-save\">GUARDAR</button><button type=\"button\" class=\"btn-sign_out\">CERRAR SESIÓN</button></div></div></form></div></section><div data-xlu-include-file=\"./templates/cancelSub.html\"></div>" } ] }
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "<section class=\"account-section\"><h2 class=\"section-title\">MI CUENTA</h2><div class=\"form-container\"><form class=\"account-form\"><div class=\"account-column\"><label class=\"account-label\">USUARIO</label><input type=\"text\" class=\"account-input\"><label class=\"account-label\">CORREO</label><input type=\"email\" class=\"account-input\"><label class=\"account-label\">DNI</label><input type=\"text\" class=\"account-input\"><label class=\"account-label\">SUB. ACTIVA</label><input type=\"text\" class=\"account-input\" readonly><button type=\"button\" class=\"btn-cancel\" onclick=\"togglePopup()\">CANCELAR SUB</button></div><div class=\"account-divider\"></div><div class=\"account-column\"><label class=\"account-label\">MIS RESERVAS</label><input type=\"text\" class=\"account-input\" readonly><button type=\"button\" class=\"btn-cancel\" onclick=\"cancelClass(event)\">CANCELAR CLASE</button><label class=\"account-label\">TARJETA</label><input type=\"text\" class=\"account-input\" value=\"**** **** **** 1234\"><div class=\"button-group\"><button type=\"button\" class=\"btn-save\">GUARDAR</button><button type=\"button\" class=\"btn-sign_out\">CERRAR SESIÓN</button></div></div></form></div></section><div data-xlu-include-file=\"./templates/cancelSub.html\"></div>"
+            }
+          ]
+        }
       ]
     },
     {

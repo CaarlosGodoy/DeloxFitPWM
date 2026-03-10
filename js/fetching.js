@@ -150,6 +150,7 @@ function fillAccountData() {
                 inputs[0].value = currentUser.usuario;
                 inputs[1].value = currentUser.correo;
                 inputs[2].value = currentUser.dni;
+                inputs[3].value = currentUser.suscripcion || 'Ninguna activa';
                 inputs[4].value = currentUser.reservas || 'Ninguna activa';
                 inputs[4].readOnly = true;
             }
@@ -207,7 +208,7 @@ function openClassInfo(className) {
     const popup = document.getElementById('popup-class');
     const title = document.getElementById('popup-title');
     const info = document.getElementById('popup-info');
-    const img = document.getElementById('popup-img'); // Obtenemos la imagen
+    const img = document.getElementById('popup-img');
 
     let e = window.event;
     let time = "";
@@ -237,16 +238,15 @@ function openClassInfo(className) {
             info.innerText = dateStr;
         }
 
-
         if (img) {
             if (className === 'Spinning') {
                 img.src = './assets/classes/spinning.png';
             } else if (className === 'Zumba') {
                 img.src = './assets/classes/zumba.png';
             } else if (className === 'Boxeo') {
-                img.src = './assets/classes/box.png';
+                img.src = './assets/classes/boxeo.png';
             } else {
-                img.src = './assets/default.jpg'; // Imagen por defecto
+                img.src = './assets/default.jpg';
             }
         }
 
@@ -288,4 +288,93 @@ function bookClass(event) {
 
     alert(`¡Has reservado tu clase de ${className} con éxito!`);
     closePopup();
+}
+
+function acquireSubscription(event, subTitle) {
+    if (event) event.preventDefault();
+
+    if (!currentUser) {
+        alert("Debes iniciar sesión para poder adquirir una suscripción.");
+        window.location.href = './login.html';
+        return;
+    }
+
+    currentUser.suscripcion = subTitle;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+
+    if (userIndex !== -1) {
+        users[userIndex].suscripcion = subTitle;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    alert(`¡Has adquirido la suscripción ${subTitle} con éxito!`);
+}
+
+function togglePopup() {
+    const popup = document.getElementById('popup-overlay');
+
+    if (popup) {
+        if (!popup.classList.contains('active')) {
+            if (!currentUser || !currentUser.suscripcion || currentUser.suscripcion === 'Ninguna activa') {
+                alert("No tienes ninguna suscripción activa para cancelar.");
+                return;
+            }
+        }
+        popup.classList.toggle('active');
+    }
+}
+
+function cancelSubscription(event) {
+    if (event) event.preventDefault();
+
+    if (!currentUser) return;
+
+    currentUser.suscripcion = 'Ninguna activa';
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+
+    if (userIndex !== -1) {
+        users[userIndex].suscripcion = 'Ninguna activa';
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    const inputs = document.querySelectorAll('.account-input');
+    if (inputs.length >= 5) {
+        inputs[3].value = 'Ninguna activa';
+    }
+
+    alert("¡Tu suscripción ha sido cancelada con éxito!");
+    togglePopup();
+}
+
+function cancelClass(event) {
+    if (event) event.preventDefault();
+
+    if (!currentUser || !currentUser.reservas || currentUser.reservas === 'Ninguna activa') {
+        alert("No tienes ninguna clase reservada para cancelar.");
+        return;
+    }
+
+    currentUser.reservas = 'Ninguna activa';
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+
+    if (userIndex !== -1) {
+        users[userIndex].reservas = 'Ninguna activa';
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    const inputs = document.querySelectorAll('.account-input');
+    if (inputs.length >= 5) {
+        inputs[4].value = 'Ninguna activa';
+    }
+
+    alert("¡Tu reserva ha sido cancelada con éxito!");
 }
