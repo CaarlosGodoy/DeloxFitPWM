@@ -146,10 +146,12 @@ function fillAccountData() {
 
         setTimeout(() => {
             const inputs = document.querySelectorAll('.account-input');
-            if (inputs.length >= 3) {
+            if (inputs.length >= 5) {
                 inputs[0].value = currentUser.usuario;
                 inputs[1].value = currentUser.correo;
                 inputs[2].value = currentUser.dni;
+                inputs[4].value = currentUser.reservas || 'Ninguna activa';
+                inputs[4].readOnly = true;
             }
 
             const logoutBtn = document.querySelector('.btn-sign_out');
@@ -202,36 +204,88 @@ function fillAccountData() {
 }
 
 function openClassInfo(className) {
-    const popupElement = document.getElementById('popup-class');
-    const titleElement = document.getElementById('popup-title');
-    const infoElement = document.getElementById('popup-info');
-    const imageElement = document.getElementById('popup-img');
+    const popup = document.getElementById('popup-class');
+    const title = document.getElementById('popup-title');
+    const info = document.getElementById('popup-info');
+    const img = document.getElementById('popup-img'); // Obtenemos la imagen
 
-    if (!popupElement) return;
+    let e = window.event;
+    let time = "";
+    let day = "";
 
-    titleElement.innerText = className;
+    if (e && e.target && e.target.classList.contains('class-cell')) {
+        let cell = e.target;
+        let row = cell.parentElement;
+        let timeCell = row.querySelector('.time-col');
+        if (timeCell) time = timeCell.innerText;
 
-    const classDescriptions = {
-        'Spinning': 'Sesión de cardio intenso sobre bicicleta estática al ritmo de la mejor música.',
-        'Zumba': 'Combina movimientos de baile con rutinas aeróbicas. ¡Diversión y quema de grasa!',
-        'Boxeo': 'Entrenamiento de técnica, sacos y agilidad. ¡Suelta toda tu energía!'
-    };
+        let cellIndex = Array.from(row.children).indexOf(cell);
+        let table = cell.closest('table');
+        if (table) {
+            let headerRow = table.querySelector('thead tr');
+            if (headerRow && headerRow.children[cellIndex]) {
+                day = headerRow.children[cellIndex].innerText;
+            }
+        }
+    }
 
-    const classImages = {
-        'Spinning': './assets/classes/spinning.png',
-        'Zumba': './assets/classes/zumba.png',
-        'Boxeo': './assets/classes/box.png'
-    };
+    if (popup && title) {
+        title.innerText = className;
 
-    infoElement.innerText = classDescriptions[className] || 'Información no disponible.';
-    imageElement.src = classImages[className] || '';
+        let dateStr = (day && time) ? `${day} a las ${time}h` : "Horario por confirmar";
+        if (info) {
+            info.innerText = dateStr;
+        }
 
-    popupElement.classList.add('active');
+
+        if (img) {
+            if (className === 'Spinning') {
+                img.src = './assets/classes/spinning.png';
+            } else if (className === 'Zumba') {
+                img.src = './assets/classes/zumba.png';
+            } else if (className === 'Boxeo') {
+                img.src = './assets/classes/box.png';
+            } else {
+                img.src = './assets/default.jpg'; // Imagen por defecto
+            }
+        }
+
+        window.claseSeleccionada = (day && time) ? `${className} - ${day} ${time}h` : `${className} - Reservada`;
+
+        popup.style.display = 'flex';
+    }
 }
 
 function closePopup() {
-    const popupElement = document.getElementById('popup-class');
-    if (popupElement) {
-        popupElement.classList.remove('active');
+    const popup = document.getElementById('popup-class');
+    if (popup) {
+        popup.style.display = 'none';
     }
+}
+
+function bookClass(event) {
+    if(event) event.preventDefault();
+
+    if (!currentUser) {
+        alert("Debes iniciar sesión para poder reservar una clase.");
+        window.location.href = './login.html';
+        return;
+    }
+
+    const className = document.getElementById('popup-title').innerText;
+    const reserva = window.claseSeleccionada || `${className} - Reservada`;
+
+    currentUser.reservas = reserva;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+
+    if (userIndex !== -1) {
+        users[userIndex].reservas = reserva;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    alert(`¡Has reservado tu clase de ${className} con éxito!`);
+    closePopup();
 }
