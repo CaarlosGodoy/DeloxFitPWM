@@ -200,3 +200,38 @@ function fillAccountData() {
         }, 150);
     }
 }
+
+function openClassInfo(className) {
+    const popupElement = document.getElementById('popup-class');
+    const titleElement = document.getElementById('popup-title');
+    const infoElement = document.getElementById('popup-info');
+    const imageElement = document.getElementById('popup-img');
+
+    if (!popupElement) return;
+
+    titleElement.innerText = className;
+
+    const classDescriptions = {
+        'Spinning': 'Sesión de cardio intenso sobre bicicleta estática al ritmo de la mejor música.',
+        'Zumba': 'Combina movimientos de baile con rutinas aeróbicas. ¡Diversión y quema de grasa!',
+        'Boxeo': 'Entrenamiento de técnica, sacos y agilidad. ¡Suelta toda tu energía!'
+    };
+
+    const classImages = {
+        'Spinning': './assets/classes/spinning.png',
+        'Zumba': './assets/classes/zumba.png',
+        'Boxeo': './assets/classes/box.png'
+    };
+
+    infoElement.innerText = classDescriptions[className] || 'Información no disponible.';
+    imageElement.src = classImages[className] || '';
+
+    popupElement.classList.add('active');
+}
+
+function closePopup() {
+    const popupElement = document.getElementById('popup-class');
+    if (popupElement) {
+        popupElement.classList.remove('active');
+    }
+}
