@@ -244,7 +244,7 @@ function openClassInfo(className) {
             } else if (className === 'Zumba') {
                 img.src = './assets/classes/zumba.png';
             } else if (className === 'Boxeo') {
-                img.src = './assets/classes/boxeo.png';
+                img.src = './assets/classes/box.png';
             } else {
                 img.src = './assets/default.jpg';
             }
