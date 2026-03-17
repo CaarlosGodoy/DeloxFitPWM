@@ -100,7 +100,8 @@ function initAuthListeners() {
                 correo: document.getElementById('reg-correo').value,
                 dni: document.getElementById('reg-dni').value,
                 usuario: document.getElementById('reg-usuario').value,
-                pass: document.getElementById('reg-pass').value
+                pass: document.getElementById('reg-pass').value,
+                reservas: []
             };
 
             let users = JSON.parse(localStorage.getItem('users')) || [];
@@ -151,8 +152,19 @@ function fillAccountData() {
                 inputs[1].value = currentUser.correo;
                 inputs[2].value = currentUser.dni;
                 inputs[3].value = currentUser.suscripcion || 'Ninguna activa';
-                inputs[4].value = currentUser.reservas || 'Ninguna activa';
-                inputs[4].readOnly = true;
+
+                const reservaContainer = inputs[4].parentElement;
+                if (Array.isArray(currentUser.reservas) && currentUser.reservas.length > 0) {
+                    let options = currentUser.reservas.map((res, index) => `<option value="${index}">${res}</option>`).join("");
+                    reservaContainer.innerHTML = `
+						<label class="account-label">MIS RESERVAS</label>
+						<select id="reserva-selector" class="account-input">${options}</select>
+						<button type="button" class="btn-cancel" onclick="cancelSelectedClass()">CANCELAR SELECCIONADA</button>
+					`;
+                } else {
+                    inputs[4].value = 'Ninguna activa';
+                    inputs[4].readOnly = true;
+                }
             }
 
             const logoutBtn = document.querySelector('.btn-sign_out');
@@ -179,11 +191,6 @@ function fillAccountData() {
                     let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
 
                     if (userIndex !== -1) {
-                        if (newUsuario !== currentUser.usuario && users.some(u => u.usuario === newUsuario)) {
-                            alert("Ese nombre de usuario ya está en uso. Elige otro.");
-                            return;
-                        }
-
                         users[userIndex].usuario = newUsuario;
                         users[userIndex].correo = newCorreo;
                         users[userIndex].dni = newDni;
@@ -195,8 +202,6 @@ function fillAccountData() {
                         localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
                         alert("¡Tus datos se han actualizado correctamente!");
-                    } else {
-                        alert("Error: No se encontró el usuario en la base de datos.");
                     }
                 });
             }
@@ -224,43 +229,29 @@ function openClassInfo(className) {
         let table = cell.closest('table');
         if (table) {
             let headerRow = table.querySelector('thead tr');
-            if (headerRow && headerRow.children[cellIndex]) {
-                day = headerRow.children[cellIndex].innerText;
-            }
+            if (headerRow && headerRow.children[cellIndex]) day = headerRow.children[cellIndex].innerText;
         }
     }
 
     if (popup && title) {
         title.innerText = className;
-
         let dateStr = (day && time) ? `${day} a las ${time}h` : "Horario por confirmar";
-        if (info) {
-            info.innerText = dateStr;
-        }
-
+        if (info) info.innerText = dateStr;
         if (img) {
-            if (className === 'Spinning') {
-                img.src = './assets/classes/spinning.png';
-            } else if (className === 'Zumba') {
-                img.src = './assets/classes/zumba.png';
-            } else if (className === 'Boxeo') {
-                img.src = './assets/classes/box.png';
-            } else {
-                img.src = './assets/default.jpg';
-            }
+            if (className === 'Spinning') img.src = './assets/classes/spinning.png';
+            else if (className === 'Zumba') img.src = './assets/classes/zumba.png';
+            else if (className === 'Boxeo') img.src = './assets/classes/box.png';
+            else img.src = './assets/default.jpg';
         }
 
         window.claseSeleccionada = (day && time) ? `${className} - ${day} ${time}h` : `${className} - Reservada`;
-
         popup.style.display = 'flex';
     }
 }
 
 function closePopup() {
     const popup = document.getElementById('popup-class');
-    if (popup) {
-        popup.style.display = 'none';
-    }
+    if (popup) popup.style.display = 'none';
 }
 
 function bookClass(event) {
@@ -272,22 +263,50 @@ function bookClass(event) {
         return;
     }
 
-    const className = document.getElementById('popup-title').innerText;
-    const reserva = window.claseSeleccionada || `${className} - Reservada`;
+    const reserva = window.claseSeleccionada || "Clase Reservada";
 
-    currentUser.reservas = reserva;
+    if (!Array.isArray(currentUser.reservas)) {
+        currentUser.reservas = [];
+    }
+
+    if (currentUser.reservas.includes(reserva)) {
+        alert("Ya tienes una reserva para esta clase en este horario.");
+        closePopup();
+        return;
+    }
+
+    currentUser.reservas.push(reserva);
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
     let users = JSON.parse(localStorage.getItem('users')) || [];
     let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
 
     if (userIndex !== -1) {
-        users[userIndex].reservas = reserva;
+        users[userIndex].reservas = currentUser.reservas;
         localStorage.setItem('users', JSON.stringify(users));
     }
 
-    alert(`¡Has reservado tu clase de ${className} con éxito!`);
+    alert("¡Clase reservada con éxito!");
     closePopup();
+}
+
+function cancelSelectedClass() {
+    const selector = document.getElementById('reserva-selector');
+    if (!selector) return;
+
+    currentUser.reservas.splice(selector.value, 1);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+
+    if (userIndex !== -1) {
+        users[userIndex].reservas = currentUser.reservas;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    alert("Reserva cancelada correctamente.");
+    location.reload();
 }
 
 function acquireSubscription(event, subTitle) {
@@ -320,21 +339,11 @@ function acquireSubscription(event, subTitle) {
 
 function togglePopup() {
     const popup = document.getElementById('popup-overlay');
-
-    if (popup) {
-        if (!popup.classList.contains('active')) {
-            if (!currentUser || !currentUser.suscripcion || currentUser.suscripcion === 'Ninguna activa') {
-                alert("No tienes ninguna suscripción activa para cancelar.");
-                return;
-            }
-        }
-        popup.classList.toggle('active');
-    }
+    if (popup) popup.classList.toggle('active');
 }
 
 function cancelSubscription(event) {
     if (event) event.preventDefault();
-
     if (!currentUser) return;
 
     currentUser.suscripcion = 'Ninguna activa';
@@ -348,38 +357,6 @@ function cancelSubscription(event) {
         localStorage.setItem('users', JSON.stringify(users));
     }
 
-    const inputs = document.querySelectorAll('.account-input');
-    if (inputs.length >= 5) {
-        inputs[3].value = 'Ninguna activa';
-    }
-
     alert("¡Tu suscripción ha sido cancelada con éxito!");
-    togglePopup();
-}
-
-function cancelClass(event) {
-    if (event) event.preventDefault();
-
-    if (!currentUser || !currentUser.reservas || currentUser.reservas === 'Ninguna activa') {
-        alert("No tienes ninguna clase reservada para cancelar.");
-        return;
-    }
-
-    currentUser.reservas = 'Ninguna activa';
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
-
-    if (userIndex !== -1) {
-        users[userIndex].reservas = 'Ninguna activa';
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    const inputs = document.querySelectorAll('.account-input');
-    if (inputs.length >= 5) {
-        inputs[4].value = 'Ninguna activa';
-    }
-
-    alert("¡Tu reserva ha sido cancelada con éxito!");
+    location.reload();
 }
