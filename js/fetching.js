@@ -299,6 +299,11 @@ function acquireSubscription(event, subTitle) {
         return;
     }
 
+    if (currentUser.suscripcion && currentUser.suscripcion !== 'Ninguna activa') {
+        alert("Ya tienes una suscripción. Cancela la actual primero.");
+        return;
+    }
+
     currentUser.suscripcion = subTitle;
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
