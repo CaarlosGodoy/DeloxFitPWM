@@ -1,94 +1,91 @@
 body {
-    background-color: #000;
     margin: 0;
-    font-family: sans-serif;
+    background: #000;
+    font-family: "Century Gothic", sans-serif;
+    color: white;
 }
 
-.account-section, .auth-wrapper, .faq-section, .legal-container {
+.account-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 60px 20px;
 }
 
-.account-form, .auth-container, .faq-container {
+.account-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.account-form {
+    display: flex;
+    width: 95%;
+    max-width: 1400px; /* He subido esto para que tenga espacio de sobra para estirarse */
+    justify-content: center;
+    gap: 60px;
+}
+
+.account-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%;
+    min-width: 450px; /* ESTO es lo que evita que el texto se corte */
 }
 
-.account-input, .auth-input {
+.account-divider {
+    width: 1px;
+    background: #333;
+    align-self: stretch;
+}
+
+.account-label {
+    font-size: 14px;
+    color: #18A2E7;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.account-input {
     background: #111;
     border: 1px solid #333;
-    border-left: 3px solid #18A2E7;
-    color: #fff;
-    padding: 12px;
+    border-left: 4px solid #18A2E7;
+    color: white;
+    padding: 15px 20px;
     font-size: 16px;
-    border-radius: 4px;
-    width: 100%;
+    width: 100%; /* Ocupa todo el min-width de la columna */
     box-sizing: border-box;
-}
-
-/* BOTONES: PEQUEÑOS, AZULES Y LETRA NEGRA */
-.btn-cancel, .btn-save, .btn-sign_out {
-    background-color: #18A2E7; /* El azul de tu marca */
-    color: #000;               /* Letra negra */
-    border: none;
-    padding: 8px 15px;         /* Tamaño pequeño */
-    font-size: 14px;           /* Letra más pequeña que el input */
-    font-weight: bold;
     border-radius: 4px;
-    cursor: pointer;
-    text-transform: uppercase;
-    width: fit-content;        /* Para que no ocupe todo el ancho si no quieres */
-    align-self: flex-start;    /* Alineado a la izquierda */
+    white-space: nowrap; /* Evita que el texto salte de línea si es largo */
 }
 
-/* Contenedor para los botones de Guardar y Cerrar Sesión */
-.button-group {
-    display: flex;
-    gap: 10px;
+.btn-cancel,
+.btn-save {
+    background: #18A2E7;
+    color: black;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.btn-save {
+    width: 100%;
     margin-top: 10px;
 }
 
-.auth-divider, .account-divider {
-    display: none;
-}
-
-@media (min-width: 768px) {
-    .account-section, .auth-wrapper, .faq-section {
-        padding: 40px;
+@media (max-width: 1100px) {
+    .account-form {
+        flex-direction: column;
+        align-items: center;
     }
-
-    .account-form, .auth-container, .faq-container {
-        max-width: 800px;
+    .account-column {
+        min-width: 90%;
     }
-}
-
-@media (min-width: 1025px) {
-    .account-form, .auth-container, .faq-container {
-        flex-direction: row;
-        align-items: stretch;
-        max-width: 1100px;
-        gap: 50px;
-    }
-
-    .account-column, .form-section, .faq-column {
-        flex: 1;
-    }
-
-    .auth-divider, .account-divider {
-        display: block;
-        width: 1px;
-        background: #333;
-        align-self: stretch;
-    }
-
-    .account-input, .auth-input {
-        font-size: 18px;
-        padding: 15px;
+    .account-divider {
+        display: none;
     }
 }

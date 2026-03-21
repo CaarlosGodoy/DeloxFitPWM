@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px 15px;
+    padding: 40px 0;
     gap: 15px;
     background-color: #000;
-    font-family: sans-serif;
-    border-top: 1px solid #18A2E7;
+    font-family: "Century Gothic", sans-serif;
+    border-top: none;
+    width: 100%;
 }
 
 .socials-list,
@@ -17,66 +18,78 @@
     padding: 0;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 30px;
 }
 
-.socials-list a,
 .btn-footer {
     background-color: #18A2E7;
-    color: #000;
+    color: black;
     text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 11px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
     font-weight: bold;
     white-space: nowrap;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase;
 }
 
 .socials-list a {
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    font-size: 16px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .footer-line {
     width: 90%;
-    max-width: 1100px;
+    max-width: none;
     border: 0;
     border-top: 1px solid #333;
-    margin: 10px 0;
+    margin-bottom: 25px;
 }
 
-.socials-list a:hover,
+.socials-list a:hover {
+    color: #18A2E7;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
 .btn-footer:hover {
     background-color: #6BC3EF;
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(24, 162, 231, 0.4);
+    cursor: pointer;
 }
 
 @media (min-width: 1024px) {
     .main-footer {
-        padding: 40px 20px;
+        padding: 40px 0;
         gap: 25px;
     }
 
     .socials-list,
     .links-list {
-        gap: 20px;
+        gap: 30px;
     }
 
     .btn-footer {
-        padding: 10px 20px;
-        font-size: 14px;
-        border-radius: 6px;
+        padding: 12px 20px;
+        font-size: 13px;
     }
 
     .socials-list a {
         width: 45px;
         height: 45px;
-        font-size: 20px;
+        font-size: 24px;
     }
 }

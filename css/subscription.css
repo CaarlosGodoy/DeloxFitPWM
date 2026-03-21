@@ -1,9 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Century Gothic", sans-serif;
+}
+
+.subscriptions-section {
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .subscription-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 300px;
     margin: 0 auto;
     background-color: #111;
     border: 1px solid #18A2E7;
@@ -12,11 +33,16 @@
     box-sizing: border-box;
     transition: all 0.3s ease;
     min-height: 320px;
-    max-width: 300px;
+}
+
+.subscription-card:hover {
+    transform: translateY(-5px);
+    border-color: #6BC3EF;
+    box-shadow: 0 4px 15px rgba(24, 162, 231, 0.2);
 }
 
 .subscription-title {
-    color: #ffffff;
+    color: #fff;
     font-size: 18px;
     text-transform: uppercase;
     margin: 0;
@@ -30,6 +56,8 @@
     align-items: center;
     color: #18A2E7;
     margin: 15px 0;
+    font-size: 34px;
+    font-weight: bold;
 }
 
 .price-amount {
@@ -51,10 +79,15 @@
     transition: background-color 0.3s;
 }
 
+.subscription-btn:hover {
+    background-color: #6BC3EF;
+}
+
 @media (min-width: 481px) {
     .subscription-card {
         min-height: 350px;
     }
+
     .price-amount {
         font-size: 36px;
     }
@@ -64,14 +97,11 @@
     .subscription-card {
         min-height: 380px;
     }
-    .subscription-card:hover {
-        transform: translateY(-5px);
-        border-color: #6BC3EF;
-        box-shadow: 0 4px 15px rgba(24, 162, 231, 0.2);
-    }
+
     .subscription-title {
         font-size: 20px;
     }
+
     .price-amount {
         font-size: 40px;
     }
