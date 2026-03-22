@@ -140,74 +140,37 @@ function initAuthListeners() {
     }
 }
 
-function fillAccountData() {
-    if (window.location.pathname.includes('accountInformation.html')) {
-        if (!currentUser) {
-            window.location.href = './login.html';
-            return;
+async function fillAccountData() {
+    if (!window.location.pathname.includes('accountInformation.html')) return;
+
+    if (!currentUser) {
+        window.location.href = './login.html';
+        return;
+    }
+
+    const inputs = document.querySelectorAll('.account-input');
+    if (inputs.length >= 4) {
+        inputs[0].value = currentUser.usuario;
+        inputs[1].value = currentUser.correo;
+        inputs[2].value = currentUser.dni;
+        inputs[3].value = currentUser.suscripcion || 'Ninguna activa';
+
+        const logoutBtn = document.querySelector('.btn-sign_out');
+        if (logoutBtn) {
+            logoutBtn.onclick = () => {
+                localStorage.removeItem('currentUser');
+                window.location.href = './index.html';
+            };
         }
 
-        setTimeout(() => {
-            const inputs = document.querySelectorAll('.account-input');
-            if (inputs.length >= 5) {
-                inputs[0].value = currentUser.usuario;
-                inputs[1].value = currentUser.correo;
-                inputs[2].value = currentUser.dni;
-                inputs[3].value = currentUser.suscripcion || 'Ninguna activa';
-
-                const reservaContainer = inputs[4].parentElement;
-                if (Array.isArray(currentUser.reservas) && currentUser.reservas.length > 0) {
-                    let options = currentUser.reservas.map((res, index) => `<option value="${index}">${res}</option>`).join("");
-                    reservaContainer.innerHTML = `
-						<label class="account-label">MIS RESERVAS</label>
-						<select id="reserva-selector" class="account-input">${options}</select>
-						<button type="button" class="btn-cancel" onclick="cancelSelectedClass()">CANCELAR SELECCIONADA</button>
-					`;
-                } else {
-                    inputs[4].value = 'Ninguna activa';
-                    inputs[4].readOnly = true;
-                }
-            }
-
-            const logoutBtn = document.querySelector('.btn-sign_out');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', () => {
-                    localStorage.removeItem('currentUser');
-                    window.location.href = './index.html';
-                });
-            }
-
-            const saveBtn = document.querySelector('.btn-save');
-            if (saveBtn) {
-                saveBtn.addEventListener('click', () => {
-                    const newUsuario = inputs[0].value.trim();
-                    const newCorreo = inputs[1].value.trim();
-                    const newDni = inputs[2].value.trim();
-
-                    if (!newUsuario || !newCorreo || !newDni) {
-                        alert("Por favor, rellena todos los campos.");
-                        return;
-                    }
-
-                    let users = JSON.parse(localStorage.getItem('users')) || [];
-                    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
-
-                    if (userIndex !== -1) {
-                        users[userIndex].usuario = newUsuario;
-                        users[userIndex].correo = newCorreo;
-                        users[userIndex].dni = newDni;
-                        localStorage.setItem('users', JSON.stringify(users));
-
-                        currentUser.usuario = newUsuario;
-                        currentUser.correo = newCorreo;
-                        currentUser.dni = newDni;
-                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-                        alert("¡Tus datos se han actualizado correctamente!");
-                    }
-                });
-            }
-        }, 150);
+        const reservaInput = inputs[4];
+        if (reservaInput && Array.isArray(currentUser.reservas) && currentUser.reservas.length > 0) {
+            let options = currentUser.reservas.map((res, index) => `<option value="${index}">${res}</option>`).join("");
+            reservaInput.outerHTML = `
+                <select id="reserva-selector" class="account-input">${options}</select>
+                <button type="button" class="btn-cancel" onclick="cancelSelectedClass()">CANCELAR SELECCIONADA</button>
+            `;
+        }
     }
 }
 
