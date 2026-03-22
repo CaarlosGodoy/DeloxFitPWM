@@ -23,7 +23,6 @@ async function loadStructure() {
     if (footer) footer.appendChild(await getTemplate('templates/footer.html'));
 
     loadHeaderVariableBtn();
-
     initMobileMenu();
 }
 
@@ -97,17 +96,16 @@ function initAuthListeners() {
     if (regForm) {
         regForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
             const newUser = {
                 correo: document.getElementById('reg-correo').value,
                 dni: document.getElementById('reg-dni').value,
                 usuario: document.getElementById('reg-usuario').value,
                 pass: document.getElementById('reg-pass').value,
-                reservas: []
+                reservas: [],
+                suscripcion: 'Ninguna activa'
             };
 
             let users = JSON.parse(localStorage.getItem('users')) || [];
-
             if (users.find(u => u.usuario === newUser.usuario)) {
                 alert("El nombre de usuario ya está registrado.");
                 return;
@@ -123,7 +121,6 @@ function initAuthListeners() {
     if (logForm) {
         logForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
             const userIn = document.getElementById('log-usuario').value;
             const passIn = document.getElementById('log-pass').value;
 
@@ -203,10 +200,8 @@ function openClassInfo(className) {
         let dateStr = (day && time) ? `${day} a las ${time}h` : "Horario por confirmar";
         if (info) info.innerText = dateStr;
         if (img) {
-            if (className === 'Spinning') img.src = './assets/classes/spinning.png';
-            else if (className === 'Zumba') img.src = './assets/classes/zumba.png';
-            else if (className === 'Boxeo') img.src = './assets/classes/box.png';
-            else img.src = './assets/default.jpg';
+            const images = { 'Spinning': 'spinning.png', 'Zumba': 'zumba.png', 'Boxeo': 'box.png' };
+            img.src = `./assets/classes/${images[className] || 'default.jpg'}`;
         }
 
         window.claseSeleccionada = (day && time) ? `${className} - ${day} ${time}h` : `${className} - Reservada`;
@@ -221,7 +216,6 @@ function closePopup() {
 
 function bookClass(event) {
     if(event) event.preventDefault();
-
     if (!currentUser) {
         alert("Debes iniciar sesión para poder reservar una clase.");
         window.location.href = './login.html';
@@ -229,10 +223,7 @@ function bookClass(event) {
     }
 
     const reserva = window.claseSeleccionada || "Clase Reservada";
-
-    if (!Array.isArray(currentUser.reservas)) {
-        currentUser.reservas = [];
-    }
+    if (!Array.isArray(currentUser.reservas)) currentUser.reservas = [];
 
     if (currentUser.reservas.includes(reserva)) {
         alert("Ya tienes una reserva para esta clase en este horario.");
@@ -241,16 +232,7 @@ function bookClass(event) {
     }
 
     currentUser.reservas.push(reserva);
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
-
-    if (userIndex !== -1) {
-        users[userIndex].reservas = currentUser.reservas;
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
+    updateUserData();
     alert("¡Clase reservada con éxito!");
     closePopup();
 }
@@ -260,23 +242,13 @@ function cancelSelectedClass() {
     if (!selector) return;
 
     currentUser.reservas.splice(selector.value, 1);
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
-
-    if (userIndex !== -1) {
-        users[userIndex].reservas = currentUser.reservas;
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
+    updateUserData();
     alert("Reserva cancelada correctamente.");
     location.reload();
 }
 
 function acquireSubscription(event, subTitle) {
     if (event) event.preventDefault();
-
     if (!currentUser) {
         alert("Debes iniciar sesión para poder adquirir una suscripción.");
         window.location.href = './login.html';
@@ -289,16 +261,7 @@ function acquireSubscription(event, subTitle) {
     }
 
     currentUser.suscripcion = subTitle;
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
-
-    if (userIndex !== -1) {
-        users[userIndex].suscripcion = subTitle;
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
+    updateUserData();
     alert(`¡Has adquirido la suscripción ${subTitle} con éxito!`);
 }
 
@@ -312,27 +275,25 @@ function cancelSubscription(event) {
     if (!currentUser) return;
 
     currentUser.suscripcion = 'Ninguna activa';
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
-
-    if (userIndex !== -1) {
-        users[userIndex].suscripcion = 'Ninguna activa';
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
+    updateUserData();
     alert("¡Tu suscripción ha sido cancelada con éxito!");
     location.reload();
+}
+
+function updateUserData() {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+    if (userIndex !== -1) {
+        users[userIndex] = currentUser;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
 }
 
 function initMobileMenu() {
     const toggle = document.getElementById("menu-toggle");
     const menu = document.querySelector(".header-btns-row");
-
     if (toggle && menu) {
-        toggle.addEventListener("click", () => {
-            menu.classList.toggle("active");
-        });
+        toggle.addEventListener("click", () => menu.classList.toggle("active"));
     }
 }
