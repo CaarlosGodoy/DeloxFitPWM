@@ -23,6 +23,8 @@ async function loadStructure() {
     if (footer) footer.appendChild(await getTemplate('templates/footer.html'));
 
     loadHeaderVariableBtn();
+
+    initMobileMenu();
 }
 
 function loadHeaderVariableBtn() {
@@ -359,4 +361,15 @@ function cancelSubscription(event) {
 
     alert("¡Tu suscripción ha sido cancelada con éxito!");
     location.reload();
+}
+
+function initMobileMenu() {
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.querySelector(".header-btns-row");
+
+    if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("active");
+        });
+    }
 }

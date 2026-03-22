@@ -78,6 +78,13 @@ header {
     box-shadow: 0 5px 15px rgba(24, 162, 231, 0.4);
 }
 
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+}
+
 @media (min-width: 481px) and (max-width: 1024px) {
     .main-header {
         padding: 10px 20px;
@@ -114,5 +121,47 @@ header {
         padding: 12px 20px;
         font-size: 13px;
         margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logoDF {
+        height: 50px;
+        margin-left: 10px;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-right: 15px;
+    }
+
+    .header-btns-row {
+        display: none; /* oculto por defecto */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        background-color: black;
+        padding: 15px;
+        border-radius: 10px;
+        gap: 15px;
+        width: 200px;
+        align-items: center;
+    }
+
+    .header-btns-row.active {
+        display: flex;
+    }
+
+    .btn-header {
+        width: 100%;
+        text-align: center;
     }
 }
