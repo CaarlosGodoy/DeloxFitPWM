@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadStructure();
     await loadDynamicContent();
     initAuthListeners();
-    fillAccountData();
+    await fillAccountData();
 });
 
 async function getTemplate(url) {
