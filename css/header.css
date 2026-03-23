@@ -85,22 +85,6 @@ header {
     cursor: pointer;
 }
 
-@media (min-width: 481px) and (max-width: 1024px) {
-    .main-header {
-        padding: 10px 20px;
-    }
-    .logoDF {
-        height: 80px;
-    }
-    .btn-header {
-        padding: 12px 20px;
-        font-size: 13px;
-    }
-    .header-btns-row {
-        gap: 30px;
-    }
-}
-
 @media (min-width: 1025px) {
     .main-header {
         flex-direction: row;
