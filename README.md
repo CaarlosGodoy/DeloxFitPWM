@@ -25,11 +25,11 @@ Es la página de inicio del sitio web.
 
 Representa el mockup "INDICE".
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 - 
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 - 
 
@@ -37,27 +37,58 @@ Representa el mockup "INDICE".
 
 Representa el mockup "LOG-IN".
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 -
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 - 
 
-**VALIDACIÓN FORMULARIO**
+### FORMULARIO
 
--
+En los formularios de la página de acceso (`login.html`) se han aplicado las siguientes validaciones HTML5 para garantizar la correcta introducción de datos:
+
+### Formulario de Registro (`form-registro`)
+
+- `required`: Todos los campos son obligatorios: correo, DNI, usuario y contraseña.
+
+
+- `type="email"`: El campo correo valida automáticamente que el formato sea un email válido.
+
+
+- `pattern="[0-9]{8}[A-Z,a-z]{1}"`: El campo DNI debe contener **8 números seguidos de 1 letra** (mayúscula o minúscula).
+
+
+- `minlength`:
+  - Usuario: mínimo 4 caracteres.
+  - Contraseña: mínimo 6 caracteres.
+
+
+- `placeholder` y `title`:
+  - `placeholder` en correo: guía al usuario con un ejemplo.
+  - `title` en DNI: indica el formato esperado.
+
+### Formulario de Inicio de Sesión (`form-login`)
+
+- `required`: Todos los campos son obligatorios: usuario y contraseña.
+
+
+- `type="password"`: El campo contraseña enmascara la entrada para mayor seguridad.
+
+### Usuario y contraseña de prueba:
+- Usuario: usuario1
+- Contraseña: usuario1
 
 > MI CUENTA: accountInformation.html
 
 Representa el mockup "INFORMACION CUENTA".
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 -
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 -
 
@@ -65,11 +96,11 @@ Representa el mockup "INFORMACION CUENTA".
 
 Representa el mockup "SUSCRIPCIONES".
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 -
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 -
 
@@ -77,11 +108,11 @@ Representa el mockup "SUSCRIPCIONES".
 
 Representa el mockup "CLASES".
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 -
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 -
 
@@ -89,11 +120,11 @@ Representa el mockup "CLASES".
 
 Representa el mockup "FAQS".
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 -
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 -
 
@@ -101,11 +132,11 @@ Representa el mockup "FAQS".
 
 Para esto último no hicimos mockup en su momento.
 
-**ASPECTOS RESPONSIVE IMPLEMENTADOS**
+### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
 -
 
-**CARGA DE CONTENIDO JSON**
+### CARGA DE CONTENIDO JSON
 
 -
 
