@@ -25,31 +25,37 @@ Es la página de inicio del sitio web.
 
 Representa el mockup "INDICE".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
-- 
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
-- 
+##### CARGA DE CONTENIDO JSON
+
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "home".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
 
 > INSCRIPCIÓN: login.html
 
 Representa el mockup "LOG-IN".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
--
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
-- 
+##### CARGA DE CONTENIDO JSON
 
-### FORMULARIO
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "login".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
+
+##### FORMULARIO
 
 En los formularios de la página de acceso (`login.html`) se han aplicado las siguientes validaciones HTML5 para garantizar la correcta introducción de datos:
 
-### Formulario de Registro (`form-registro`)
+##### Formulario de Registro (`form-registro`)
 
 - `required`: Todos los campos son obligatorios: correo, DNI, usuario y contraseña.
 
@@ -69,14 +75,14 @@ En los formularios de la página de acceso (`login.html`) se han aplicado las si
   - `placeholder` en correo: guía al usuario con un ejemplo.
   - `title` en DNI: indica el formato esperado.
 
-### Formulario de Inicio de Sesión (`form-login`)
+##### Formulario de Inicio de Sesión (`form-login`)
 
 - `required`: Todos los campos son obligatorios: usuario y contraseña.
 
 
 - `type="password"`: El campo contraseña enmascara la entrada para mayor seguridad.
 
-### Usuario y contraseña de prueba:
+##### Usuario y contraseña de prueba:
 - Usuario: usuario1
 - Contraseña: usuario1
 
@@ -84,61 +90,76 @@ En los formularios de la página de acceso (`login.html`) se han aplicado las si
 
 Representa el mockup "INFORMACION CUENTA".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
--
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
--
+##### CARGA DE CONTENIDO JSON
+
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "account".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
 
 > SUSCRIPCIONES: subscriptionPage.html
 
 Representa el mockup "SUSCRIPCIONES".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
--
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
--
+##### CARGA DE CONTENIDO JSON
+
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "subs".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
 
 > CLASES: classesPage.html
 
 Representa el mockup "CLASES".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
--
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
--
+##### CARGA DE CONTENIDO JSON
+
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "classes".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
 
 > FAQS: faqsPage.html
 
 Representa el mockup "FAQS".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
--
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
--
+##### CARGA DE CONTENIDO JSON
+
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "faqs".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
 
 > AVISO LEGAL: legalNotice.html
 
 Para esto último no hicimos mockup en su momento.
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
+##### ASPECTOS RESPONSIVE IMPLEMENTADOS
 
--
+Para que nuestro código sepa que proporciones desplegar acorde al tipo de dispositivo, nos apoyamos de las reglas @media, donde jugando con la altura y ancho de nuestro dispositivo, diferenciamos entre móvil, tablet u ordenador.
 
-### CARGA DE CONTENIDO JSON
 
--
+##### CARGA DE CONTENIDO JSON
+
+Todo el contenido estático de la página se carga desde el archivo static.json, en caso de esta página utilizando el slug "legal".
+
+Para ello, se hace uso de la función loadDynamicContent() del archivo fetching.js, la cúal carga el contenido de esta sección del static.josn, cuando lea que la ruta de la página actual incluya el nombre de esta página.
 
 UBICACIÓN CONTENIDO JSON:
 -
