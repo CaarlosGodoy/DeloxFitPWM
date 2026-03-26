@@ -1,16 +1,20 @@
-<head>
-    <link rel="stylesheet" href="./css/class.css">
-    <title></title>
-</head>
-
-<section class="class-section">
+<section class="class-section" id="popup-class">
     <div class="class-card">
-        <h2 class="class-title">NOMBRE CLASE</h2>
-        <h3 class="class-information">INFORMACION CLASE</h3>
-        <nav class="header-btns-row">
+        <h2 class="class-title" id="popup-title">NOMBRE CLASE</h2>
+        <img src="" id="popup-img" class="class-img-main">
+        <h3 class="class-information" id="popup-info">INFORMACION CLASE</h3>
+        <nav class="class-btns-row">
             <ul>
-                <li><a href="#" class="btn-class">RESERVAR</a></li>
-                <li><a href="#" class="btn-class">ATRAS</a></li>
+                <li>
+                    <a href="#" class="btn-class" onclick="bookClass(event)">
+                        RESERVAR
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="btn-class" onclick="closePopup()">
+                        ATRAS
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

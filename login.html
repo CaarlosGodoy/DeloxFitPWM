@@ -1,55 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeloxFit - Acceso</title>
-    <script src="./js/fetching.js"></script>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/header.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DeloxFit - Registro</title>
+        <script src="./js/fetching.js"></script>
+        <link rel="stylesheet" href="./css/login.css">
+        <link rel="stylesheet" href="./css/footer.css">
+        <link rel="stylesheet" href="./css/header.css">
+    </head>
 
-<body>
-<header data-xlu-include-file="./templates/header.html"></header>
+    <body>
+        <header data-xlu-include-file="./templates/header.html"></header>
 
-<main class="auth-container">
-    <section id="form-register" class="form-section">
-        <h2>REGISTRARSE</h2>
-        <label for="reg-correo">CORREO ELECTRÓNICO</label>
-        <input type="email" id="reg-correo">
+        <main class="auth-wrapper">
+        </main>
 
-        <label for="reg-dni">DNI</label>
-        <input type="text" id="reg-dni">
-
-        <label for="reg-usuario">USUARIO</label>
-        <input type="text" id="reg-usuario">
-
-        <label for="reg-pass">CONTRASEÑA</label>
-        <input type="password" id="reg-pass">
-
-        <button class="btn-iniciar">INICIAR</button>
-    </section>
-
-    <div class="auth-divider"></div>
-
-    <section id="form-log-in" class="form-section">
-        <h2>INICIAR SESIÓN</h2>
-        <label for="log-usuario">USUARIO</label>
-        <input type="text" id="log-usuario">
-
-        <label for="log-pass">CONTRASEÑA</label>
-        <input type="password" id="log-pass">
-
-        <button class="btn-iniciar">INICIAR</button>
-    </section>
-</main>
-
-<footer data-xlu-include-file="./templates/footer.html"></footer>
-
-<script>
-    xLuIncludeFile();
-</script>
-</body>
+        <footer id="index-footer" data-xlu-include-file="./templates/footer.html"></footer>
+    </body>
 </html>

@@ -1,57 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/fetching.js"></script>
-    <link rel="stylesheet" href="./css/subscriptionPage.css">
-    <link rel="stylesheet" href="./css/subscription.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <title>DeloxFit - Suscripciones</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./js/fetching.js"></script>
+        <link rel="stylesheet" href="./css/subscriptionPage.css">
+        <link rel="stylesheet" href="./css/footer.css">
+        <link rel="stylesheet" href="./css/header.css">
+        <title>DeloxFit - Suscripciones</title>
+    </head>
 
-<body>
-<header data-xlu-include-file="./templates/header.html"></header>
+    <body>
+        <header data-xlu-include-file="./templates/header.html"></header>
 
-<main>
-    <section class="subscriptions-section">
-        <h2 class="subscriptions-title">SUSCRIPCIONES</h2>
+        <main id="subs-content"></main>
 
-        <div class="subscriptions-grid">
-
-            <div data-xlu-include-file="./templates/subscription.html"
-                 data-title="ANUAL"
-                 data-price="349,99 €"></div>
-
-            <div data-xlu-include-file="./templates/subscription.html"
-                 data-title="SEMESTRAL"
-                 data-price="199,99 €"></div>
-
-            <div data-xlu-include-file="./templates/subscription.html"
-                 data-title="MENSUAL"
-                 data-price="34,99 €"></div>
-
-            <div data-xlu-include-file="./templates/subscription.html"
-                 data-title="FAMILIAR"
-                 data-price="89,99 €"></div>
-
-            <div data-xlu-include-file="./templates/subscription.html"
-                data-title="PASE DIARIO"
-                 data-price="7,99 €"></div>
-
-            <div data-xlu-include-file="./templates/subscription.html"
-                 data-title="PASE GRATIS"
-                 data-price="0 €"></div>
-
-        </div>
-    </section>
-</main>
-
-<footer data-xlu-include-file="./templates/footer.html"></footer>
-
-<script>
-    xLuIncludeFile();
-</script>
-</body>
+        <footer data-xlu-include-file="./templates/footer.html"></footer>
+    </body>
 </html>

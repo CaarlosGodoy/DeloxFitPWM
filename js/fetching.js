@@ -1,92 +1,299 @@
-let isLoggedIn = false;
+let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-async function xLuIncludeFile() {
-    let z = document.getElementsByTagName("*");
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadStructure();
+    await loadDynamicContent();
+    initAuthListeners();
+    await fillAccountData();
+});
 
-    for (let i = 0; i < z.length; i++) {
-        if (z[i].getAttribute("data-xlu-include-file")) {
-            let a = z[i].cloneNode(false);
-            let file = z[i].getAttribute("data-xlu-include-file");
+async function getTemplate(url) {
+    let response = await fetch(url);
+    let text = await response.text();
+    let template = document.createElement('template');
+    template.innerHTML = text;
+    return document.importNode(template.content, true);
+}
 
-            try {
-                let response = await fetch(file);
-                if (response.ok) {
+async function loadStructure() {
+    let header = document.querySelector('header');
+    let footer = document.querySelector('footer');
 
-                    let content = await response.text();
+    if (header) header.appendChild(await getTemplate('templates/header.html'));
+    if (footer) footer.appendChild(await getTemplate('templates/footer.html'));
 
-                    if (file.toLowerCase().includes("header")) {
-                        let buttonHTML = isLoggedIn
-                            ? '<li><a href="./accountInformation.html" class="btn-header">MI CUENTA</a></li>'
-                            : '<li><a href="./login.html" class="btn-header">INSCRIPCION</a></li>';
+    loadHeaderVariableBtn();
+    initMobileMenu();
+}
 
-                        content = content.replace("{{authButton}}", buttonHTML);
-                    }
+function loadHeaderVariableBtn() {
+    let nav = document.querySelector('header nav');
+    if (nav) {
+        let authBtn = currentUser
+            ? `<li><a href="./accountInformation.html" class="btn-header">MI CUENTA</a></li>`
+            : `<li><a href="./login.html" class="btn-header">INSCRIBIRSE</a></li>`;
 
-                    if (file.includes("./templates/faqs.html")) {
-                        let pregunta = z[i].getAttribute("data-pregunta") || "";
-                        let respuesta = z[i].getAttribute("data-respuesta") || "";
+        nav.innerHTML = nav.innerHTML.replace("{{authButton}}", authBtn);
+    }
+}
 
-                        content = content.replace("__TITULO__", pregunta)
-                            .replace("__CONTENIDO__", respuesta);
-                    }
+async function loadDynamicContent() {
+    let path = window.location.pathname;
+    let routes = {
+        'legalNotice.html': 'legal',
+        'subscriptionPage.html': 'subs',
+        'classesPage.html': 'classes',
+        'faqsPage.html': 'faqs',
+        'accountInformation.html': 'account',
+        'index.html': 'home',
+        'login.html': 'login'
+    };
 
-                    if (file.toLowerCase().includes("banner")) {
-                        let title = z[i].getAttribute("data-title") || "";
-                        let image = z[i].getAttribute("data-image") || "";
-                        let link = z[i].getAttribute("data-link") || "#";
+    let routeKey = Object.keys(routes).find(key => path.includes(key));
+    let slug = routeKey ? routes[routeKey] : 'home';
 
-                        content = content.replace("{{title}}", title)
-                            .replace("{{image}}", image)
-                            .replace("{{link}}", link);
-                    }
+    try {
+        let response = await fetch('/database/static.json');
+        let db = await response.json();
+        let container = document.querySelector('main');
+        let page = db.data.find(p => p.slug === slug);
 
-                    if (file === "article-template.templates") {
-                        let articleData = {
-                            title: z[i].getAttribute("data-title"),
-                            subtitle: z[i].getAttribute("data-subtitle"),
-                            date: z[i].getAttribute("data-date"),
-                            displayDate: z[i].getAttribute("data-display-date"),
-                            content: z[i].getAttribute("data-content"),
-                            image: z[i].getAttribute("data-image"),
-                            imageCaption: z[i].getAttribute("data-image-caption")
-                        };
+        if (page && container) {
+            container.innerHTML = page.content.map(block =>
+                block.children.map(child => child.text).join("")
+            ).join("");
 
-                        content = content.replace(/{{title}}/g, articleData.title)
-                            .replace(/{{subtitle}}/g, articleData.subtitle)
-                            .replace(/{{date}}/g, articleData.date)
-                            .replace(/{{displayDate}}/g, articleData.displayDate)
-                            .replace(/{{content}}/g, articleData.content)
-                            .replace(/{{image}}/g, articleData.image || '')
-                            .replace(/{{imageCaption}}/g, articleData.imageCaption || '');
-                    }
+            await processSubTemplates(container);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-                    if (file === "./templates/subscription.html") {
-                        let subscriptionData = {
-                            title: z[i].getAttribute("data-title"),
-                            price: z[i].getAttribute("data-price"),
-                        };
+async function processSubTemplates(dynamicContentSection) {
+    let subElements = dynamicContentSection.querySelectorAll('[data-xlu-include-file]');
 
-                        content = content
-                            .replace(/{{title}}/g, subscriptionData.title)
-                            .replace(/{{price}}/g, subscriptionData.price);
-                    }
+    for (let el of subElements) {
+        let url = el.getAttribute('data-xlu-include-file');
+        let response = await fetch(url);
+        let html = await response.text();
 
-                    a.removeAttribute("data-xlu-include-file");
-                    a.innerHTML = content;
-                    z[i].parentNode.replaceChild(a, z[i]);
+        Object.keys(el.dataset).forEach(key => {
+            let value = el.dataset[key];
+            let regex = new RegExp(`{{${key}}}|__${key.toUpperCase()}__`, "g");
+            html = html.replace(regex, value);
+        });
 
-                    xLuIncludeFile();
-                }
-            } catch (error) {
-                console.error("Error fetching file:", error);
+        el.innerHTML = html;
+        el.removeAttribute('data-xlu-include-file');
+    }
+}
+
+function initAuthListeners() {
+    const regForm = document.getElementById('form-registro');
+    const logForm = document.getElementById('form-login');
+
+    if (regForm) {
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newUser = {
+                correo: document.getElementById('reg-correo').value,
+                dni: document.getElementById('reg-dni').value,
+                usuario: document.getElementById('reg-usuario').value,
+                pass: document.getElementById('reg-pass').value,
+                reservas: [],
+                suscripcion: 'Ninguna activa'
+            };
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.find(u => u.usuario === newUser.usuario)) {
+                alert("El nombre de usuario ya está registrado.");
+                return;
             }
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            alert("¡Registro completado con éxito!");
+            regForm.reset();
+        });
+    }
+
+    if (logForm) {
+        logForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userIn = document.getElementById('log-usuario').value;
+            const passIn = document.getElementById('log-pass').value;
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.usuario === userIn && u.pass === passIn);
+
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = './accountInformation.html';
+            } else {
+                alert("Usuario o contraseña incorrectos.");
+            }
+        });
+    }
+}
+
+async function fillAccountData() {
+    if (!window.location.pathname.includes('accountInformation.html')) return;
+
+    if (!currentUser) {
+        window.location.href = './login.html';
+        return;
+    }
+
+    const inputs = document.querySelectorAll('.account-input');
+    if (inputs.length >= 4) {
+        inputs[0].value = currentUser.usuario;
+        inputs[1].value = currentUser.correo;
+        inputs[2].value = currentUser.dni;
+        inputs[3].value = currentUser.suscripcion || 'Ninguna activa';
+
+        const logoutBtn = document.querySelector('.btn-sign_out');
+        if (logoutBtn) {
+            logoutBtn.onclick = () => {
+                localStorage.removeItem('currentUser');
+                window.location.href = './index.html';
+            };
+        }
+
+        const reservaInput = inputs[4];
+        if (reservaInput && Array.isArray(currentUser.reservas) && currentUser.reservas.length > 0) {
+            let options = currentUser.reservas.map((res, index) => `<option value="${index}">${res}</option>`).join("");
+            reservaInput.outerHTML = `
+                <select id="reserva-selector" class="account-input">${options}</select>
+                <button type="button" class="btn-cancel" onclick="cancelSelectedClass()">CANCELAR SELECCIONADA</button>
+            `;
         }
     }
 }
 
+function openClassInfo(className) {
+    const popup = document.getElementById('popup-class');
+    const title = document.getElementById('popup-title');
+    const info = document.getElementById('popup-info');
+    const img = document.getElementById('popup-img');
+
+    let e = window.event;
+    let time = "";
+    let day = "";
+
+    if (e && e.target && e.target.classList.contains('class-cell')) {
+        let cell = e.target;
+        let row = cell.parentElement;
+        let timeCell = row.querySelector('.time-col');
+        if (timeCell) time = timeCell.innerText;
+
+        let cellIndex = Array.from(row.children).indexOf(cell);
+        let table = cell.closest('table');
+        if (table) {
+            let headerRow = table.querySelector('thead tr');
+            if (headerRow && headerRow.children[cellIndex]) day = headerRow.children[cellIndex].innerText;
+        }
+    }
+
+    if (popup && title) {
+        title.innerText = className;
+        let dateStr = (day && time) ? `${day} a las ${time}h` : "Horario por confirmar";
+        if (info) info.innerText = dateStr;
+        if (img) {
+            const images = { 'Spinning': 'spinning.png', 'Zumba': 'zumba.png', 'Boxeo': 'box.png' };
+            img.src = `./assets/classes/${images[className] || 'default.jpg'}`;
+        }
+
+        window.claseSeleccionada = (day && time) ? `${className} - ${day} ${time}h` : `${className} - Reservada`;
+        popup.style.display = 'flex';
+    }
+}
+
+function closePopup() {
+    const popup = document.getElementById('popup-class');
+    if (popup) popup.style.display = 'none';
+}
+
+function bookClass(event) {
+    if(event) event.preventDefault();
+    if (!currentUser) {
+        alert("Debes iniciar sesión para poder reservar una clase.");
+        window.location.href = './login.html';
+        return;
+    }
+
+    const reserva = window.claseSeleccionada || "Clase Reservada";
+    if (!Array.isArray(currentUser.reservas)) currentUser.reservas = [];
+
+    if (currentUser.reservas.includes(reserva)) {
+        alert("Ya tienes una reserva para esta clase en este horario.");
+        closePopup();
+        return;
+    }
+
+    currentUser.reservas.push(reserva);
+    updateUserData();
+    alert("¡Clase reservada con éxito!");
+    closePopup();
+}
+
+function cancelSelectedClass() {
+    const selector = document.getElementById('reserva-selector');
+    if (!selector) return;
+
+    currentUser.reservas.splice(selector.value, 1);
+    updateUserData();
+    alert("Reserva cancelada correctamente.");
+    location.reload();
+}
+
+function acquireSubscription(event, subTitle) {
+    if (event) event.preventDefault();
+    if (!currentUser) {
+        alert("Debes iniciar sesión para poder adquirir una suscripción.");
+        window.location.href = './login.html';
+        return;
+    }
+
+    if (currentUser.suscripcion && currentUser.suscripcion !== 'Ninguna activa') {
+        alert("Ya tienes una suscripción. Cancela la actual primero.");
+        return;
+    }
+
+    currentUser.suscripcion = subTitle;
+    updateUserData();
+    alert(`¡Has adquirido la suscripción ${subTitle} con éxito!`);
+}
+
 function togglePopup() {
     const popup = document.getElementById('popup-overlay');
-    if (popup) {
-        popup.classList.toggle('active');
+    if (popup) popup.classList.toggle('active');
+}
+
+function cancelSubscription(event) {
+    if (event) event.preventDefault();
+    if (!currentUser) return;
+
+    currentUser.suscripcion = 'Ninguna activa';
+    updateUserData();
+    alert("¡Tu suscripción ha sido cancelada con éxito!");
+    location.reload();
+}
+
+function updateUserData() {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let userIndex = users.findIndex(u => u.usuario === currentUser.usuario);
+    if (userIndex !== -1) {
+        users[userIndex] = currentUser;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+}
+
+function initMobileMenu() {
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.querySelector(".header-btns-row");
+    if (toggle && menu) {
+        toggle.addEventListener("click", () => menu.classList.toggle("active"));
     }
 }
