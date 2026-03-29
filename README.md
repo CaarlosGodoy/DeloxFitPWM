@@ -83,8 +83,7 @@ En los formularios de la página de acceso (`login.html`) se han aplicado las si
 - `type="password"`: El campo contraseña enmascara la entrada para mayor seguridad.
 
 ##### Usuario y contraseña de prueba:
-- Usuario: usuario1
-- Contraseña: usuario1
+- En nuestro caso usamos localstorage, por lo que por mucho que creemos un usario de prueba solo funcionaría en nuestro navegador.
 
 > MI CUENTA: accountInformation.html
 
