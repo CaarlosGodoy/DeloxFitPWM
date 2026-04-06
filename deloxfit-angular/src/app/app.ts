@@ -1,12 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { LoginComponent } from './login/login';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './header/header';
+import { FooterComponent } from './footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
-export class App {
-  protected readonly title = signal('deloxfit-angular');
+export class AppComponent {
+  title = 'deloxfit-angular';
 }
