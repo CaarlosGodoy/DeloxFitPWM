@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    background: #000;
+    font-family: "Century Gothic", sans-serif;
+    color: white;
+}
+
+.account-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.section-title {
+    color: #18A2E7;
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.account-form {
+    display: flex;
+    width: 95%;
+    max-width: 1200px;
+    justify-content: center;
+    gap: 60px;
+}
+
+.account-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 350px;
+}
+
+.account-divider {
+    width: 1px;
+    background: #333;
+    align-self: stretch;
+}
+
+.account-label {
+    font-size: 13px;
+    color: #18A2E7;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.account-input {
+    background: #111;
+    border: 1px solid #333;
+    border-left: 4px solid #18A2E7;
+    color: white;
+    padding: 12px 15px;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-cancel,
+.btn-save,
+.btn-sign_out {
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-save,
+.btn-cancel {
+    background: #18A2E7;
+    color: black;
+}
+
+.btn-save:hover,
+.btn-cancel:hover {
+    background: #6BC3EF;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(24, 162, 231, 0.4);
+}
+
+.btn-sign_out {
+    background: #ff4444;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-sign_out:hover {
+    background: #cc0000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .account-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .account-column {
+        min-width: 100%;
+    }
+    .account-divider {
+        display: none;
+    }
+}
