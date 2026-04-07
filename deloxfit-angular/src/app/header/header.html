@@ -1,19 +1,24 @@
 <header class="main-header">
   <div class="logo-box">
-    <a href="./index.html">
-      <img src="./assets/logo.png" alt="DeloxFit Logo" class="logoDF">
+    <a routerLink="/">
+      <img src="assets/logo.png" alt="DeloxFit Logo" class="logoDF">
     </a>
   </div>
 
   <nav class="header-nav">
-    <ul class="header-btns-row">
-      <li><a href="./index.html#about-us-section" class="btn-header">CONOCENOS</a></li>
-      <li><a href="./index.html#facilities-section" class="btn-header">INSTALACIONES</a></li>
-      <li><a href="./index.html#classes-banner-section" class="btn-header">CLASES</a></li>
-      <li><a href="./index.html#subscriptions-banner-section" class="btn-header">SUSCRIPCIONES</a></li>
-      {{authButton}}
+    <ul class="header-btns-row" [ngClass]="{'active': menuActive()}">
+      <li><a routerLink="/" fragment="about-us-section" class="btn-header" (click)="menuActive.set(false)">CONOCENOS</a></li>
+      <li><a routerLink="/" fragment="facilities-section" class="btn-header" (click)="menuActive.set(false)">INSTALACIONES</a></li>
+      <li><a routerLink="/clases" class="btn-header" (click)="menuActive.set(false)">CLASES</a></li>
+      <li><a routerLink="/suscripciones" class="btn-header" (click)="menuActive.set(false)">SUSCRIPCIONES</a></li>
+      
+      @if (authService.currentUser()) {
+        <li><a routerLink="/mi-cuenta" class="btn-header" (click)="menuActive.set(false)">MI CUENTA</a></li>
+      } @else {
+        <li><a routerLink="/login" class="btn-header" (click)="menuActive.set(false)">INSCRIBIRSE</a></li>
+      }
     </ul>
   </nav>
 
-  <div class="menu-toggle" id="menu-toggle">☰</div>
+  <div class="menu-toggle" id="menu-toggle" (click)="toggleMenu()">☰</div>
 </header>

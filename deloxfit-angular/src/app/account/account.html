@@ -1,1 +1,69 @@
-<p>account works!</p>
+<section class="account-section">
+  <h2 class="section-title">MI CUENTA</h2>
+  
+  @if (authService.currentUser(); as user) {
+    <div class="form-container">
+      <form class="account-form">
+        <div class="account-column">
+          <label class="account-label">USUARIO</label>
+          <input type="text" class="account-input" readonly [value]="user.usuario">
+          
+          <label class="account-label">CORREO</label>
+          <input type="email" class="account-input" readonly [value]="user.correo">
+          
+          <label class="account-label">DNI</label>
+          <input type="text" class="account-input" readonly [value]="user.dni">
+          
+          <label class="account-label">SUB. ACTIVA</label>
+          <input type="text" class="account-input" readonly [value]="user.suscripcion">
+          <button type="button" class="btn-cancel" (click)="toggleCancelModal()">CANCELAR SUB</button>
+        </div>
+        
+        <div class="account-divider"></div>
+        
+        <div class="account-column">
+          <div id="reserva-container">
+            <label class="account-label">MIS RESERVAS</label>
+            
+            @if (user.reservas && user.reservas.length > 0) {
+              <select id="reserva-selector" class="account-input" [ngModel]="selectedReservaIndex()" (ngModelChange)="selectedReservaIndex.set($event)" name="reserva">
+                @for (reserva of user.reservas; track $index) {
+                  <option [value]="$index">{{ reserva }}</option>
+                }
+              </select>
+              <button type="button" class="btn-cancel" (click)="cancelReservation()">CANCELAR SELECCIONADA</button>
+            } @else {
+              <input type="text" class="account-input" readonly value="Ninguna activa">
+            }
+          </div>
+          
+          <div class="button-group">
+            <button type="button" class="btn-sign_out" (click)="logout()">CERRAR SESIÓN</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <div class="form-container">
+      <p style="text-align: center; color: white;">Debes iniciar sesión para ver esta página.</p>
+    </div>
+  }
+</section>
+
+@if (showCancelModal()) {
+  <div id="popup-overlay" class="popup-overlay active" style="display:flex;">
+    <!-- CSS cancelSub now injected via styleUrls -->
+    <!-- Note: CSS from css/cancelSub.css ideally would be in component styles but link tag works -->
+    <section class="cancel-section">
+      <div class="cancel-card">
+        <h2 class="cancel-title">CANCELAR SUSCRIPCION</h2>
+        <nav class="cancel-btns-row">
+            <ul>
+                <li><a href="javascript:void(0)" class="btn-cancel" (click)="confirmCancelSub()">CANCELAR</a></li>
+                <li><a href="javascript:void(0)" class="btn-cancel" (click)="toggleCancelModal()">ATRAS</a></li>
+            </ul>
+        </nav>
+      </div>
+    </section>
+  </div>
+}

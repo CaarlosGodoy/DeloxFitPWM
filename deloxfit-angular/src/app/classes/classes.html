@@ -1,1 +1,86 @@
-<p>classes works!</p>
+<section id="classes-calendar-section" class="classes-calendar-section">
+  <h2 class="section-title">HORARIOS DE CLASES</h2>
+  <div class="table-container">
+    <table class="classesCalendar">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miércoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-col">09:00</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Lunes', '09:00')">Spinning</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Martes', '09:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Miércoles', '09:00')">Spinning</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Jueves', '09:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Viernes', '09:00')">Boxeo</td>
+        </tr>
+        <tr>
+          <td class="time-col">10:00</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Lunes', '10:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Martes', '10:00')">Spinning</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Miércoles', '10:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Jueves', '10:00')">Spinning</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Viernes', '10:00')">Zumba</td>
+        </tr>
+        <tr>
+          <td class="time-col">11:00</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Lunes', '11:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Martes', '11:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Miércoles', '11:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Jueves', '11:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Viernes', '11:00')">Spinning</td>
+        </tr>
+        <tr>
+          <td class="time-col">12:00</td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="time-col">16:00</td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="time-col">17:00</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Lunes', '17:00')">Spinning</td>
+          <td></td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Miércoles', '17:00')">Spinning</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="time-col">18:00</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Lunes', '18:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Martes', '18:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Miércoles', '18:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Jueves', '18:00')">Boxeo</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="time-col">19:00</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Lunes', '19:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Martes', '19:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Miércoles', '19:00')">Boxeo</td>
+          <td class="class-cell" (click)="openClassInfo('Zumba', 'Jueves', '19:00')">Zumba</td>
+          <td class="class-cell" (click)="openClassInfo('Spinning', 'Viernes', '19:00')">Spinning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+@if (showPopup()) {
+  <div id="popup-class" class="popup-overlay" style="display:flex;">
+    <!-- CSS class now injected via styleUrls -->
+    <div class="popup-content">
+      <span class="close-btn" (click)="closePopup()">&times;</span>
+      <h2 id="popup-title">{{ selectedClass() }}</h2>
+      <p id="popup-info">{{ popupInfo }}</p>
+      <img id="popup-img" [src]="popupImage" alt="Clase" class="popup-image">
+      <button class="btn-reservar" (click)="bookClass()">RESERVAR</button>
+    </div>
+  </div>
+}

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { BannerComponent } from '../shared/banner/banner.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [BannerComponent],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: '../../css/index.css',
 })
-export class Home {}
+export class HomeComponent {}

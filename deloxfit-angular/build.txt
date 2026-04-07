@@ -1,0 +1,16 @@
+
+> deloxfit-angular@0.0.0 build
+> ng build
+
+[33m❯[39m Building...
+[32m✔[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m[2m | [22m[1mEstimated transfer size[22m
+[32mmain-TSWA6LN6.js[39m   [2m | [22m[2mmain[22m         [2m | [22m[36m320.16 kB[39m[2m | [22m               [36m78.65 kB[39m
+[32mstyles-ANUFSQTX.css[39m[2m | [22m[2mstyles[22m       [2m | [22m[36m104 bytes[39m[2m | [22m              [36m104 bytes[39m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m320.26 kB[22m[2m | [22m               [1m78.75 kB[22m
+
+Application bundle generation complete. [2.567 seconds] - 2026-04-06T20:30:10.820Z
+
+Output location: C:\Users\marco\Desktop\Universidad\3º\PWM\DeloxFitPWMS2\deloxfit-angular\dist\deloxfit-angular
+

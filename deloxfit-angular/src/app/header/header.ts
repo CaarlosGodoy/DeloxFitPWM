@@ -1,9 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink, NgClass],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrl: '../../css/header.css',
 })
-export class Header {}
+export class Header {
+  authService = inject(AuthService);
+  menuActive = signal(false);
+
+  toggleMenu() {
+    this.menuActive.update(v => !v);
+  }
+}

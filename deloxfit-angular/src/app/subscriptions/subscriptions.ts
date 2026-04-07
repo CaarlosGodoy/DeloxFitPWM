@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { SubscriptionComponent as SubCard } from '../shared/subscription/subscription.component';
 
 @Component({
   selector: 'app-subscriptions',
-  imports: [],
+  standalone: true,
+  imports: [SubCard],
   templateUrl: './subscriptions.html',
-  styleUrl: './subscriptions.css',
+  styleUrl: '../../css/subscriptionPage.css',
 })
-export class Subscriptions {}
+export class SubscriptionsComponent {}

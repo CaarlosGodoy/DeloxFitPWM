@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #000;
+    color: white;
+    margin: 0;
+    font-family: "Century Gothic", sans-serif;
+    overflow-x: hidden;
+}

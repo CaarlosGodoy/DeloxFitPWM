@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-legalnotice',
-  imports: [],
+  standalone: true,
   templateUrl: './legalnotice.html',
-  styleUrl: './legalnotice.css',
+  styleUrl: '../../css/legalNotice.css',
 })
-export class Legalnotice {}
+export class LegalnoticeComponent {}

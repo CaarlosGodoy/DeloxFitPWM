@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="auth-container">
+  <section class="form-section">
+    <h2>REGISTRARSE</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="input-group">
+        <label for="reg-correo">CORREO ELECTRÓNICO</label>
+        <input type="email" id="reg-correo" class="auth-input" placeholder="ejemplo@mail.com" formControlName="correo" required>
+        
+        <label for="reg-dni">DNI</label>
+        <input type="text" id="reg-dni" class="auth-input" pattern="[0-9]{8}[A-Za-z]{1}" title="8 números y una letra" formControlName="dni" required>
+        
+        <label for="reg-usuario">USUARIO</label>
+        <input type="text" id="reg-usuario" class="auth-input" minlength="4" formControlName="usuario" required>
+        
+        <label for="reg-pass">CONTRASEÑA</label>
+        <input type="password" id="reg-pass" class="auth-input" minlength="6" formControlName="pass" required>
+      </div>
+      <button type="submit" class="btn-iniciar" [disabled]="registerForm.invalid">REGISTRARME</button>
+    </form>
+  </section>
+
+  <div class="auth-divider"></div>
+
+  <section class="form-section">
+    <h2>INICIAR SESIÓN</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="input-group">
+        <label for="log-usuario">USUARIO</label>
+        <input type="text" id="log-usuario" class="auth-input" formControlName="usuario" required>
+        
+        <label for="log-pass">CONTRASEÑA</label>
+        <input type="password" id="log-pass" class="auth-input" formControlName="pass" required>
+      </div>
+      <button type="submit" class="btn-iniciar" [disabled]="loginForm.invalid">INICIAR SESIÓN</button>
+    </form>
+  </section>
+</div>
