@@ -67,17 +67,17 @@ body {
     transform: scale(1.02);
 }
 
-.class-cell[onclick*="Spinning"] {
+.class-cell.spinning {
     background-color: rgba(231, 24, 24, 0.15);
     color: #ff4d4d;
 }
 
-.class-cell[onclick*="Boxeo"] {
+.class-cell.boxeo {
     background-color: rgba(231, 162, 24, 0.15);
     color: #ffb31a;
 }
 
-.class-cell[onclick*="Zumba"] {
+.class-cell.zumba {
     background-color: rgba(24, 231, 162, 0.15);
     color: #2be7a2;
 }

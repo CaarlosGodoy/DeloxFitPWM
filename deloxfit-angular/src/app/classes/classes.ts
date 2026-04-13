@@ -1,5 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-classes',
@@ -7,13 +8,23 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './classes.html',
   styleUrls: ['../../css/classesPage.css', '../../css/class.css'],
 })
-export class ClassesComponent {
+export class ClassesComponent implements OnInit {
   authService = inject(AuthService);
+  dataService = inject(DataService);
 
   showPopup = signal(false);
   selectedClass = signal<string>('');
   selectedDay = signal<string>('');
   selectedTime = signal<string>('');
+
+  schedule = signal<any[]>([]);
+
+  ngOnInit() {
+    this.dataService.getSiteData().subscribe({
+      next: (data) => this.schedule.set(data.schedule),
+      error: (err) => console.error('Error loading schedule:', err)
+    });
+  }
 
   get popupImage(): string {
     const images: Record<string, string> = { 'Spinning': 'spinning.png', 'Zumba': 'zumba.png', 'Boxeo': 'box.png' };

@@ -1,17 +1,15 @@
 <section id="faq-section" class="faq-section">
   <div class="faq-container">
     <div class="faq-column">
-      <app-faq-item question="¿Cómo puedo empezar?" answer="Solo tienes que seleccionar el plan que mejor se adapte a ti y completar el proceso de alta online."></app-faq-item>
-      <app-faq-item question="¿Qué formas de pago aceptáis?" answer="Puedes realizar tus pagos de forma segura mediante tarjeta bancaria o a través de nuestra pasarela de pago."></app-faq-item>
-      <app-faq-item question="¿Existe algún compromiso de permanencia?" answer="Nuestros servicios son flexibles. Puedes darte de baja cuando lo desees sin costes adicionales."></app-faq-item>
-      <app-faq-item question="¿Puedo modificar mi suscripción?" answer="Sí, puedes cambiar o actualizar los detalles de tu cuenta en cualquier momento desde tu área de usuario."></app-faq-item>
+      @for (faq of faqColumn1(); track faq.question) {
+        <app-faq-item [question]="faq.question" [answer]="faq.answer"></app-faq-item>
+      }
     </div>
-    
+
     <div class="faq-column">
-      <app-faq-item question="¿Necesito experiencia previa?" answer="No es necesario. Nuestros contenidos y servicios están diseñados para adaptarse a todos los niveles."></app-faq-item>
-      <app-faq-item question="¿Qué incluye mi suscripción?" answer="Tendrás acceso completo a todas las funcionalidades y recursos detallados en el plan que hayas elegido."></app-faq-item>
-      <app-faq-item question="¿Cómo puedo resolver mis dudas?" answer="Nuestro equipo de atención al cliente está disponible para ayudarte a través de nuestro canal de contacto directo."></app-faq-item>
-      <app-faq-item question="¿Los precios incluyen impuestos?" answer="Sí, todos los precios mostrados en nuestra web incluyen los impuestos correspondientes según la normativa vigente."></app-faq-item>
+      @for (faq of faqColumn2(); track faq.question) {
+        <app-faq-item [question]="faq.question" [answer]="faq.answer"></app-faq-item>
+      }
     </div>
   </div>
 </section>

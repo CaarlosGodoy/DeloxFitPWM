@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SubscriptionComponent as SubCard } from '../shared/subscription/subscription.component';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-subscriptions',
@@ -8,4 +9,13 @@ import { SubscriptionComponent as SubCard } from '../shared/subscription/subscri
   templateUrl: './subscriptions.html',
   styleUrl: '../../css/subscriptionPage.css',
 })
-export class SubscriptionsComponent {}
+export class SubscriptionsComponent implements OnInit {
+  dataService = inject(DataService);
+  subscriptionsList = signal<{ title: string; price: string }[]>([]);
+
+  ngOnInit() {
+    this.dataService.getSiteData().subscribe(data => {
+      this.subscriptionsList.set(data.subscriptions);
+    });
+  }
+}

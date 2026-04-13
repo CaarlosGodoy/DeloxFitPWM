@@ -13,74 +13,48 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="time-col">09:00</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Lunes', '09:00')">Spinning</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Martes', '09:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Miércoles', '09:00')">Spinning</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Jueves', '09:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Viernes', '09:00')">Boxeo</td>
-        </tr>
-        <tr>
-          <td class="time-col">10:00</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Lunes', '10:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Martes', '10:00')">Spinning</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Miércoles', '10:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Jueves', '10:00')">Spinning</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Viernes', '10:00')">Zumba</td>
-        </tr>
-        <tr>
-          <td class="time-col">11:00</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Lunes', '11:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Martes', '11:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Miércoles', '11:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Jueves', '11:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Viernes', '11:00')">Spinning</td>
-        </tr>
-        <tr>
-          <td class="time-col">12:00</td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-          <td class="time-col">16:00</td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-          <td class="time-col">17:00</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Lunes', '17:00')">Spinning</td>
-          <td></td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Miércoles', '17:00')">Spinning</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="time-col">18:00</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Lunes', '18:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Martes', '18:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Miércoles', '18:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Jueves', '18:00')">Boxeo</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="time-col">19:00</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Lunes', '19:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Martes', '19:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Boxeo', 'Miércoles', '19:00')">Boxeo</td>
-          <td class="class-cell" (click)="openClassInfo('Zumba', 'Jueves', '19:00')">Zumba</td>
-          <td class="class-cell" (click)="openClassInfo('Spinning', 'Viernes', '19:00')">Spinning</td>
-        </tr>
+        @for (row of schedule(); track row.time) {
+          <tr>
+            <td class="time-col">{{ row.time }}</td>
+            
+            @if (row.lunes) {
+              <td class="class-cell" [class.spinning]="row.lunes === 'Spinning'" [class.boxeo]="row.lunes === 'Boxeo'" [class.zumba]="row.lunes === 'Zumba'" (click)="openClassInfo(row.lunes, 'Lunes', row.time)">{{ row.lunes }}</td>
+            } @else { <td></td> }
+            
+            @if (row.martes) {
+              <td class="class-cell" [class.spinning]="row.martes === 'Spinning'" [class.boxeo]="row.martes === 'Boxeo'" [class.zumba]="row.martes === 'Zumba'" (click)="openClassInfo(row.martes, 'Martes', row.time)">{{ row.martes }}</td>
+            } @else { <td></td> }
+            
+            @if (row.miercoles) {
+              <td class="class-cell" [class.spinning]="row.miercoles === 'Spinning'" [class.boxeo]="row.miercoles === 'Boxeo'" [class.zumba]="row.miercoles === 'Zumba'" (click)="openClassInfo(row.miercoles, 'Miércoles', row.time)">{{ row.miercoles }}</td>
+            } @else { <td></td> }
+            
+            @if (row.jueves) {
+              <td class="class-cell" [class.spinning]="row.jueves === 'Spinning'" [class.boxeo]="row.jueves === 'Boxeo'" [class.zumba]="row.jueves === 'Zumba'" (click)="openClassInfo(row.jueves, 'Jueves', row.time)">{{ row.jueves }}</td>
+            } @else { <td></td> }
+            
+            @if (row.viernes) {
+              <td class="class-cell" [class.spinning]="row.viernes === 'Spinning'" [class.boxeo]="row.viernes === 'Boxeo'" [class.zumba]="row.viernes === 'Zumba'" (click)="openClassInfo(row.viernes, 'Viernes', row.time)">{{ row.viernes }}</td>
+            } @else { <td></td> }
+          </tr>
+        }
       </tbody>
     </table>
   </div>
 </section>
 
 @if (showPopup()) {
-  <div id="popup-class" class="popup-overlay" style="display:flex;">
-    <!-- CSS class now injected via styleUrls -->
-    <div class="popup-content">
-      <span class="close-btn" (click)="closePopup()">&times;</span>
-      <h2 id="popup-title">{{ selectedClass() }}</h2>
-      <p id="popup-info">{{ popupInfo }}</p>
-      <img id="popup-img" [src]="popupImage" alt="Clase" class="popup-image">
-      <button class="btn-reservar" (click)="bookClass()">RESERVAR</button>
+<div id="popup-class" class="class-section active">
+  <div class="class-card">
+    <span class="close-btn" (click)="closePopup()">&times;</span>
+    <h2 class="class-title">{{ selectedClass() }}</h2>
+    <p class="class-information">{{ popupInfo }}</p>
+    <img [src]="popupImage" alt="Clase" class="class-img-main">
+    <div class="class-btns-row">
+      <ul>
+        <li><button class="btn-class" (click)="bookClass()">RESERVAR</button></li>
+      </ul>
     </div>
   </div>
+</div>
 }

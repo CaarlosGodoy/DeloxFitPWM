@@ -24,6 +24,7 @@
     width: 90%;
     border-radius: 15px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .class-title {
@@ -134,4 +135,19 @@
         width: 100%;
         padding: 12px 20px;
     }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #18A2E7;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #fff;
 }
