@@ -1,0 +1,78 @@
+{
+  "faqs": [
+      { "question": "¿Cómo puedo empezar?", "answer": "Solo tienes que seleccionar el plan que mejor se adapte a ti y completar el proceso de alta online." },
+      { "question": "¿Qué formas de pago aceptáis?", "answer": "Puedes realizar tus pagos de forma segura mediante tarjeta bancaria o a través de nuestra pasarela de pago." },
+      { "question": "¿Existe algún compromiso de permanencia?", "answer": "Nuestros servicios son flexibles. Puedes darte de baja cuando lo desees sin costes adicionales." },
+      { "question": "¿Puedo modificar mi suscripción?", "answer": "Sí, puedes cambiar o actualizar los detalles de tu cuenta en cualquier momento desde tu área de usuario." },
+      { "question": "¿Necesito experiencia previa?", "answer": "No es necesario. Nuestros contenidos y servicios están diseñados para adaptarse a todos los niveles." },
+      { "question": "¿Qué incluye mi suscripción?", "answer": "Tendrás acceso completo a todas las funcionalidades y recursos detallados en el plan que hayas elegido." },
+      { "question": "¿Cómo puedo resolver mis dudas?", "answer": "Nuestro equipo de atención al cliente está disponible para ayudarte a través de nuestro canal de contacto directo." },
+      { "question": "¿Los precios incluyen impuestos?", "answer": "Sí, todos los precios mostrados en nuestra web incluyen los impuestos correspondientes según la normativa vigente." }
+  ],
+  "subscriptions": [
+      { "title": "ANUAL", "price": "349,99 €" },
+      { "title": "SEMESTRAL", "price": "199,99 €" },
+      { "title": "MENSUAL", "price": "34,99 €" },
+      { "title": "FAMILIAR", "price": "89,99 €" },
+      { "title": "PASE DIARIO", "price": "7,99 €" },
+      { "title": "PASE GRATIS", "price": "0 €" }
+  ],
+  "schedule": [
+      {
+          "time": "09:00",
+          "lunes": "Spinning",
+          "martes": "Zumba",
+          "miercoles": "Spinning",
+          "jueves": "Zumba",
+          "viernes": "Boxeo"
+      },
+      {
+          "time": "10:00",
+          "lunes": "Boxeo",
+          "martes": "Spinning",
+          "miercoles": "Boxeo",
+          "jueves": "Spinning",
+          "viernes": "Zumba"
+      },
+      {
+          "time": "11:00",
+          "lunes": "Zumba",
+          "martes": "Boxeo",
+          "miercoles": "Zumba",
+          "jueves": "Boxeo",
+          "viernes": "Spinning"
+      },
+      {
+          "time": "12:00",
+          "lunes": "", "martes": "", "miercoles": "", "jueves": "", "viernes": ""
+      },
+      {
+          "time": "16:00",
+          "lunes": "", "martes": "", "miercoles": "", "jueves": "", "viernes": ""
+      },
+      {
+          "time": "17:00",
+          "lunes": "Spinning",
+          "martes": "",
+          "miercoles": "Spinning",
+          "jueves": "",
+          "viernes": ""
+      },
+      {
+          "time": "18:00",
+          "lunes": "Zumba",
+          "martes": "Boxeo",
+          "miercoles": "Zumba",
+          "jueves": "Boxeo",
+          "viernes": ""
+      },
+      {
+          "time": "19:00",
+          "lunes": "Boxeo",
+          "martes": "Zumba",
+          "miercoles": "Boxeo",
+          "jueves": "Zumba",
+          "viernes": "Spinning"
+      }
+  ]
+}
