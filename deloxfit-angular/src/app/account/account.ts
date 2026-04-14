@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './account.html',
-  styleUrls: ['../../css/accInfo.css', '../../css/cancelSub.css'],
+  styleUrls: ['./account.css', './cancelSub.css'],
 })
 export class AccountComponent {
   authService = inject(AuthService);

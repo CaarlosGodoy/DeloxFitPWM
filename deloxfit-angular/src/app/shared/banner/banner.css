@@ -1,0 +1,50 @@
+.banner-background {
+  position: relative;
+  height: clamp(180px, 30vw, 300px);
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.banner-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-btn {
+  position: relative;
+  color: #18A2E7;
+  font-size: clamp(24px, 5vw, 50px);
+  font-weight: bold;
+  text-decoration: none;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.banner-btn:hover {
+  color: #6BC3EF;
+}
+
+
+@media (max-width: 1024px) {
+  .banner-background {
+    height: 220px;
+  }
+  .banner-btn {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner-background {
+    height: 150px;
+  }
+  .banner-btn {
+    font-size: 26px;
+  }
+}

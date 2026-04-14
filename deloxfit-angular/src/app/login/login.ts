@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.html',
-  styleUrl: '../../css/login.css',
+  styleUrl: './login.css',
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
@@ -50,7 +50,7 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       const success = this.authService.login(
-        this.loginForm.value.usuario!, 
+        this.loginForm.value.usuario!,
         this.loginForm.value.pass!
       );
       if (success) {

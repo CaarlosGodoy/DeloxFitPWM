@@ -7,7 +7,7 @@ import { DataService } from '../services/data.service';
   standalone: true,
   imports: [SubCard],
   templateUrl: './subscriptions.html',
-  styleUrl: '../../css/subscriptionPage.css',
+  styleUrl: './subscriptions.css',
 })
 export class SubscriptionsComponent implements OnInit {
   dataService = inject(DataService);

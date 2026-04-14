@@ -7,7 +7,7 @@ import { DataService } from '../services/data.service';
   standalone: true,
   imports: [FaqItemComponent],
   templateUrl: './faqs.html',
-  styleUrl: '../../css/faqsPage.css',
+  styleUrl: './faqs.css',
 })
 export class FaqsComponent implements OnInit {
   dataService = inject(DataService);

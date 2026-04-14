@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [RouterLink, NgClass],
   templateUrl: './header.html',
-  styleUrl: '../../css/header.css',
+  styleUrl: './header.css',
 })
 export class Header {
   authService = inject(AuthService);

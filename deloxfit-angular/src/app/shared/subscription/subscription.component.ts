@@ -15,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
         <button class="subscription-btn" (click)="onAcquire()">ADQUIRIR</button>
     </div>
   `,
-  styleUrl: '../../../css/subscriptionPage.css',
+  styleUrl: '../../subscriptions/subscriptions.css',
 })
 export class SubscriptionComponent {
   @Input({ required: true }) title!: string;

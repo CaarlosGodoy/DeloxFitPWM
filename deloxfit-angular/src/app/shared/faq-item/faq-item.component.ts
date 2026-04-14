@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
         <div class="answer">{{answer}}</div>
     </div>
   `,
-  styleUrl: '../../../css/faqsPage.css',
+  styleUrl: '../../faqs/faqs.css',
 })
 export class FaqItemComponent {
   @Input({ required: true }) question!: string;

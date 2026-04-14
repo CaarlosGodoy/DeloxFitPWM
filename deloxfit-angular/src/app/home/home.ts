@@ -6,6 +6,6 @@ import { BannerComponent } from '../shared/banner/banner.component';
   standalone: true,
   imports: [BannerComponent],
   templateUrl: './home.html',
-  styleUrl: '../../css/index.css',
+  styleUrl: './home.css',
 })
 export class HomeComponent {}

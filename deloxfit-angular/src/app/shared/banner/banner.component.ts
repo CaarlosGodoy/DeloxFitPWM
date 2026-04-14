@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
         <a [routerLink]="link" class="banner-btn">{{title}}</a>
     </div>
   `,
-  styleUrl: '../../../css/banner.css',
+  styleUrl: './banner.css',
 })
 export class BannerComponent {
   @Input({ required: true }) image!: string;

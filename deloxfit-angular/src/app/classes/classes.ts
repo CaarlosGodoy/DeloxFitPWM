@@ -6,7 +6,7 @@ import { DataService } from '../services/data.service';
   selector: 'app-classes',
   standalone: true,
   templateUrl: './classes.html',
-  styleUrls: ['../../css/classesPage.css', '../../css/class.css'],
+  styleUrls: ['./classes.css', './class.css'],
 })
 export class ClassesComponent implements OnInit {
   authService = inject(AuthService);
