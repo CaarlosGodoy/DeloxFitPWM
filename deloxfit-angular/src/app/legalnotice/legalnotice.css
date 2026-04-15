@@ -12,7 +12,7 @@ body {
 
 .legal-container {
   width: 80%;
-  max-width: 700px; /* Estrecho el contenedor para que se separe más de los bordes */
+  max-width: 700px;
   margin: 60px auto;
   padding: 20px;
   color: #ffffff;
