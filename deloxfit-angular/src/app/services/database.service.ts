@@ -13,10 +13,10 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  authState // <--- AÑADE ESTO
 } from '@angular/fire/auth';
 
-// Interfaz para tus datos locales (FAQs, Horarios, etc.)
 export interface SiteData {
   faqs: { question: string; answer: string }[];
   subscriptions: { title: string; price: string }[];
@@ -33,8 +33,15 @@ export class DataService {
 
   constructor() { }
 
-  async registrarUsuario(email: string, pass: string, nombre: string, dni: string) {
+  /**
+   * ESTA ES LA FUNCIÓN QUE TE FALTA
+   * Permite saber en tiempo real si hay un usuario logueado
+   */
+  getAuthState(): Observable<any> {
+    return authState(this.auth);
+  }
 
+  async registrarUsuario(email: string, pass: string, nombre: string, dni: string) {
     const credenciales = await createUserWithEmailAndPassword(this.auth, email, pass);
     const uid = credenciales.user.uid;
 
@@ -48,9 +55,6 @@ export class DataService {
     });
   }
 
-  /**
-   * Inicia sesión con email y contraseña
-   */
   async loginUsuario(email: string, pass: string) {
     return signInWithEmailAndPassword(this.auth, email, pass);
   }
