@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/database.service';
 
 @Component({
   selector: 'app-classes',

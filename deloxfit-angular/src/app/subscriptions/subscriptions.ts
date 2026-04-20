@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { SubscriptionComponent as SubCard } from '../shared/subscription/subscription.component';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/database.service';
 
 @Component({
   selector: 'app-subscriptions',
@@ -14,7 +14,7 @@ export class SubscriptionsComponent implements OnInit {
   subscriptionsList = signal<{ title: string; price: string }[]>([]);
 
   ngOnInit() {
-    this.dataService.getSiteData().subscribe(data => {
+    this.dataService.getSiteData().subscribe((data: any) => {
       this.subscriptionsList.set(data.subscriptions);
     });
   }

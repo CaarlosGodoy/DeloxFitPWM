@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FaqItemComponent } from '../shared/faq-item/faq-item.component';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/database.service';
 
 @Component({
   selector: 'app-faqs',

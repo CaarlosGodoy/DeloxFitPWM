@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/database.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +12,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
-  private authService = inject(AuthService);
+  private dataService = inject(DataService);
   private router = inject(Router);
 
+  // Formulario de Registro
   registerForm = this.fb.group({
     correo: ['', [Validators.required, Validators.email]],
     dni: ['', [Validators.required, Validators.pattern('[0-9]{8}[A-Za-z]{1}')]],
@@ -22,41 +23,56 @@ export class LoginComponent {
     pass: ['', [Validators.required, Validators.minLength(6)]]
   });
 
+  // Formulario de Inicio de Sesión
   loginForm = this.fb.group({
-    usuario: ['', Validators.required],
+    usuario: ['', Validators.required], // Aquí el usuario debe escribir su EMAIL
     pass: ['', Validators.required]
   });
 
-  onRegister() {
+  /**
+   * Registro con Firebase Authentication y Firestore
+   */
+  async onRegister() {
     if (this.registerForm.valid) {
-      const formValue = this.registerForm.value;
-      const success = this.authService.register({
-        correo: formValue.correo!,
-        dni: formValue.dni!,
-        usuario: formValue.usuario!,
-        pass: formValue.pass!,
-        reservas: [],
-        suscripcion: 'Ninguna activa'
-      });
-      if (success) {
-        alert("¡Registro completado con éxito!");
+      // Extraemos los valores con seguridad
+      const email = this.registerForm.value.correo!;
+      const password = this.registerForm.value.pass!;
+      const nombre = this.registerForm.value.usuario!;
+      const dni = this.registerForm.value.dni!;
+
+      try {
+        await this.dataService.registrarUsuario(email, password, nombre, dni);
+
+        alert("¡Cuenta de DeloxFit creada con éxito!");
         this.registerForm.reset();
-      } else {
-        alert("El nombre de usuario ya está registrado.");
+        this.router.navigate(['/mi-cuenta']);
+
+      } catch (error: any) {
+        console.error("Error en el registro:", error);
+        // Personalizamos el error para el usuario
+        if (error.code === 'auth/email-already-in-use') {
+          alert("Este correo ya está registrado.");
+        } else {
+          alert("Error: " + error.message);
+        }
       }
     }
   }
 
-  onLogin() {
+  /**
+   * Inicio de sesión con Firebase
+   */
+  async onLogin() {
     if (this.loginForm.valid) {
-      const success = this.authService.login(
-        this.loginForm.value.usuario!,
-        this.loginForm.value.pass!
-      );
-      if (success) {
+      const email = this.loginForm.value.usuario!;
+      const password = this.loginForm.value.pass!;
+
+      try {
+        await this.dataService.loginUsuario(email, password);
         this.router.navigate(['/mi-cuenta']);
-      } else {
-        alert("Usuario o contraseña incorrectos.");
+      } catch (error: any) {
+        console.error("Error en el login:", error);
+        alert("Correo o contraseña incorrectos.");
       }
     }
   }
