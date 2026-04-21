@@ -1,7 +1,7 @@
 <section class="account-section">
   <h2 class="section-title">MI CUENTA</h2>
 
-  @if (currentUser(); as user) {
+  @if (authService.currentUser(); as user) {
     <div class="form-container">
       <form class="account-form">
         <div class="account-column">
@@ -15,8 +15,8 @@
           <input type="text" class="account-input" readonly [value]="user.dni">
 
           <label class="account-label">SUB. ACTIVA</label>
-          <input type="text" class="account-input" readonly [value]="user.rol === 'usuario' ? 'Plan Estándar' : 'Ninguna activa'">
-          <button type="button" class="btn-cancel" (click)="toggleCancelModal()">CANCELAR SUB</button>
+          <input type="text" class="account-input" readonly [value]="user.suscripcion || 'Ninguna activa'">
+          <button type="button" class="btn-cancel" (click)="cancelSubscription()">CANCELAR SUB</button>
         </div>
 
         <div class="account-divider"></div>
@@ -26,12 +26,13 @@
             <label class="account-label">MIS RESERVAS</label>
 
             @if (user.reservas && user.reservas.length > 0) {
-              <select id="reserva-selector" class="account-input" [ngModel]="selectedReservaIndex()" (ngModelChange)="selectedReservaIndex.set($event)" name="reserva">
+              <select id="reserva-selector" class="account-input" [ngModel]="selectedReservaName()" (ngModelChange)="selectedReservaName.set($event); openCancelReservation($event)" name="reserva">
+                <option value="" disabled selected>Selecciona una reserva</option>
                 @for (reserva of user.reservas; track $index) {
-                  <option [value]="$index">{{ reserva }}</option>
+                  <option [value]="reserva">{{ reserva }}</option>
                 }
               </select>
-              <button type="button" class="btn-cancel" (click)="cancelReservation()">CANCELAR SELECCIONADA</button>
+              <button type="button" class="btn-cancel" [disabled]="!selectedReservaName()" (click)="cancelReservation()">CANCELAR SELECCIONADA</button>
             } @else {
               <input type="text" class="account-input" readonly value="Ninguna activa">
             }

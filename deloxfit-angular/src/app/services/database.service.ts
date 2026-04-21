@@ -7,7 +7,8 @@ import {
   addDoc,
   setDoc,
   doc,
-  collectionData
+  collectionData,
+  onSnapshot
 } from '@angular/fire/firestore';
 import {
   Auth,
@@ -64,6 +65,31 @@ export class DataService {
   }
 
   getSiteData(): Observable<SiteData> {
-    return this.http.get<SiteData>('assets/data.json');
+    return new Observable<SiteData>(observer => {
+      const siteDataRef = doc(this.firestore, 'siteConfig', 'data');
+      const unsubscribe = onSnapshot(siteDataRef, (docSnap) => {
+        if (docSnap.exists()) {
+          observer.next(docSnap.data() as SiteData);
+        } else {
+          observer.next(undefined as any);
+        }
+      }, (error) => {
+        observer.error(error);
+      });
+      return () => unsubscribe();
+    });
+  }
+
+  // Ejecuta esto una sola vez para subir tu JSON a Firebase
+  async seedData() {
+    this.http.get<SiteData>('assets/data.json').subscribe(async (data) => {
+      try {
+        const siteDataRef = doc(this.firestore, 'siteConfig', 'data');
+        await setDoc(siteDataRef, data);
+        console.log('✅ Datos subidos a Firestore correctamente!');
+      } catch (error) {
+        console.error('❌ Error subiendo datos:', error);
+      }
+    });
   }
 }

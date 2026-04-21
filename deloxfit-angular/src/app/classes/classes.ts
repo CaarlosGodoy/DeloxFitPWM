@@ -21,7 +21,11 @@ export class ClassesComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getSiteData().subscribe({
-      next: (data) => this.schedule.set(data.schedule),
+      next: (data) => {
+        if (data && data.schedule) {
+          this.schedule.set(data.schedule);
+        }
+      },
       error: (err) => console.error('Error loading schedule:', err)
     });
   }
@@ -46,9 +50,9 @@ export class ClassesComponent implements OnInit {
     this.showPopup.set(false);
   }
 
-  bookClass() {
+  async bookClass() {
     const reservaNombre = `${this.selectedClass()} - ${this.selectedDay()} ${this.selectedTime()}h`;
-    const result = this.authService.bookClass(reservaNombre);
+    const result = await this.authService.bookClass(reservaNombre);
     alert(result.message);
     if (result.success) {
       this.closePopup();
