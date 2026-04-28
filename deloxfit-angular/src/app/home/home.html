@@ -1,35 +1,104 @@
-<section id="about-us-section" class="about-us-section">
-  <h2>Entrena a tu aire</h2>
-  <p>En <strong>DeloxFit</strong> no te vamos a vender la moto. Esto es un gimnasio para gente normal que solo quiere entrenar tranquila y sin tonterías.</p>
-  <p>Da igual si es tu primer día. Aquí nadie te va a mirar raro. Abrimos <strong>las 24 horas</strong> para que vengas cuando te dé la gana.</p>
-  <strong>Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas</strong>
-  <img src="assets/about-us.png" alt="DeloxFit">
-</section>
+<div class="container py-5">
 
-<section id="facilities-section" class="facilities-section">
-  <h2>INSTALACIONES</h2>
-  <div class="carousel-container">
-    <div class="carousel-slide">
-      <img src="assets/carousel/c5.png">
-      <img src="assets/carousel/c4.png">
-      <img src="assets/carousel/c3.png">
-      <img src="assets/carousel/c5.png">
+  <section id="about-us-section" class="mb-5">
+    <div class="row align-items-center justify-content-center g-5">
+
+      <div class="col-12 col-lg-6">
+        <img
+          src="assets/about-us.png"
+          class="img-fluid rounded border border-info d-block mx-auto"
+          style="max-width: 600px;"
+          alt="DeloxFit">
+      </div>
+
+      <div class="col-12 col-lg-6 text-center text-lg-start">
+
+        <h2 class="text-info text-uppercase mb-4 display-6">
+          Entrena a tu aire
+        </h2>
+
+        <p class="fs-5">
+          En <strong>DeloxFit</strong> no te vamos a vender la moto. Esto es un gimnasio para gente normal que solo quiere entrenar tranquila y sin tonterías.
+        </p>
+
+        <p class="fs-5">
+          Da igual si es tu primer día. Aquí nadie te va a mirar raro. Abrimos <strong>las 24 horas</strong>.
+        </p>
+
+        <p class="fw-bold fs-5">
+          Calle del Esfuerzo, 42, Planta 1, 35021 Las Palmas
+        </p>
+
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="classes-banner-section" class="classes-banner-section">
-  <app-banner 
-    title="CLASES" 
-    image="assets/classes-banner.jpg" 
-    link="/clases">
-  </app-banner>
-</section>
+  <section id="facilities-section" class="mb-5">
+    <h2 class="text-center text-info text-uppercase mb-4 display-6">Instalaciones</h2>
 
-<section id="subscriptions-banner-section" class="subscriptions-banner-section">
-  <app-banner 
-    title="SUSCRIPCIONES" 
-    image="assets/subscription-banner.png" 
-    link="/suscripciones">
-  </app-banner>
-</section>
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+
+        <div id="carouselGym" class="carousel slide overflow-hidden rounded border border-info"
+             style="max-height: 450px;">
+
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img src="assets/carousel/c5.png" class="d-block w-100" style="height: 450px; object-fit: cover;">
+            </div>
+
+            <div class="carousel-item">
+              <img src="assets/carousel/c4.png" class="d-block w-100" style="height: 450px; object-fit: cover;">
+            </div>
+
+            <div class="carousel-item">
+              <img src="assets/carousel/c3.png" class="d-block w-100" style="height: 450px; object-fit: cover;">
+            </div>
+
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselGym" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-info rounded-circle p-3"></span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselGym" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-info rounded-circle p-3"></span>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-9">
+        <div class="rounded overflow-hidden border border-info">
+          <app-banner
+            title="CLASES"
+            image="assets/classes-banner.jpg"
+            link="/clases">
+          </app-banner>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-9">
+        <div class="rounded overflow-hidden border border-info">
+          <app-banner
+            title="SUSCRIPCIONES"
+            image="assets/subscription-banner.png"
+            link="/suscripciones">
+          </app-banner>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
