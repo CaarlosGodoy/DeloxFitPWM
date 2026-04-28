@@ -23,8 +23,8 @@ export class SubscriptionComponent {
 
   authService = inject(AuthService);
 
-  onAcquire() {
-    const res = this.authService.acquireSubscription(this.title);
+  async onAcquire() {
+    const res = await this.authService.acquireSubscription(this.title);
     alert(res.message);
   }
 }

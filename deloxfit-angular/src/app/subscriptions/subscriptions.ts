@@ -14,8 +14,13 @@ export class SubscriptionsComponent implements OnInit {
   subscriptionsList = signal<{ title: string; price: string }[]>([]);
 
   ngOnInit() {
-    this.dataService.getSiteData().subscribe((data: any) => {
-      this.subscriptionsList.set(data.subscriptions);
+    this.dataService.getSiteData().subscribe({
+      next: (data) => {
+        if (data && data.subscriptions) {
+          this.subscriptionsList.set(data.subscriptions);
+        }
+      },
+      error: (err) => console.error('Error loading subscriptions:', err)
     });
   }
 }

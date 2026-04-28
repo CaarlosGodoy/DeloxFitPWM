@@ -16,9 +16,11 @@ export class FaqsComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getSiteData().subscribe(data => {
-      const half = Math.ceil(data.faqs.length / 2);
-      this.faqColumn1.set(data.faqs.slice(0, half));
-      this.faqColumn2.set(data.faqs.slice(half));
+      if (data && data.faqs) {
+        const half = Math.ceil(data.faqs.length / 2);
+        this.faqColumn1.set(data.faqs.slice(0, half));
+        this.faqColumn2.set(data.faqs.slice(half));
+      }
     });
   }
 }
