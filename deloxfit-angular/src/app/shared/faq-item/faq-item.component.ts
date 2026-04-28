@@ -4,12 +4,13 @@ import { Component, Input } from '@angular/core';
   selector: 'app-faq-item',
   standalone: true,
   template: `
-    <div class="faq-item">
-        <div class="question">{{question}}</div>
-        <div class="answer">{{answer}}</div>
+    <div class="card bg-black border border-info h-100 text-white">
+      <div class="card-body">
+        <h5 class="card-title text-info mb-3"><i class="fa-solid fa-circle-question me-2"></i>{{question}}</h5>
+        <p class="card-text mb-0">{{answer}}</p>
+      </div>
     </div>
-  `,
-  styleUrl: '../../faqs/faqs.css',
+  `
 })
 export class FaqItemComponent {
   @Input({ required: true }) question!: string;

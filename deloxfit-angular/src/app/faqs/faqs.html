@@ -1,12 +1,13 @@
-<section id="faq-section" class="faq-section">
-  <div class="faq-container">
-    <div class="faq-column">
+<section class="container py-5">
+  <h2 class="text-info text-center text-uppercase mb-5 display-6">PREGUNTAS FRECUENTES</h2>
+  <div class="row g-4">
+    <div class="col-12 col-md-6 d-flex flex-column gap-3">
       @for (faq of faqColumn1(); track faq.question) {
         <app-faq-item [question]="faq.question" [answer]="faq.answer"></app-faq-item>
       }
     </div>
 
-    <div class="faq-column">
+    <div class="col-12 col-md-6 d-flex flex-column gap-3">
       @for (faq of faqColumn2(); track faq.question) {
         <app-faq-item [question]="faq.question" [answer]="faq.answer"></app-faq-item>
       }

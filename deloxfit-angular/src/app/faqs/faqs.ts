@@ -6,8 +6,7 @@ import { DataService } from '../services/database.service';
   selector: 'app-faqs',
   standalone: true,
   imports: [FaqItemComponent],
-  templateUrl: './faqs.html',
-  styleUrl: './faqs.css',
+  templateUrl: './faqs.html'
 })
 export class FaqsComponent implements OnInit {
   dataService = inject(DataService);

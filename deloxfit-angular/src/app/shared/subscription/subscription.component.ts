@@ -5,17 +5,18 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-subscription',
   standalone: true,
   template: `
-    <div class="subscription-card">
-        <h3 class="subscription-title">{{title}}</h3>
+    <div class="card bg-black border border-info h-100 mx-auto text-center text-white py-4 shadow-sm hover-shadow" style="max-width: 350px;">
+      <div class="card-body d-flex flex-column">
+        <h3 class="card-title text-info text-uppercase mb-4">{{title}}</h3>
 
-        <div class="subscription-price">
-            <span class="price-amount">{{price}}</span>
+        <div class="mb-4">
+            <span class="fs-1 fw-bold">{{price}}</span>
         </div>
 
-        <button class="subscription-btn" (click)="onAcquire()">ADQUIRIR</button>
+        <button class="btn btn-info fw-bold w-100 mt-auto" (click)="onAcquire()">ADQUIRIR</button>
+      </div>
     </div>
-  `,
-  styleUrl: '../../subscriptions/subscriptions.css',
+  `
 })
 export class SubscriptionComponent {
   @Input({ required: true }) title!: string;

@@ -1,8 +1,10 @@
-<section class="subscriptions-section">
-  <h2 class="subscriptions-title">NUESTROS PLANES</h2>
-  <div class="subscriptions-grid">
+<section class="container py-5">
+  <h2 class="text-info text-center text-uppercase mb-4 mb-md-5 display-6">NUESTROS PLANES</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4 g-lg-5 justify-content-center">
       @for (sub of subscriptionsList(); track sub.title) {
-        <app-subscription [title]="sub.title" [price]="sub.price"></app-subscription>
+        <div class="col">
+          <app-subscription class="d-block h-100" [title]="sub.title" [price]="sub.price"></app-subscription>
+        </div>
       }
   </div>
 </section>

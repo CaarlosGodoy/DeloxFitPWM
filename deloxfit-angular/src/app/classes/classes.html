@@ -1,8 +1,8 @@
-<section id="classes-calendar-section" class="classes-calendar-section">
-  <h2 class="section-title">HORARIOS DE CLASES</h2>
-  <div class="table-container">
-    <table class="classesCalendar">
-      <thead>
+<section class="container py-5">
+  <h2 class="text-info text-center text-uppercase mb-4 display-6">HORARIOS DE CLASES</h2>
+  <div class="table-responsive rounded border border-info">
+    <table class="table table-dark table-bordered border-info text-center align-middle mb-0">
+      <thead class="table-info border-info text-uppercase">
         <tr>
           <th>Hora</th>
           <th>Lunes</th>
@@ -15,26 +15,26 @@
       <tbody>
         @for (row of schedule(); track row.time) {
           <tr>
-            <td class="time-col">{{ row.time }}</td>
+            <td class="text-info fw-bold bg-dark">{{ row.time }}</td>
             
             @if (row.lunes) {
-              <td class="class-cell" [class.spinning]="row.lunes === 'Spinning'" [class.boxeo]="row.lunes === 'Boxeo'" [class.zumba]="row.lunes === 'Zumba'" (click)="openClassInfo(row.lunes, 'Lunes', row.time)">{{ row.lunes }}</td>
+              <td class="fw-bold class-cell" role="button" [class.text-danger]="row.lunes === 'Spinning'" [class.text-warning]="row.lunes === 'Boxeo'" [class.text-success]="row.lunes === 'Zumba'" (click)="openClassInfo(row.lunes, 'Lunes', row.time)">{{ row.lunes }}</td>
             } @else { <td></td> }
             
             @if (row.martes) {
-              <td class="class-cell" [class.spinning]="row.martes === 'Spinning'" [class.boxeo]="row.martes === 'Boxeo'" [class.zumba]="row.martes === 'Zumba'" (click)="openClassInfo(row.martes, 'Martes', row.time)">{{ row.martes }}</td>
+              <td class="fw-bold class-cell" role="button" [class.text-danger]="row.martes === 'Spinning'" [class.text-warning]="row.martes === 'Boxeo'" [class.text-success]="row.martes === 'Zumba'" (click)="openClassInfo(row.martes, 'Martes', row.time)">{{ row.martes }}</td>
             } @else { <td></td> }
             
             @if (row.miercoles) {
-              <td class="class-cell" [class.spinning]="row.miercoles === 'Spinning'" [class.boxeo]="row.miercoles === 'Boxeo'" [class.zumba]="row.miercoles === 'Zumba'" (click)="openClassInfo(row.miercoles, 'Miércoles', row.time)">{{ row.miercoles }}</td>
+              <td class="fw-bold class-cell" role="button" [class.text-danger]="row.miercoles === 'Spinning'" [class.text-warning]="row.miercoles === 'Boxeo'" [class.text-success]="row.miercoles === 'Zumba'" (click)="openClassInfo(row.miercoles, 'Miércoles', row.time)">{{ row.miercoles }}</td>
             } @else { <td></td> }
             
             @if (row.jueves) {
-              <td class="class-cell" [class.spinning]="row.jueves === 'Spinning'" [class.boxeo]="row.jueves === 'Boxeo'" [class.zumba]="row.jueves === 'Zumba'" (click)="openClassInfo(row.jueves, 'Jueves', row.time)">{{ row.jueves }}</td>
+              <td class="fw-bold class-cell" role="button" [class.text-danger]="row.jueves === 'Spinning'" [class.text-warning]="row.jueves === 'Boxeo'" [class.text-success]="row.jueves === 'Zumba'" (click)="openClassInfo(row.jueves, 'Jueves', row.time)">{{ row.jueves }}</td>
             } @else { <td></td> }
             
             @if (row.viernes) {
-              <td class="class-cell" [class.spinning]="row.viernes === 'Spinning'" [class.boxeo]="row.viernes === 'Boxeo'" [class.zumba]="row.viernes === 'Zumba'" (click)="openClassInfo(row.viernes, 'Viernes', row.time)">{{ row.viernes }}</td>
+              <td class="fw-bold class-cell" role="button" [class.text-danger]="row.viernes === 'Spinning'" [class.text-warning]="row.viernes === 'Boxeo'" [class.text-success]="row.viernes === 'Zumba'" (click)="openClassInfo(row.viernes, 'Viernes', row.time)">{{ row.viernes }}</td>
             } @else { <td></td> }
           </tr>
         }
@@ -44,16 +44,20 @@
 </section>
 
 @if (showPopup()) {
-<div id="popup-class" class="class-section active">
-  <div class="class-card">
-    <span class="close-btn" (click)="closePopup()">&times;</span>
-    <h2 class="class-title">{{ selectedClass() }}</h2>
-    <p class="class-information">{{ popupInfo }}</p>
-    <img [src]="popupImage" alt="Clase" class="class-img-main">
-    <div class="class-btns-row">
-      <ul>
-        <li><button class="btn-class" (click)="bookClass()">RESERVAR</button></li>
-      </ul>
+<div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.8);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-black border border-info text-white">
+      <div class="modal-header border-info">
+        <h5 class="modal-title text-info text-uppercase">{{ selectedClass() }}</h5>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="closePopup()"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-5 mb-4">{{ popupInfo }}</p>
+        <img [src]="popupImage" alt="Clase" class="img-fluid rounded border border-info mb-4" style="max-height: 250px; object-fit: cover;">
+      </div>
+      <div class="modal-footer border-info justify-content-center">
+        <button type="button" class="btn btn-info fw-bold w-100" (click)="bookClass()">RESERVAR</button>
+      </div>
     </div>
   </div>
 </div>

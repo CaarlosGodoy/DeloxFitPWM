@@ -6,8 +6,7 @@ import { DataService } from '../services/database.service';
   selector: 'app-subscriptions',
   standalone: true,
   imports: [SubCard],
-  templateUrl: './subscriptions.html',
-  styleUrl: './subscriptions.css',
+  templateUrl: './subscriptions.html'
 })
 export class SubscriptionsComponent implements OnInit {
   dataService = inject(DataService);

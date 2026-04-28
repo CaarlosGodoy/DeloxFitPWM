@@ -5,8 +5,7 @@ import { DataService } from '../services/database.service';
 @Component({
   selector: 'app-classes',
   standalone: true,
-  templateUrl: './classes.html',
-  styleUrls: ['./classes.css', './class.css'],
+  templateUrl: './classes.html'
 })
 export class ClassesComponent implements OnInit {
   authService = inject(AuthService);
