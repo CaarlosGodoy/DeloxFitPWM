@@ -52,7 +52,7 @@ Es el panel de control privado del usuario (solo accesible si se ha iniciado ses
 TOUR DEL PROYECTO:
 -
 
-Link al Tour: 
+Link al Tour: https://youtu.be/--L3DWzkgOM
 
 EVOLUCIÓN DEL TRELLO:
 -
