@@ -1,0 +1,7 @@
+{
+  "name": "miAppSprint4",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
