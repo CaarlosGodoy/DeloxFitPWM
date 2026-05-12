@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="margin-top: 10px;">
+    <p>Crea tu cuenta para empezar a usar la app.</p>
+
+    <ion-item>
+      <ion-input label="Nombre" labelPlacement="floating" type="text" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input label="Apellidos" labelPlacement="floating" type="text" [(ngModel)]="apellidos"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input label="Email" labelPlacement="floating" type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input label="Contraseña" labelPlacement="floating" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none" class="ion-margin-top">
+      <ion-label position="stacked">Foto de Perfil</ion-label>
+      <div style="margin-top: 10px;">
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      </div>
+    </ion-item>
+    
+    <ion-button expand="block" class="ion-margin-top" (click)="register()">Registrarme</ion-button>
+  </div>
+</ion-content>
