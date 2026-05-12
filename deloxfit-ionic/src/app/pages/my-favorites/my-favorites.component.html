@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/favorites"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="favoritesOnly$ | async as items; else loading">
+    <ion-list *ngIf="items.length > 0">
+      <ion-item *ngFor="let item of items" (click)="goToDetail(item.id)" button detail="true">
+        <ion-avatar slot="start">
+          <img [src]="item.imagen" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.nombre }}</h2>
+          <p>{{ item.precio }}</p>
+        </ion-label>
+        <ion-icon slot="end" name="heart" color="danger"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <div *ngIf="items.length === 0" class="ion-padding ion-text-center" style="margin-top: 100px;">
+      <ion-icon name="heart-outline" style="font-size: 64px; color: #ccc;"></ion-icon>
+      <h3>Aún no tienes favoritos</h3>
+      <p>Añade suscripciones a tus favoritos para verlas aquí.</p>
+      <ion-button fill="clear" routerLink="/favorites">Explorar suscripciones</ion-button>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="ion-padding ion-text-center" style="margin-top: 50px;">
+      <ion-spinner></ion-spinner>
+      <p>Cargando tus favoritos...</p>
+    </div>
+  </ng-template>
+</ion-content>

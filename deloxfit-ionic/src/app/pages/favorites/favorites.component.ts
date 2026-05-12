@@ -7,7 +7,7 @@ import { SqliteService } from '../../services/sqlite.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
-import { heart, heartOutline } from 'ionicons/icons';
+import { heart, heartOutline, star } from 'ionicons/icons';
 
 @Component({
   selector: 'app-favorites',
@@ -25,7 +25,7 @@ export class FavoritesComponent implements OnInit {
   favorites: string[] = [];
 
   constructor() {
-    addIcons({ heart, heartOutline });
+    addIcons({ heart, heartOutline, star });
   }
 
   async ngOnInit() {
