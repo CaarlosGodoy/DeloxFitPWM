@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Auth, signOut } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
@@ -7,7 +8,7 @@ import { SqliteService } from '../../services/sqlite.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
-import { heart, heartOutline, star } from 'ionicons/icons';
+import { heart, heartOutline, star, logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-favorites',
@@ -20,12 +21,13 @@ export class FavoritesComponent implements OnInit {
   private dataService = inject(DataService);
   private sqlite = inject(SqliteService);
   private router = inject(Router);
+  private auth = inject(Auth);
 
   items$: Observable<any[]> | undefined;
   favorites: string[] = [];
 
   constructor() {
-    addIcons({ heart, heartOutline, star });
+    addIcons({ heart, heartOutline, star, logOutOutline });
   }
 
   async ngOnInit() {
@@ -62,5 +64,10 @@ export class FavoritesComponent implements OnInit {
 
   goToDetail(id: string) {
     this.router.navigate(['/detail', id]);
+  }
+
+  async logout() {
+    await signOut(this.auth);
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
 }

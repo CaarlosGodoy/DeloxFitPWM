@@ -32,6 +32,13 @@
     <div *ngIf="items.length === 0" class="ion-padding ion-text-center">
       <p>No hay suscripciones disponibles.</p>
     </div>
+
+    <div class="ion-padding">
+      <ion-button expand="block" color="medium" fill="outline" (click)="logout()">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </div>
   </ng-container>
 
   <ng-template #loading>
