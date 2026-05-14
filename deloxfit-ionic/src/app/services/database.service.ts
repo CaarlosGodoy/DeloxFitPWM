@@ -15,7 +15,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  authState // <--- AÑADE ESTO
+  authState
 } from '@angular/fire/auth';
 
 export interface SiteData {
@@ -34,10 +34,6 @@ export class DataService {
 
   constructor() { }
 
-  /**
-   * ESTA ES LA FUNCIÓN QUE TE FALTA
-   * Permite saber en tiempo real si hay un usuario logueado
-   */
   getAuthState(): Observable<any> {
     return authState(this.auth);
   }
@@ -80,7 +76,6 @@ export class DataService {
     });
   }
 
-  // Ejecuta esto una sola vez para subir tu JSON a Firebase
   async seedData() {
     this.http.get<SiteData>('assets/data.json').subscribe(async (data) => {
       try {

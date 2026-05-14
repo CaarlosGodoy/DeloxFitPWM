@@ -6,11 +6,12 @@ import { IonicModule, LoadingController, ToastController } from '@ionic/angular'
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
+import { addIcons } from 'ionicons';
+import { cameraOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
@@ -20,6 +21,7 @@ export class RegisterComponent {
   email = '';
   password = '';
   selectedFile: File | null = null;
+  previewUrl: string | null = null;
   
   private auth = inject(Auth);
   private firestore = inject(Firestore);
@@ -28,10 +30,19 @@ export class RegisterComponent {
   private loadingCtrl = inject(LoadingController);
   private toastCtrl = inject(ToastController);
 
+  constructor() {
+    addIcons({ cameraOutline });
+  }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -48,14 +59,12 @@ export class RegisterComponent {
     await loading.present();
 
     try {
-      // 1. Crear usuario en Firebase Auth
       loading.message = 'Autenticando...';
       const userCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
       const uid = userCredential.user.uid;
 
       let imageUrl = 'https://ionicframework.com/docs/img/demos/avatar.svg';
 
-      // 2. Intentar subir imagen (opcional si falla)
       if (this.selectedFile) {
         loading.message = 'Subiendo imagen de perfil...';
         try {
@@ -65,11 +74,9 @@ export class RegisterComponent {
           imageUrl = await getDownloadURL(storageRef);
         } catch (imgErr) {
           console.warn('Fallo al subir imagen, se usará una por defecto', imgErr);
-          // No lanzamos error para que el registro continúe
         }
       }
 
-      // 3. Guardar datos adicionales en Firestore
       loading.message = 'Guardando perfil...';
       const userDocRef = doc(this.firestore, `usuarios/${uid}`);
       await setDoc(userDocRef, {

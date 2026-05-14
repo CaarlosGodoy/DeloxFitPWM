@@ -10,75 +10,85 @@ export class SqliteService {
   private db!: SQLiteDBConnection;
   private isReady = false;
 
-  constructor() {}
+  constructor() { }
 
   async initDatabase() {
     if (this.isReady) return;
 
     try {
-      // En entorno de desarrollo (Web), el plugin nativo puede no estar disponible.
       if (Capacitor.getPlatform() === 'web') {
         console.warn('SQLite no está soportado nativamente en la web sin jeep-sqlite. Ejecutando mocks de base de datos.');
         this.isReady = true;
         return;
-      } 
+      }
 
-      // Creamos la conexión a la base de datos local
       this.db = await this.sqlite.createConnection('deloxfit_db', false, 'no-encryption', 1, false);
       await this.db.open();
 
-      // Creamos la tabla de favoritos si no existe
       const query = `
         CREATE TABLE IF NOT EXISTS favorites (
-          id TEXT PRIMARY KEY
+          id TEXT PRIMARY KEY,
+          nombre TEXT,
+          precio TEXT,
+          descripcion TEXT,
+          imagen TEXT
         );
       `;
       await this.db.execute(query);
-      
+
       this.isReady = true;
     } catch (error) {
       console.error('Error inicializando SQLite', error);
     }
   }
 
-  // Las funciones siguientes simulan el comportamiento en web usando LocalStorage
-  // para que puedas probarlo en el navegador durante el desarrollo, 
-  // pero usarán la DB real en el móvil.
-
-  async addFavorite(id: string): Promise<void> {
+  async addFavorite(item: any): Promise<void> {
     if (Capacitor.getPlatform() === 'web') {
-      const favs = JSON.parse(localStorage.getItem('mock_favs') || '[]');
-      if (!favs.includes(id)) { favs.push(id); localStorage.setItem('mock_favs', JSON.stringify(favs)); }
+      const favs = JSON.parse(localStorage.getItem('mock_favs_data') || '[]');
+      if (!favs.find((f: any) => f.id === item.id)) {
+        favs.push(item);
+        localStorage.setItem('mock_favs_data', JSON.stringify(favs));
+      }
       return;
     }
-    const query = `INSERT INTO favorites (id) VALUES ('${id}')`;
-    await this.db.run(query);
+    const query = `INSERT INTO favorites (id, nombre, precio, descripcion, imagen) VALUES (?, ?, ?, ?, ?)`;
+    await this.db.run(query, [item.id, item.nombre, item.precio, item.descripcion, item.imagen]);
   }
 
   async removeFavorite(id: string): Promise<void> {
     if (Capacitor.getPlatform() === 'web') {
-      let favs = JSON.parse(localStorage.getItem('mock_favs') || '[]');
-      favs = favs.filter((f: string) => f !== id);
-      localStorage.setItem('mock_favs', JSON.stringify(favs));
+      let favs = JSON.parse(localStorage.getItem('mock_favs_data') || '[]');
+      favs = favs.filter((f: any) => f.id !== id);
+      localStorage.setItem('mock_favs_data', JSON.stringify(favs));
       return;
     }
-    const query = `DELETE FROM favorites WHERE id = '${id}'`;
-    await this.db.run(query);
+    const query = `DELETE FROM favorites WHERE id = ?`;
+    await this.db.run(query, [id]);
   }
 
   async isFavorite(id: string): Promise<boolean> {
     if (Capacitor.getPlatform() === 'web') {
-      const favs = JSON.parse(localStorage.getItem('mock_favs') || '[]');
-      return favs.includes(id);
+      const favs = JSON.parse(localStorage.getItem('mock_favs_data') || '[]');
+      return favs.some((f: any) => f.id === id);
     }
-    const query = `SELECT * FROM favorites WHERE id = '${id}'`;
-    const res = await this.db.query(query);
+    const query = `SELECT * FROM favorites WHERE id = ?`;
+    const res = await this.db.query(query, [id]);
     return res.values !== undefined && res.values.length > 0;
+  }
+
+  async getFavorites(): Promise<any[]> {
+    if (Capacitor.getPlatform() === 'web') {
+      return JSON.parse(localStorage.getItem('mock_favs_data') || '[]');
+    }
+    const query = `SELECT * FROM favorites`;
+    const res = await this.db.query(query);
+    return res.values || [];
   }
 
   async getFavoritesIds(): Promise<string[]> {
     if (Capacitor.getPlatform() === 'web') {
-      return JSON.parse(localStorage.getItem('mock_favs') || '[]');
+      const favs = JSON.parse(localStorage.getItem('mock_favs_data') || '[]');
+      return favs.map((f: any) => f.id);
     }
     const query = `SELECT id FROM favorites`;
     const res = await this.db.query(query);

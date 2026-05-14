@@ -1,27 +1,28 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/favorites"></ion-back-button>
+      <ion-back-button defaultHref="/favorites" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalle</ion-title>
+    <ion-title class="ion-text-center">Detalle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div *ngIf="item">
-    <img [src]="item.imagen" style="width: 100%; height: 250px; object-fit: cover;" alt="Imagen característica"/>
-    
+    <div style="text-align: center; margin-top: 20px;">
+      <img [src]="item.imagen"
+        style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid var(--ion-color-primary);"
+        alt="Imagen característica" />
+    </div>
+
     <div class="ion-padding">
       <h1>{{ item.nombre }}</h1>
       <p style="color: gray; font-size: 1.2rem;">
         <strong>Precio:</strong> {{ item.precio }}
       </p>
-      
-      <p style="margin-top: 20px; line-height: 1.5;">
-        {{ item.descripcion }}
-      </p>
 
-      <ion-button expand="block" class="ion-margin-top" (click)="toggleFavorite()" [color]="isFavorite ? 'danger' : 'primary'" [fill]="isFavorite ? 'solid' : 'outline'">
+      <ion-button expand="block" class="ion-margin-top" (click)="toggleFavorite()"
+        [color]="isFavorite ? 'danger' : 'primary'" [fill]="isFavorite ? 'solid' : 'outline'">
         <ion-icon slot="start" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
         {{ isFavorite ? 'Quitar de Favoritos' : 'Añadir a Favoritos' }}
       </ion-button>

@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar color="danger" mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/favorites"></ion-back-button>
+      <ion-back-button defaultHref="/favorites" text="Atrás"></ion-back-button>
     </ion-buttons>
-    <ion-title>Mis Favoritos</ion-title>
+    <ion-title class="ion-text-center">Mis Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +18,9 @@
           <h2>{{ item.nombre }}</h2>
           <p>{{ item.precio }}</p>
         </ion-label>
-        <ion-icon slot="end" name="heart" color="danger"></ion-icon>
+        <ion-button slot="end" fill="clear" (click)="removeFav($event, item.id)">
+          <ion-icon slot="icon-only" name="heart" color="danger" style="font-size: 28px;"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-list>
 

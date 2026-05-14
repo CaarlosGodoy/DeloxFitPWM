@@ -13,7 +13,6 @@ import { heart, heartOutline, star, logOutOutline } from 'ionicons/icons';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, RouterModule]
 })
@@ -34,18 +33,28 @@ export class FavoritesComponent implements OnInit {
     await this.sqlite.initDatabase();
     await this.loadFavorites();
 
-    // Como no tenías la colección 'clases', usamos 'siteConfig' (Suscripciones)
-    // que es la data que ya tenías cargada en tu web antigua para que se vea contenido.
     this.items$ = this.dataService.getSiteData().pipe(
       map((data: SiteData) => {
         if (!data || !data.subscriptions) return [];
-        return data.subscriptions.map(sub => ({
-          id: sub.title.toLowerCase().replace(/\s/g, '-'),
-          nombre: sub.title,
-          precio: sub.price,
-          descripcion: `Suscripción de ${sub.title} por ${sub.price}`,
-          imagen: 'https://ionicframework.com/docs/img/demos/card-media.png'
-        }));
+        return data.subscriptions.map(sub => {
+          const titleLower = sub.title.toLowerCase();
+          let imageName = 'gratis.png';
+
+          if (titleLower.includes('anual')) imageName = 'anual.png';
+          else if (titleLower.includes('diario')) imageName = 'diario.png';
+          else if (titleLower.includes('familiar')) imageName = 'familiar.png';
+          else if (titleLower.includes('mensual')) imageName = 'mensual.png';
+          else if (titleLower.includes('semestral')) imageName = 'semestral.png';
+          else if (titleLower.includes('gratis')) imageName = 'gratis.png';
+
+          return {
+            id: sub.title.toLowerCase().replace(/\s/g, '-'),
+            nombre: sub.title,
+            precio: sub.price,
+            descripcion: `Suscripción de ${sub.title} por ${sub.price}`,
+            imagen: `assets/images/${imageName}`
+          };
+        });
       })
     );
   }
@@ -60,6 +69,16 @@ export class FavoritesComponent implements OnInit {
 
   isFav(id: string): boolean {
     return this.favorites.includes(id);
+  }
+
+  async toggleFav(event: Event, item: any) {
+    event.stopPropagation();
+    if (this.isFav(item.id)) {
+      await this.sqlite.removeFavorite(item.id);
+    } else {
+      await this.sqlite.addFavorite(item);
+    }
+    await this.loadFavorites();
   }
 
   goToDetail(id: string) {

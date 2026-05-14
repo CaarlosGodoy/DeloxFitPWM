@@ -10,7 +10,6 @@ import { heart, heartOutline } from 'ionicons/icons';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule]
 })
@@ -36,12 +35,20 @@ export class DetailComponent implements OnInit {
         if (data && data.subscriptions) {
           const found = data.subscriptions.find(s => s.title.toLowerCase().replace(/\s/g, '-') === this.itemId);
           if (found) {
+            const titleLower = found.title.toLowerCase();
+            let imageName = 'gratis.png';
+            if (titleLower.includes('anual')) imageName = 'anual.png';
+            else if (titleLower.includes('diario')) imageName = 'diario.png';
+            else if (titleLower.includes('familiar')) imageName = 'familiar.png';
+            else if (titleLower.includes('mensual')) imageName = 'mensual.png';
+            else if (titleLower.includes('semestral')) imageName = 'semestral.png';
+
             this.item = {
               id: this.itemId,
               nombre: found.title,
               precio: found.price,
               descripcion: `Suscripción de nivel ${found.title} a un precio de ${found.price}. Ideal para tu entrenamiento en DeloxFit.`,
-              imagen: 'https://ionicframework.com/docs/img/demos/card-media.png'
+              imagen: `assets/images/${imageName}`
             };
           }
         }
@@ -52,13 +59,13 @@ export class DetailComponent implements OnInit {
   }
 
   async toggleFavorite() {
-    if (!this.itemId) return;
+    if (!this.itemId || !this.item) return;
 
     if (this.isFavorite) {
       await this.sqlite.removeFavorite(this.itemId);
       this.isFavorite = false;
     } else {
-      await this.sqlite.addFavorite(this.itemId);
+      await this.sqlite.addFavorite(this.item);
       this.isFavorite = true;
     }
   }

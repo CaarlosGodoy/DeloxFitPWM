@@ -2,10 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
-import { DataService, SiteData } from '../../services/database.service';
 import { SqliteService } from '../../services/sqlite.service';
-import { Observable, combineLatest, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline, arrowBack } from 'ionicons/icons';
 
@@ -16,7 +15,6 @@ import { heart, heartOutline, arrowBack } from 'ionicons/icons';
   imports: [IonicModule, CommonModule, RouterModule]
 })
 export class MyFavoritesComponent implements OnInit {
-  private dataService = inject(DataService);
   private sqlite = inject(SqliteService);
   private router = inject(Router);
 
@@ -36,25 +34,30 @@ export class MyFavoritesComponent implements OnInit {
   }
 
   loadFavorites() {
-    // Combinamos la data de Firebase con la de SQLite
-    this.favoritesOnly$ = combineLatest([
-      this.dataService.getSiteData(),
-      of(null).pipe(switchMap(() => this.sqlite.getFavoritesIds()))
-    ]).pipe(
-      map(([data, favIds]) => {
-        if (!data || !data.subscriptions) return [];
-        
-        return data.subscriptions
-          .map(sub => ({
-            id: sub.title.toLowerCase().replace(/\s/g, '-'),
-            nombre: sub.title,
-            precio: sub.price,
-            descripcion: `Suscripción de ${sub.title}`,
-            imagen: 'https://ionicframework.com/docs/img/demos/card-media.png'
-          }))
-          .filter(item => favIds.includes(item.id));
+    this.favoritesOnly$ = of(null).pipe(
+      switchMap(() => this.sqlite.getFavorites()),
+      map((favs: any[]) => {
+        return favs.map(item => {
+          if (!item.imagen || item.imagen.includes('card-media.png')) {
+            const titleLower = item.nombre.toLowerCase();
+            let imageName = 'gratis.png';
+            if (titleLower.includes('anual')) imageName = 'anual.png';
+            else if (titleLower.includes('diario')) imageName = 'diario.png';
+            else if (titleLower.includes('familiar')) imageName = 'familiar.png';
+            else if (titleLower.includes('mensual')) imageName = 'mensual.png';
+            else if (titleLower.includes('semestral')) imageName = 'semestral.png';
+            return { ...item, imagen: `assets/images/${imageName}` };
+          }
+          return item;
+        });
       })
     );
+  }
+
+  async removeFav(event: Event, id: string) {
+    event.stopPropagation();
+    await this.sqlite.removeFavorite(id);
+    this.loadFavorites();
   }
 
   goToDetail(id: string) {
