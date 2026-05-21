@@ -18,17 +18,38 @@ export class LoginComponent {
   private router = inject(Router);
 
   async login() {
-    if (!this.email || !this.password) {
+    const email = this.email.trim().toLowerCase();
+    const password = this.password;
+
+    if (!email || !password) {
       alert('Por favor, ingresa email y contraseña.');
       return;
     }
-    
+
     try {
-      await signInWithEmailAndPassword(this.auth, this.email, this.password);
-      this.router.navigate(['/favorites']);
-    } catch (error) {
+      await signInWithEmailAndPassword(this.auth, email, password);
+      await this.auth.authStateReady();
+      this.router.navigate(['/favorites'], { replaceUrl: true });
+    } catch (error: any) {
       console.error('Error en login', error);
-      alert('Error al iniciar sesión. Verifica tus credenciales.');
+      alert(this.getLoginErrorMessage(error));
+    }
+  }
+
+  private getLoginErrorMessage(error: { code?: string }): string {
+    switch (error?.code) {
+      case 'auth/invalid-credential':
+      case 'auth/wrong-password':
+      case 'auth/user-not-found':
+        return 'Email o contraseña incorrectos.';
+      case 'auth/invalid-email':
+        return 'El formato del correo no es válido.';
+      case 'auth/too-many-requests':
+        return 'Demasiados intentos. Espera un momento e inténtalo de nuevo.';
+      case 'auth/user-disabled':
+        return 'Esta cuenta está deshabilitada.';
+      default:
+        return 'Error al iniciar sesión. Verifica tus credenciales.';
     }
   }
 }

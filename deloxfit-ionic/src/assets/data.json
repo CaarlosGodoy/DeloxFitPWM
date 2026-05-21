@@ -1,0 +1,12 @@
+{
+  "faqs": [],
+  "subscriptions": [
+    { "title": "Gratis", "price": "0 €" },
+    { "title": "Diario", "price": "5 €" },
+    { "title": "Mensual", "price": "35 €" },
+    { "title": "Semestral", "price": "180 €" },
+    { "title": "Anual", "price": "320 €" },
+    { "title": "Familiar", "price": "55 €" }
+  ],
+  "schedule": []
+}

@@ -47,7 +47,10 @@ export class RegisterComponent {
   }
 
   async register() {
-    if (!this.email || !this.password || !this.nombre) {
+    const email = this.email.trim().toLowerCase();
+    const password = this.password;
+
+    if (!email || !password || !this.nombre) {
       this.showToast('Por favor, completa los campos obligatorios.');
       return;
     }
@@ -59,42 +62,26 @@ export class RegisterComponent {
     await loading.present();
 
     try {
-      loading.message = 'Autenticando...';
-      const userCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       const uid = userCredential.user.uid;
 
       let imageUrl = 'https://ionicframework.com/docs/img/demos/avatar.svg';
 
       if (this.selectedFile) {
-        loading.message = 'Subiendo imagen de perfil...';
         try {
-          const filePath = `profile_images/${uid}_${Date.now()}`;
-          const storageRef = ref(this.storage, filePath);
-          await uploadBytes(storageRef, this.selectedFile);
-          imageUrl = await getDownloadURL(storageRef);
+          imageUrl = await this.uploadProfileImage(uid, this.selectedFile);
         } catch (imgErr) {
           console.warn('Fallo al subir imagen, se usará una por defecto', imgErr);
         }
       }
 
-      loading.message = 'Guardando perfil...';
-      const userDocRef = doc(this.firestore, `usuarios/${uid}`);
-      await setDoc(userDocRef, {
-        uid: uid,
-        nombre: this.nombre,
-        apellidos: this.apellidos,
-        email: this.email,
-        fotoPerfil: imageUrl,
-        fechaRegistro: new Date()
-      });
-
-      await loading.dismiss();
+      await this.saveUserProfile(uid, email, imageUrl);
+      await this.auth.authStateReady();
       this.showToast('¡Registro completado con éxito!');
       this.router.navigate(['/favorites'], { replaceUrl: true });
     } catch (error: any) {
-      if (loading) await loading.dismiss();
       console.error('Error detallado en registro:', error);
-      
+
       let msg = 'Error desconocido';
       if (error.code === 'auth/email-already-in-use') msg = 'Este correo ya está registrado.';
       else if (error.code === 'auth/weak-password') msg = 'La contraseña es muy corta (mínimo 6 caracteres).';
@@ -102,7 +89,44 @@ export class RegisterComponent {
       else msg = error.message;
 
       alert('Hubo un problema: ' + msg);
+    } finally {
+      await loading.dismiss();
     }
+  }
+
+  private uploadProfileImage(uid: string, file: File): Promise<string> {
+    const filePath = `profile_images/${uid}_${Date.now()}`;
+    const storageRef = ref(this.storage, filePath);
+
+    return Promise.race([
+      (async () => {
+        await uploadBytes(storageRef, file);
+        return getDownloadURL(storageRef);
+      })(),
+      new Promise<string>((_, reject) =>
+        setTimeout(() => reject(new Error('timeout')), 15000)
+      )
+    ]);
+  }
+
+  private saveUserProfile(uid: string, email: string, imageUrl: string): Promise<void> {
+    const userDocRef = doc(this.firestore, 'usuarios', uid);
+
+    return Promise.race([
+      setDoc(userDocRef, {
+        uid,
+        nombre: this.nombre,
+        apellidos: this.apellidos,
+        email,
+        fotoPerfil: imageUrl,
+        fechaRegistro: new Date()
+      }),
+      new Promise<void>((_, reject) =>
+        setTimeout(() => reject(new Error('Firestore timeout')), 15000)
+      )
+    ]).catch((err) => {
+      console.warn('No se pudo guardar el perfil en Firestore; la cuenta sí se creó.', err);
+    });
   }
 
   async showToast(message: string) {

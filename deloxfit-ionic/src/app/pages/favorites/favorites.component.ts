@@ -3,8 +3,9 @@ import { Auth, signOut } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
-import { DataService, SiteData } from '../../services/database.service';
+import { DataService } from '../../services/database.service';
 import { SqliteService } from '../../services/sqlite.service';
+import { mapSubscriptionsToItems } from '../../services/site-data.util';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
@@ -22,41 +23,20 @@ export class FavoritesComponent implements OnInit {
   private router = inject(Router);
   private auth = inject(Auth);
 
-  items$: Observable<any[]> | undefined;
+  items$ = this.dataService.getSiteData().pipe(map(mapSubscriptionsToItems));
   favorites: string[] = [];
 
   constructor() {
     addIcons({ heart, heartOutline, star, logOutOutline });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+    void this.initFavorites();
+  }
+
+  private async initFavorites() {
     await this.sqlite.initDatabase();
     await this.loadFavorites();
-
-    this.items$ = this.dataService.getSiteData().pipe(
-      map((data: SiteData) => {
-        if (!data || !data.subscriptions) return [];
-        return data.subscriptions.map(sub => {
-          const titleLower = sub.title.toLowerCase();
-          let imageName = 'gratis.png';
-
-          if (titleLower.includes('anual')) imageName = 'anual.png';
-          else if (titleLower.includes('diario')) imageName = 'diario.png';
-          else if (titleLower.includes('familiar')) imageName = 'familiar.png';
-          else if (titleLower.includes('mensual')) imageName = 'mensual.png';
-          else if (titleLower.includes('semestral')) imageName = 'semestral.png';
-          else if (titleLower.includes('gratis')) imageName = 'gratis.png';
-
-          return {
-            id: sub.title.toLowerCase().replace(/\s/g, '-'),
-            nombre: sub.title,
-            precio: sub.price,
-            descripcion: `Suscripción de ${sub.title} por ${sub.price}`,
-            imagen: `assets/images/${imageName}`
-          };
-        });
-      })
-    );
   }
 
   async ionViewWillEnter() {

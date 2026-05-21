@@ -1,15 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {
-  Firestore,
-  collection,
-  addDoc,
-  setDoc,
-  doc,
-  collectionData,
-  onSnapshot
-} from '@angular/fire/firestore';
+import { Observable, concat, defer, from, of } from 'rxjs';
+import { catchError, filter, shareReplay, switchMap, timeout } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
+import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -24,6 +18,8 @@ export interface SiteData {
   schedule: { time: string; lunes: string; martes: string; miercoles: string; jueves: string; viernes: string }[];
 }
 
+const FIRESTORE_TIMEOUT_MS = 6000;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,11 +27,35 @@ export class DataService {
   private http = inject(HttpClient);
   private firestore = inject(Firestore);
   private auth = inject(Auth);
-
-  constructor() { }
+  private siteData$?: Observable<SiteData>;
 
   getAuthState(): Observable<any> {
     return authState(this.auth);
+  }
+
+  /** Precarga datos en segundo plano (p. ej. al arrancar la app). */
+  preloadSiteData(): void {
+    this.getSiteData().subscribe();
+  }
+
+  getSiteData(): Observable<SiteData> {
+    if (!this.siteData$) {
+      this.siteData$ = this.http.get<SiteData>('assets/data.json').pipe(
+        catchError(() => of({ faqs: [], subscriptions: [], schedule: [] } as SiteData)),
+        switchMap((localData) =>
+          concat(
+            of(localData),
+            defer(() => from(this.fetchFromFirestore())).pipe(
+              timeout(FIRESTORE_TIMEOUT_MS),
+              filter((remote): remote is SiteData => !!remote),
+              catchError(() => of())
+            )
+          )
+        ),
+        shareReplay(1)
+      );
+    }
+    return this.siteData$;
   }
 
   async registrarUsuario(email: string, pass: string, nombre: string, dni: string) {
@@ -60,31 +80,21 @@ export class DataService {
     return signOut(this.auth);
   }
 
-  getSiteData(): Observable<SiteData> {
-    return new Observable<SiteData>(observer => {
+  async seedData() {
+    const data = await firstValueFrom(this.http.get<SiteData>('assets/data.json'));
+    if (!data) return;
+    try {
       const siteDataRef = doc(this.firestore, 'siteConfig', 'data');
-      const unsubscribe = onSnapshot(siteDataRef, (docSnap) => {
-        if (docSnap.exists()) {
-          observer.next(docSnap.data() as SiteData);
-        } else {
-          observer.next(undefined as any);
-        }
-      }, (error) => {
-        observer.error(error);
-      });
-      return () => unsubscribe();
-    });
+      await setDoc(siteDataRef, data);
+      console.log('Datos subidos a Firestore correctamente');
+    } catch (error) {
+      console.error('Error subiendo datos:', error);
+    }
   }
 
-  async seedData() {
-    this.http.get<SiteData>('assets/data.json').subscribe(async (data) => {
-      try {
-        const siteDataRef = doc(this.firestore, 'siteConfig', 'data');
-        await setDoc(siteDataRef, data);
-        console.log('✅ Datos subidos a Firestore correctamente!');
-      } catch (error) {
-        console.error('❌ Error subiendo datos:', error);
-      }
-    });
+  private async fetchFromFirestore(): Promise<SiteData | null> {
+    const siteDataRef = doc(this.firestore, 'siteConfig', 'data');
+    const snap = await getDoc(siteDataRef);
+    return snap.exists() ? (snap.data() as SiteData) : null;
   }
 }

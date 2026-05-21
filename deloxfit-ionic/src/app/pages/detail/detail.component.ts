@@ -2,8 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, SiteData } from '../../services/database.service';
+import { DataService } from '../../services/database.service';
 import { SqliteService } from '../../services/sqlite.service';
+import { subscriptionImageName } from '../../services/site-data.util';
+import { take } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
 
@@ -26,34 +28,31 @@ export class DetailComponent implements OnInit {
     addIcons({ heart, heartOutline });
   }
 
-  async ngOnInit() {
-    await this.sqlite.initDatabase();
-
+  ngOnInit() {
     this.itemId = this.route.snapshot.paramMap.get('id') || '';
+    if (!this.itemId) return;
+
+    this.dataService.getSiteData().pipe(take(1)).subscribe((data) => {
+      const found = data?.subscriptions?.find(
+        s => s.title.toLowerCase().replace(/\s/g, '-') === this.itemId
+      );
+      if (found) {
+        this.item = {
+          id: this.itemId,
+          nombre: found.title,
+          precio: found.price,
+          descripcion: `Suscripción de nivel ${found.title} a un precio de ${found.price}. Ideal para tu entrenamiento en DeloxFit.`,
+          imagen: `assets/images/${subscriptionImageName(found.title)}`
+        };
+      }
+    });
+
+    void this.initFavoriteState();
+  }
+
+  private async initFavoriteState() {
+    await this.sqlite.initDatabase();
     if (this.itemId) {
-      this.dataService.getSiteData().subscribe(async (data: SiteData) => {
-        if (data && data.subscriptions) {
-          const found = data.subscriptions.find(s => s.title.toLowerCase().replace(/\s/g, '-') === this.itemId);
-          if (found) {
-            const titleLower = found.title.toLowerCase();
-            let imageName = 'gratis.png';
-            if (titleLower.includes('anual')) imageName = 'anual.png';
-            else if (titleLower.includes('diario')) imageName = 'diario.png';
-            else if (titleLower.includes('familiar')) imageName = 'familiar.png';
-            else if (titleLower.includes('mensual')) imageName = 'mensual.png';
-            else if (titleLower.includes('semestral')) imageName = 'semestral.png';
-
-            this.item = {
-              id: this.itemId,
-              nombre: found.title,
-              precio: found.price,
-              descripcion: `Suscripción de nivel ${found.title} a un precio de ${found.price}. Ideal para tu entrenamiento en DeloxFit.`,
-              imagen: `assets/images/${imageName}`
-            };
-          }
-        }
-      });
-
       this.isFavorite = await this.sqlite.isFavorite(this.itemId);
     }
   }
