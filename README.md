@@ -25,25 +25,9 @@ Es la página de inicio del sitio web.
 
 Representa el mockup "INDICE".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
-- 
-
-### CARGA DE CONTENIDO JSON
-
-- 
-
 > INSCRIPCIÓN: login.html
 
 Representa el mockup "LOG-IN".
-
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
--
-
-### CARGA DE CONTENIDO JSON
-
-- 
 
 ### FORMULARIO
 
@@ -84,61 +68,21 @@ En los formularios de la página de acceso (`login.html`) se han aplicado las si
 
 Representa el mockup "INFORMACION CUENTA".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
--
-
-### CARGA DE CONTENIDO JSON
-
--
-
 > SUSCRIPCIONES: subscriptionPage.html
 
 Representa el mockup "SUSCRIPCIONES".
-
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
--
-
-### CARGA DE CONTENIDO JSON
-
--
 
 > CLASES: classesPage.html
 
 Representa el mockup "CLASES".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
--
-
-### CARGA DE CONTENIDO JSON
-
--
-
 > FAQS: faqsPage.html
 
 Representa el mockup "FAQS".
 
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
--
-
-### CARGA DE CONTENIDO JSON
-
--
-
 > AVISO LEGAL: legalNotice.html
 
 Para esto último no hicimos mockup en su momento.
-
-### ASPECTOS RESPONSIVE IMPLEMENTADOS
-
--
-
-### CARGA DE CONTENIDO JSON
-
--
 
 UBICACIÓN CONTENIDO JSON:
 -
